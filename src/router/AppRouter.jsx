@@ -7,6 +7,7 @@ import LoginPage from "../pages/login/LoginPage";
 import PublicRoute from "./PublicRoute";
 import PrivateRoute from "./PrivateRoute";
 import DashboardRoutes from "./DashboardRoutes";
+import Loader from "../components/Loader";
 
 const AppRouter = () => {
   const [checkingAuthState, setCheckingAuthState] = useState(true);
@@ -38,7 +39,7 @@ const AppRouter = () => {
   }, []);
 
   if (checkingAuthState) {
-    return <h1>Cargando...</h1>;
+    return <Loader />;
   }
 
   return (

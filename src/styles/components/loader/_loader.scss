@@ -1,0 +1,23 @@
+.loading__loading-main-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+.loader__loader-content {
+  position: relative;
+  margin: auto;
+  top: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader__loading-title {
+  font-size: 40px;
+  font-weight: 500;
+}
+
+.loading__loader {
+  width: 130px;
+}
