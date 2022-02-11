@@ -26,3 +26,15 @@ const portraitImagesList = [
 ];
 
 //toDo -> Create function to randomly pick an image from below list
+
+const generateRandomNumber = () => {
+  let randomNumber = -1;
+  while (randomNumber < 0 || randomNumber >= portraitImagesList.length) {
+    randomNumber = parseInt(Math.random() * 100);
+  }
+  return randomNumber;
+};
+
+const pickRandomImage = () => {
+  return portraitImagesList[generateRandomNumber()];
+};
