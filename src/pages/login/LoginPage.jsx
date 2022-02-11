@@ -50,10 +50,8 @@ const LoginPage = () => {
       </div>
       <div
         className="login__welcome-img-container"
-        style={{
-          backgroundImage: `url(${
-            process.env.PUBLIC_URL + "/assets/img/login/login-main-page.jpg"
-          })`,
+        style={{                toDo -> Generar aquí la imágen aleatoria con una función dentro del mismo archivo
+          backgroundImage: `url(https://res.cloudinary.com/dahwtwzdl/image/upload/v1643693571/login-main-portrait/portrait-image-18_bwytuc.jpg)`,
         }}
       >
         <section className="login__app-description">
