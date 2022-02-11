@@ -6,7 +6,7 @@ const DashboardRoutes = () => {
   return (
     <Routes>
       <Route exact path="/" element={<HomePage />} />
-      {/* toDo -> Define the rest of the routes here*/}
+      <Route path="/memory/:memoryId" element={<HomePage />} />
 
       {/* Default route */}
       <Route path="/*" element={<HomePage />} />

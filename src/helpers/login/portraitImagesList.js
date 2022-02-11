@@ -38,3 +38,5 @@ const generateRandomNumber = () => {
 const pickRandomImage = () => {
   return portraitImagesList[generateRandomNumber()];
 };
+
+export default pickRandomImage;

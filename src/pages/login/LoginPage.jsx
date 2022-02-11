@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { startGoogleLogin } from "../../actions/authActions";
+import pickRandomImage from "../../helpers/login/portraitImagesList";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -51,8 +52,7 @@ const LoginPage = () => {
       <div
         className="login__welcome-img-container"
         style={{
-          //toDo -> Generar aquí la imágen aleatoria con una función dentro del mismo archivo
-          backgroundImage: `url(https://res.cloudinary.com/dahwtwzdl/image/upload/v1643693571/login-main-portrait/portrait-image-18_bwytuc.jpg)`,
+          backgroundImage: `url(${pickRandomImage()})`,
         }}
       >
         <section className="login__app-description">
