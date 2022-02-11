@@ -19,7 +19,7 @@ export const memoriesReducer = (state = initialState, action) => {
         ...state,
         memoriesList: [...action.payload],
       };
-    case types.MemoriesLogoutCleaning:
+    case types.memoriesLogoutCleaning:
       return { ...state, activeMemory: null, memoriesList: [] };
     default:
       return state;
