@@ -1,7 +1,7 @@
 import React from "react";
 
 const NoMemorySelected = () => {
-  return <div></div>;
+  return <div>No memory selected</div>;
 };
 
 export default NoMemorySelected;

@@ -1,7 +1,7 @@
 import React from "react";
 
 const MemoryView = () => {
-  return <div></div>;
+  return <div>Memory View</div>;
 };
 
 export default MemoryView;
