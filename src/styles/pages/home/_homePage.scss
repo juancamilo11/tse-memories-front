@@ -5,8 +5,6 @@
 
 //-----------
 
-//Entries
-
 //new entry
 .memory-catalog__new-entry {
   align-items: center;
@@ -36,7 +34,7 @@
 
 .memory-catalog__memory-entry-picture {
   height: 300px;
-  width: 50%;
+  width: 50% !important;
   background-position: center;
   outline: 1px solid black;
   overflow: hidden;
@@ -110,6 +108,7 @@
 .memory-catalog__memory-entry-body {
   background-color: red;
   //   position: relative;
+  width: 50% !important;
 }
 
 .memory-catalog__delete-memory-button {

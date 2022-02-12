@@ -54,15 +54,14 @@ const PublicMemoryEntry = ({
       className="memory-catalog__memory-entry"
       style={{ backgroundColor: activedmemory?.id === id && "#94DAFF" }}
     >
-      {
-        <div
-          className="memory-catalog__memory-entry-picture"
-          style={{
-            backgroundSize: "cover",
-            backgroundImage: `url(${memoryPortrait})`,
-          }}
-        ></div>
-      }
+      <div
+        className="memory-catalog__memory-entry-picture"
+        style={{
+          backgroundSize: "cover",
+          // backgroundImage: `url(${memoryPortrait})`,
+          backgroundImage: `url(https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp)`,
+        }}
+      ></div>
 
       <div className="memory-catalog__memory-entry-body">
         <h2 className="memory-catalog__memory-entry-title">{name}</h2>
