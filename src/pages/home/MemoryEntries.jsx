@@ -1,5 +1,7 @@
 import React from "react";
-import MemoryEntry from "./MemoryEntry";
+import PrivateMemoryEntry from "./memoryEntryTypes/PrivateMemoryEntry";
+import ProtectedMemoryEntry from "./memoryEntryTypes/ProtectedMemoryEntry";
+import PublicMemoryEntry from "./memoryEntryTypes/PublicMemoryEntry";
 
 const MemoryEntries = ({ memories }) => {
   return (
@@ -7,17 +9,11 @@ const MemoryEntries = ({ memories }) => {
       {memories.memoriesList.map((memory) => {
         switch (memory.visibility) {
           case "PUBLIC":
-            <PublicMemoryEntry key={memory.id} {...memory} />;
-
-            break;
-          case "PUBLIC":
-            <PublicMemoryEntry key={memory.id} {...memory} />;
-
-            break;
-          case "PUBLIC":
-            <PublicMemoryEntry key={memory.id} {...memory} />;
-
-            break;
+            return <PublicMemoryEntry key={memory.id} {...memory} />;
+          case "PROTECTED":
+            return <ProtectedMemoryEntry key={memory.id} {...memory} />;
+          case "PRIVATE":
+            return <PrivateMemoryEntry key={memory.id} {...memory} />;
           default:
             break;
         }

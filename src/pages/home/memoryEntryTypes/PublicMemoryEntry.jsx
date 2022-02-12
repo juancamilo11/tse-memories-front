@@ -1,6 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { activeMemory } from "../../../actions/memoryActions";
 
-const MemoryEntry = ({
+const MAX_NUM_TAGS_DISPLAYED = 10;
+
+const PublicMemoryEntry = ({
   id,
   name,
   memoryDate,
@@ -10,22 +15,26 @@ const MemoryEntry = ({
   owner,
   memoryPortrait,
   location,
+  isAFavorite,
+  viewsCount,
 }) => {
   const dispatch = useDispatch();
   const { memories } = useSelector((state) => state);
   const activedmemory = memories.activeMemory;
+
   const handleSelectmemory = () => {
     dispatch(
-      activememory(id, {
+      activeMemory(id, {
         name,
-        slogan,
-        endingDate,
+        memoryDate,
+        creationDate,
+        visibility,
+        tagList,
+        owner,
+        memoryPortrait,
         location,
-        memoryTags,
-        urlmemory,
         isAFavorite,
         viewsCount,
-        portraitImageUrl,
       })
     );
   };
@@ -40,33 +49,37 @@ const MemoryEntry = ({
           className="memory-catalog__memory-entry-picture"
           style={{
             backgroundSize: "cover",
-            backgroundImage: `url(https://cdn.blacksoft.ca/assets/blacksoft/img/empty.png)`,
+            backgroundImage: `url(${memoryPortrait})`,
           }}
         ></div>
       }
 
       <div className="memory-catalog__memory-entry-body">
         <h2 className="memory-catalog__memory-entry-title">{name}</h2>
+
         <div className="memory-catalog__decoration-line">
           <hr />
         </div>
-        <p className="memory-catalog__memory-entry-content memory-catalog__memory-entry-slogan">
-          {slogan}
-        </p>
-        <p className="memory-catalog__memory-entry-content">
-          <i class="fas fa-calendar-alt memory-catalog__icon-entry-value"></i>
-          Abierta hasta el <span className="bold-text">{endingDate}</span>
-        </p>
+
         <p className="memory-catalog__memory-entry-content">
           <i class="fas fa-map-marker-alt memory-catalog__icon-entry-value"></i>
-          {location}
+          <span className="bold-text">
+            {location.country}, {location.city}
+          </span>
         </p>
+
+        <p className="memory-catalog__memory-entry-content">
+          <i class="fas fa-calendar-alt memory-catalog__icon-entry-value"></i>
+          <span className="bold-text">{memoryDate}</span>
+        </p>
+
         <p>
           <i class="fas fa-tags memory-catalog__icon-entry-value"></i>
-          {memoryTags
+          {tagList
             .slice(0, MAX_NUM_TAGS_DISPLAYED)
             .toString()
             .replaceAll(",", ", ")}
+          ...
         </p>
         <div className="memory-catalog__memory-entry-date-box">
           <button
@@ -93,4 +106,4 @@ const MemoryEntry = ({
   );
 };
 
-export default MemoryEntry;
+export default PublicMemoryEntry;

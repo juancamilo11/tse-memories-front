@@ -9,11 +9,11 @@ import MemoryEntries from "./MemoryEntries";
 const Sidebar = () => {
   const navigate = useNavigate();
 
-  //const { memories } = useSelector((state) => state);
   //Aquí es donde se llevan a cabo los procesos de filtrado y búsqueda y ordenamiento
-  const [memories, setMemories] = useState(getCatalogMemoriesFakeData);
 
+  const { memories } = useSelector((state) => state);
   const [searchValue, setSearchValue] = useState("");
+
   const dispatch = useDispatch();
 
   const handleSearch = (e) => {

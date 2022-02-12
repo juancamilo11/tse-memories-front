@@ -1,7 +1,7 @@
 import React from "react";
 
 const ProtectedMemoryEntry = () => {
-  return <div></div>;
+  return <div>Protected memory</div>;
 };
 
 export default ProtectedMemoryEntry;
