@@ -1,0 +1,75 @@
+.memory-catalog__sidebar {
+  color: white;
+  background-color: #333;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  // min-width: 700px;
+  width: 45%;
+  height: 100vh;
+}
+
+.memory-catalog__sidebar-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.memory-catalog__sidebar-user-info {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding-right: 5px;
+  border-radius: 5px;
+}
+
+.memory-catalog__sidebar-user-info:hover {
+  background-color: rgb(56, 56, 56);
+  transition: all 0.2s ease-in;
+}
+
+.memory-catalog__img-profile {
+  width: 50px;
+  padding: 10px;
+  margin: -5px;
+  border-radius: 50%;
+}
+
+.memory-catalog__logo-profile {
+  font-size: 50px;
+}
+
+.memory-catalog__display-name {
+  font-size: 1.2rem;
+  margin-left: 15px;
+  padding-right: 5px;
+}
+
+.memory-catalog__search-button {
+  margin-right: 10px;
+  padding: 7px 10px;
+  border-radius: 3px;
+  margin-top: 10px;
+  outline: none;
+  border: 1px solid darkgray;
+  color: #fff;
+  height: 40px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.memory-catalog__search-button:hover {
+  background-color: rgb(78, 77, 77);
+  transition: all 0.2s ease-in;
+}
+
+.memory-catalog__logout-button {
+  background-color: red;
+  cursor: pointer;
+  margin-left: -160px;
+}

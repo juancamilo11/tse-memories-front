@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { startLogout } from "../../actions/authActions";
 import { getCatalogMemoriesFakeData } from "../../helpers/catalogMemoriesFakeData";
 import MemoryEntries from "./MemoryEntries";
 
@@ -18,6 +19,11 @@ const Sidebar = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
+  };
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    dispatch(startLogout());
   };
 
   const { auth } = useSelector((state) => state);
@@ -42,8 +48,13 @@ const Sidebar = () => {
         >
           Buscar y filtrar
         </button>
+        <button
+          className="memory-catalog__search-button memory-catalog__logout-button"
+          onClick={handleLogout}
+        >
+          Salir
+        </button>
       </div>
-
       <MemoryEntries memories={memories} />
     </aside>
   );
