@@ -9,7 +9,10 @@ const types = {
   uiStartLoading: "[UI] Start Loading",
   uiFinishLoading: "[UI] Finish Loading",
 
-  setActiveMemory: "[memories] Set Active Memories",
+  setActiveMemoryToShow: "[memories] Set Active Memory to Show",
+  setActiveMemoryToUpdate: "[memories] Set Active Memory to Update",
+  setActiveSearchPanel: "[memories] Set Active Search Panel",
+
   loadMemories: "[memories] Load Memories",
   memoriesLogoutCleaning: "[memories] Memories Logout Cleaning",
   modifyMemory: "[memories] Modify Memory",

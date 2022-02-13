@@ -4,11 +4,11 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { startLogout } from "../../actions/authActions";
+import { activeSearchPanel } from "../../actions/memoryActions";
 import MemoryEntries from "./MemoryEntries";
 
 const Sidebar = () => {
   const navigate = useNavigate();
-
   //Aquí es donde se llevan a cabo los procesos de filtrado y búsqueda y ordenamiento
 
   const { memories } = useSelector((state) => state);
@@ -16,8 +16,9 @@ const Sidebar = () => {
 
   const dispatch = useDispatch();
 
-  const handleSearch = (e) => {
+  const handleOpenSearchPanel = (e) => {
     e.preventDefault();
+    dispatch(activeSearchPanel());
   };
 
   const handleLogout = (e) => {
@@ -43,7 +44,7 @@ const Sidebar = () => {
         </div>
         <button
           className="memory-catalog__search-button"
-          onClick={handleSearch}
+          onClick={handleOpenSearchPanel}
         >
           Buscar y filtrar
         </button>
