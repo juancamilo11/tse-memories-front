@@ -42,17 +42,44 @@ const initialState = {
       viewsCount: 100,
     },
   ],
-  activeMemory: null,
+  activeMemoryToShow: null,
+  activeMemoryToUpdate: null,
+  activeSearchPanel: false,
 };
 
 export const memoriesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.setActiveMemory:
+    case types.setActiveMemoryToShow:
       return {
         ...state,
-        activeMemory: {
+        activeMemoryToShow: {
           ...action.payload,
         },
+        activeMemoryToUpdate: null,
+        activeSearchPanel: false,
+      };
+    case types.setActiveMemoryToUpdate:
+      return {
+        ...state,
+        activeMemoryToShow: null,
+        activeMemoryToUpdate: {
+          ...action.payload,
+        },
+        activeSearchPanel: false,
+      };
+    case types.setActiveSearchPanel:
+      return {
+        ...state,
+        activeMemoryToShow: null,
+        activeMemoryToUpdate: null,
+        activeSearchPanel: true,
+      };
+    case types.setNothingToShow:
+      return {
+        ...state,
+        activeMemoryToShow: null,
+        activeMemoryToUpdate: null,
+        activeSearchPanel: false,
       };
     case types.loadMemories:
       return {

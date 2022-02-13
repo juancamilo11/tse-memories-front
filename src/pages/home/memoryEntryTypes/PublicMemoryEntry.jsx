@@ -2,8 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {
-  activeMemory,
-  modifyMemory,
+  activeMemoryToShow,
+  activeMemoryToUpdate,
+  modifyMemoryToUpdate,
   startDeleteMemory,
 } from "../../../actions/memoryActions";
 import { sweetAlertForMemoryDeleteConfirmationBuilder } from "../../../helpers/sweetAlertBuilder";
@@ -30,7 +31,7 @@ const PublicMemoryEntry = ({
   const handleWatchMemory = (e) => {
     e.preventDefault();
     dispatch(
-      activeMemory(id, {
+      activeMemoryToShow(id, {
         name,
         memoryDate,
         creationDate,
@@ -48,7 +49,7 @@ const PublicMemoryEntry = ({
   const handleModifyMemory = (e) => {
     e.preventDefault();
     dispatch(
-      modifyMemory(id, {
+      activeMemoryToUpdate(id, {
         name,
         memoryDate,
         creationDate,

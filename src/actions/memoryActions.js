@@ -3,9 +3,19 @@ import { startLoading, finishLoading } from "./uiActions";
 
 const urlBase = "http://localhost:8080";
 
-export const activeMemory = (memoryId, memory) => ({
-  type: types.setActiveMemory,
+export const activeMemoryToShow = (memoryId, memory) => ({
+  type: types.setActiveMemoryToShow,
   payload: { memoryId, ...memory },
+});
+
+export const activeMemoryToUpdate = (memoryId, memory) => ({
+  type: types.setActiveMemoryToUpdate,
+  payload: { memoryId, ...memory },
+});
+
+export const activeSearchPanel = () => ({
+  type: types.setActiveSearchPanel,
+  payload: null,
 });
 
 //modifyMemory sólo actualiza la vida, luego habrá otra acción de
