@@ -244,7 +244,14 @@ const MemoryActualizationForm = () => {
             handleInputChange={handleInputChange}
           />
 
-          <InputMemoryImagesForm />
+          <InputMemoryImagesForm
+            formValues={formValues}
+            handleInputChange={handleInputChange}
+            errorsState={errorsState}
+            setErrorsState={setErrorsState}
+            handleInputValidation={handleInputValidation}
+            handleSelectImageToLoad={handleSelectImageToLoad}
+          />
         </div>
       </form>
     </div>
