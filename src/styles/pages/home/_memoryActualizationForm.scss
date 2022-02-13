@@ -1,0 +1,239 @@
+.memory-form__main-container {
+  background-color: red;
+  width: 55%;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.memory-form__header-info {
+  background-color: green;
+  display: flex;
+  flex-direction: row;
+  font-size: 13px;
+}
+
+.memory-form__id-container {
+  display: flex;
+  flex-direction: row;
+  padding-left: 3%;
+  align-items: center;
+  background-color: blue;
+  width: 50%;
+}
+
+.memory-form__id-content {
+  background-color: purple;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.memory-form__id-copy-button {
+  margin-left: 10px;
+}
+
+.memory-form__id-value,
+.memory-form__creation-date-value {
+  font-size: 10px;
+}
+
+.memory-form__creation-date-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.memory-form__command-buttons {
+  position: absolute;
+  top: 10px;
+  right: 35px;
+}
+
+.memory-form__command-button {
+  margin: 5px;
+  padding: 5px 7px;
+  border-radius: 3px;
+  border: 1px solid darkgray;
+}
+
+//--------
+
+.memory-form__inputs-container {
+  justify-content: space-evenly;
+  background-color: blue;
+  min-width: 500px;
+  width: 94%;
+  margin: 0px auto;
+  border: 1px solid black;
+}
+
+.memory-form__input-label {
+  // border: 1px solid green;
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
+  width: 22%;
+}
+
+.memory-form__input-container {
+  display: flex;
+  // border: 1px solid red;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 5px;
+  margin-top: 20px;
+}
+
+.memory-form__input {
+  font-size: 16px;
+  color: black;
+  text-indent: 5px;
+  border: 2px solid lightgray;
+  width: 60%;
+  height: 45px;
+  border-radius: 5px;
+  //   background-color: #000;
+}
+
+.memory-form__input--textarea {
+  resize: vertical;
+  min-height: 60px;
+  max-height: 200px;
+}
+
+.memory-form__input--secundary {
+  width: 35%;
+  margin-left: 5%;
+}
+
+.memory-form__input-tag {
+  width: 33%;
+  margin-right: 2%;
+  margin-left: -1%;
+}
+
+.memory-form__button-input-tag {
+}
+
+.memory-form__button-input-tag {
+  padding: 0px;
+  width: 20%;
+  margin-left: 2%;
+}
+
+.memory-form__left-counting-tags {
+  margin-bottom: -20px;
+  width: 100%;
+}
+
+.memory-form__textarea-slogan {
+  max-height: 100px;
+  min-height: 55px;
+}
+
+.memory-form__textarea-description {
+  min-height: 60px;
+  max-height: 200px;
+}
+
+.memory-form__input-date {
+  width: 25%;
+  font-size: 15px;
+  text-indent: 3px;
+}
+
+.memory-form__input-date-label {
+  margin: 0px 5px 0px 10px;
+  width: 7%;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.memory-form__input-address {
+  font-size: 1.2em;
+  color: black;
+  width: 60%;
+  height: 45px;
+  border-radius: 5px;
+}
+
+.memory-form__product-tags-list {
+  // background-color: yellow;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.memory-form__tag-item {
+  min-width: 200px;
+  overflow-wrap: wrap;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.memory-form__tag-name {
+  color: black;
+  font-weight: bold;
+}
+
+.memory-form__button-update {
+  padding: 10px 25px;
+  border: 1px solid black;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #21117e;
+  color: white;
+  margin-top: 40px;
+}
+
+.memory-form__buttons-container {
+  width: 500px;
+  margin-top: -40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.memory-form__image-button {
+  margin: 5px;
+  background-color: white;
+  color: rgb(0, 0, 0);
+  border-radius: 10px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  line-height: 15px;
+  border: 2px solid rgb(245, 61, 58);
+  transition: all 0.3s ease 0s;
+  width: 70%;
+  // min-width: 200px;
+  margin: 0px 15%;
+  padding: 10px;
+}
+
+.memory-form__image-button:hover {
+  color: white;
+  background-color: rgb(245, 61, 58);
+}
+
+.memory-form__input-image {
+  display: flex;
+  // display: none;
+  visibility: hidden;
+  // border: 1px solid red;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.memory-form__image-container {
+  width: 35%;
+}

@@ -3,7 +3,7 @@ import React from "react";
 const ErrorFlag = ({ message }) => {
   return (
     <div className="error-flag__container">
-      <p className="error-flag__message">{message}</p>
+      <span className="error-flag__message">{message}</span>
     </div>
   );
 };
