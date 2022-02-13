@@ -1,12 +1,12 @@
 .memory-form__main-container {
-  background-color: red;
+  // background-color: red;
   width: 55%;
   height: 100vh;
   overflow-y: scroll;
 }
 
 .memory-form__header-info {
-  background-color: green;
+  // background-color: green;
   display: flex;
   flex-direction: row;
   font-size: 13px;
@@ -17,12 +17,12 @@
   flex-direction: row;
   padding-left: 3%;
   align-items: center;
-  background-color: blue;
+  // background-color: blue;
   width: 50%;
 }
 
 .memory-form__id-content {
-  background-color: purple;
+  // background-color: purple;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -62,11 +62,11 @@
 
 .memory-form__inputs-container {
   justify-content: space-evenly;
-  background-color: blue;
+  // background-color: blue;
   min-width: 500px;
   width: 94%;
   margin: 0px auto;
-  border: 1px solid black;
+  // border: 1px solid black;
 }
 
 .memory-form__input-label {
@@ -116,12 +116,10 @@
 }
 
 .memory-form__button-input-tag {
-}
-
-.memory-form__button-input-tag {
   padding: 0px;
   width: 20%;
   margin-left: 2%;
+  cursor: pointer;
 }
 
 .memory-form__left-counting-tags {
@@ -210,7 +208,7 @@
   font-weight: bold;
   letter-spacing: 1px;
   line-height: 15px;
-  border: 2px solid rgb(245, 61, 58);
+  border: 2px solid rgb(5, 57, 170);
   transition: all 0.3s ease 0s;
   width: 70%;
   // min-width: 200px;
@@ -220,7 +218,7 @@
 
 .memory-form__image-button:hover {
   color: white;
-  background-color: rgb(245, 61, 58);
+  background-color: rgb(5, 57, 170);
 }
 
 .memory-form__input-image {

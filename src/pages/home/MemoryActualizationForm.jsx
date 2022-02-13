@@ -11,6 +11,8 @@ import {
 } from "../../helpers/memoryForm/memoryFormValidation";
 import { v4 as uuidv4 } from "uuid";
 import { useSelector } from "react-redux";
+import MemoryTagList from "../../components/MemoryTagList";
+import InputMemoryImagesForm from "../../components/InputMemoryImagesForm";
 
 const MemoryActualizationForm = () => {
   const [formValues, handleInputChange, resetForm] = useForm(formInitialValues);
@@ -117,7 +119,8 @@ const MemoryActualizationForm = () => {
               {!errorsState.memoryDate.hasErrors && (
                 <ErrorFlag
                   message={
-                    errorsState.memoryDate.message || "Error: Error de prueba"
+                    errorsState.memoryDate.message ||
+                    "Error: Error de prueba de name"
                   }
                 />
               )}
@@ -125,7 +128,10 @@ const MemoryActualizationForm = () => {
             <div className="memory-form__error-flag mt-2 mb-4">
               {!errorsState.name.hasErrors && (
                 <ErrorFlag
-                  message={errorsState.name.message || "Error: Error de prueba"}
+                  message={
+                    errorsState.name.message ||
+                    "Error: Error de prueba de memoryDate"
+                  }
                 />
               )}
             </div>
@@ -153,17 +159,26 @@ const MemoryActualizationForm = () => {
                 value={city}
                 onChange={handleInputValidation}
               />
-
-              <div className="memory-form__error-flag mt-2 mb-4">
-                {errorsState.country.hasErrors && (
-                  <ErrorFlag message={errorsState.country.message} />
-                )}
-              </div>
-              <div className="memory-form__error-flag mt-2 mb-4">
-                {errorsState.city.hasErrors && (
-                  <ErrorFlag message={errorsState.city.message} />
-                )}
-              </div>
+            </div>
+            <div className="memory-form__error-flag mt-2 mb-4">
+              {!errorsState.country.hasErrors && (
+                <ErrorFlag
+                  message={
+                    errorsState.country.message ||
+                    "Error, mensaje de prueba de country"
+                  }
+                />
+              )}
+            </div>
+            <div className="memory-form__error-flag mt-2 mb-4">
+              {!errorsState.city.hasErrors && (
+                <ErrorFlag
+                  message={
+                    errorsState.city.message ||
+                    "Error, mensaje de prueba de city"
+                  }
+                />
+              )}
             </div>
 
             <div className="memory-form__input-container">
@@ -202,129 +217,34 @@ const MemoryActualizationForm = () => {
                   <option value={visibility.type}>{visibility.label}</option>
                 ))}
               </select>
-              <div className="memory-form__error-flag mt-2 mb-4">
-                {errorsState.visibility.hasErrors && (
-                  <ErrorFlag message={errorsState.visibility.message} />
-                )}
-              </div>
             </div>
             <div className="memory-form__error-flag mt-2 mb-4">
-              {errorsState.name.hasErrors && (
-                <ErrorFlag message={errorsState.name.message} />
-              )}
-            </div>
-          </div>
-          <div className="memory-form__tag-list-container">
-            <h3 className="memory-form__tag-list-title text-center">
-              Lista de palabras claves (Etiquetas) de tu viaje
-            </h3>
-            <div className="memory-form__tag-list">
-              {tagList.map((tag) => (
-                //Crear el componente tag con el ícono de la basura
-                <p>{tag}</p>
-              ))}
-            </div>
-          </div>
-
-          <div className="memory-form__image-list-container">
-            <div className="memory-form__input-image-container">
-              <div className="memory-form__input-container">
-                <label
-                  htmlFor="memoryPhotoText"
-                  className="memory-form__input-label"
-                >
-                  Nombre de la foto
-                </label>
-                <input
-                  type="text"
-                  name="memoryPhotoText"
-                  id="memoryPhotoText"
-                  className="memory-form__input"
-                  autoComplete="off"
-                  value={memoryPhotoText}
-                  onChange={handleInputValidation}
-                />
-              </div>
-              <div className="memory-form__error-flag mt-2 mb-4">
-                {errorsState.memoryPhotoText.hasErrors && (
-                  <ErrorFlag message={errorsState.memoryPhotoText.message} />
-                )}
-              </div>
-              <div className="memory-form__input-container">
-                <label
-                  htmlFor="memoryPhotoDescription"
-                  className="memory-form__input-label"
-                >
-                  Decripción
-                </label>
-                <textarea
-                  name="memoryPhotoDescription"
-                  id="memoryPhotoDescription"
-                  className="memory-form__input memory-form__input--textarea"
-                  autoComplete="off"
-                  value={memoryPhotoDescription}
-                  onChange={handleInputValidation}
-                ></textarea>
-              </div>
-              <div className="memory-form__error-flag mt-2 mb-4">
-                {errorsState.memoryPhotoDescription.hasErrors && (
-                  <ErrorFlag
-                    message={errorsState.memoryPhotoDescription.message}
-                  />
-                )}
-              </div>
-
-              <div className="memory-form__image-container">
-                <button
-                  className="memory-form__image-button"
-                  id="upload-img-button"
-                  onClick={handleSelectImageToLoad}
-                >
-                  Carga un archivo
-                </button>
-                <input
-                  type="file"
-                  name="memoryPhotoImg"
-                  className="memory-form__input-image"
-                  id="memory-form__input-image"
-                  value={memoryPhotoImg}
-                  onChange={handleInputValidation}
-                />
-              </div>
-            </div>
-            <label id="url-uploaded-img"></label>
-            <div className="memory-form__error-flag mt-2 mb-4">
-              {errorsState.memoryPhotoImg.hasErrors && (
+              {!errorsState.tag.hasErrors && (
                 <ErrorFlag
-                  message={errorsState.memoryPhotoImg.message}
-                  width="100%"
+                  message={
+                    errorsState.tag.message || "Error, error de prueba de tag"
+                  }
                 />
               )}
-              <img
-                src="https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp"
-                className="uploaded-img-preview--no-content"
-                id="uploaded-img-preview"
-                alt=" "
-              />{" "}
-              <a
-                href="#"
-                target="_blank"
-                className="memory-form__url-image-label"
-                id="uploaded-img-preview-url"
-              ></a>
             </div>
-
-            <h3 className="memory-form__image-list-title text-center">
-              Lista de imágenes de tu viaje
-            </h3>
-            <div className="memory-form__images-list">
-              {memoryPhotoList.map((memoryPhoto) => (
-                //Recordar subir las imágenes una vez que se suben a cloudinary
-                //Crear el componente para mostrar la foto, la descripción, y el título
-                <p>{JSON.stringify(memoryPhoto)}</p>
-              ))}
+            <div className="memory-form__error-flag mt-2 mb-4">
+              {!errorsState.visibility.hasErrors && (
+                <ErrorFlag
+                  message={
+                    errorsState.visibility.message ||
+                    "Error, error de prueba de visibility"
+                  }
+                />
+              )}
             </div>
           </div>
+
+          <MemoryTagList
+            tagList={tagList}
+            handleInputChange={handleInputChange}
+          />
+
+          <InputMemoryImagesForm />
         </div>
       </form>
     </div>
