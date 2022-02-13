@@ -5,19 +5,19 @@ const urlBase = "http://localhost:8080";
 
 export const activeMemory = (memoryId, memory) => ({
   type: types.setActiveMemory,
-  payload: { storeId, ...memory },
+  payload: { memoryId, ...memory },
 });
 
 //modifyMemory sólo actualiza la vida, luego habrá otra acción de
 //Actualización para un recuerdo que si atacará el backend
 export const modifyMemory = (memoryId, memory) => ({
   type: types.modifyMemory,
-  payload: { storeId, ...memory },
+  payload: { memoryId, ...memory },
 });
 
 export const deleteMemory = (memoryId, memories) => ({
   type: types.deleteMemory,
-  payload: { storeId, memories },
+  payload: { memoryId, memories },
 });
 
 export const startDeleteMemory = (uid, memoryId, memories) => {

@@ -22,7 +22,7 @@ const initialState = {
       creationDate: "2021-01-20",
       visibility: "PUBLIC",
       tagList: ["Torre Eiffel", "Viaje", "Sol", "Mar", "Playa"],
-      ownerId: "buFHTLA40uRLBy54zaIfWdQcloLB3",
+      ownerId: "buFHTLA40uRLBy5zaIfWdQcloLB3",
       memoryPortrait: "./../assets/img/emptyImage.png",
       location: { country: "Francia", city: "París" },
       isAFavorite: false,

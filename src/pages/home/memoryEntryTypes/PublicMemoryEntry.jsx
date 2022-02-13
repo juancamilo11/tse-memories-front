@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {
   activeMemory,
+  modifyMemory,
   startDeleteMemory,
 } from "../../../actions/memoryActions";
 import { sweetAlertForMemoryDeleteConfirmationBuilder } from "../../../helpers/sweetAlertBuilder";
@@ -100,17 +101,11 @@ const PublicMemoryEntry = ({
             {location.country}, {location.city}
           </span>
         </p>
-        <p
-          className="memory-catalog__memory-entry-content"
-          // style={{ marginTop: "-10px" }}
-        >
+        <p className="memory-catalog__memory-entry-content">
           <i class="fas fa-calendar-alt memory-catalog__icon-entry-value"></i>
           <span className="bold-text">{memoryDate}</span>
         </p>
-        <p
-          className="memory-catalog__memory-entry-content"
-          // style={{ marginTop: "-10px" }}
-        >
+        <p className="memory-catalog__memory-entry-content">
           <i class="fas fa-tags memory-catalog__icon-entry-value"></i>
           {tagList
             .slice(0, MAX_NUM_TAGS_DISPLAYED)
@@ -166,6 +161,20 @@ const PublicMemoryEntry = ({
             <i class="fas fa-trash memory-catalog__icon-delete-memory"></i>
           </button>
         )}
+        <p className="memory-catalog__visibility-icon">
+          <i
+            className="fas fa-users"
+            title="Este recuerdo público y cualquier persona en el mundo puede verlo"
+          ></i>
+          {/* <i
+            className="fas fa-key"
+            title="Este recuerdo es protegido, lo cual significa que el creador te dió permiso de verlo"
+          ></i> */}
+          {/* <i
+            className="fas fa-lock"
+            title="Este recuerdo es privado, lo cual significa que sólo tú puedes verlo"
+          ></i> */}
+        </p>
       </div>
     </div>
   );
