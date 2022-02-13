@@ -61,7 +61,7 @@ const LoginPage = () => {
             ¡Crea recuerdos y compartelos con quién quieras!
           </h4>
           <h6 className="login__app-description-title">
-            ¡Ingresa y crea un mundo lleno de recuerdos!
+            ¡Ingresa y crea un mundo lleno de recuerdos tuyos!
           </h6>
         </section>
       </div>
