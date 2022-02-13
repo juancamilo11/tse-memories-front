@@ -64,7 +64,9 @@ const PublicMemoryEntry = ({
       ></div>
 
       <div className="memory-catalog__memory-entry-body">
-        <h2 className="memory-catalog__memory-entry-title">{name}</h2>
+        <h2 className="memory-catalog__memory-entry-title text-center">
+          {name}
+        </h2>
         <div className="memory-catalog__decoration-line">
           <hr />
         </div>
@@ -78,7 +80,7 @@ const PublicMemoryEntry = ({
           <i class="fas fa-calendar-alt memory-catalog__icon-entry-value"></i>
           <span className="bold-text">{memoryDate}</span>
         </p>
-        <p>
+        <p className="memory-catalog__memory-entry-content">
           <i class="fas fa-tags memory-catalog__icon-entry-value"></i>
           {tagList
             .slice(0, MAX_NUM_TAGS_DISPLAYED)
@@ -86,38 +88,52 @@ const PublicMemoryEntry = ({
             .replaceAll(",", ", ")}
           ...
         </p>
-        <div className="memory-catalog__memory-entry-date-box">
+        <div className="memory-catalog__memory-entry-buttons">
           <button
-            className="memory-catalog__visit-memory mt-1"
+            className="memory-catalog__visit-memory-button mt-1"
             onClick={handleWatchMemory}
           >
             Ver Recuerdo
           </button>
-          <button
-            className="memory-catalog__visit-memory mt-1"
-            onClick={handleModifyMemory}
-          >
-            Modificar Recuerdo
-          </button>
-
-          {isAFavorite ? (
-            <i class="fas fa-heart memory-catalog__icon-fav-memory"></i>
-          ) : (
-            <i class="far fa-heart memory-catalog__icon-fav-memory"></i>
+          {auth.uid === ownerId && (
+            <button
+              className="memory-catalog__visit-memory mt-1"
+              onClick={handleModifyMemory}
+            >
+              Modificar Recuerdo
+            </button>
           )}
-          <div className="memory-catalog__memory-view-count text-center">
-            <h6 className="mt-2">
-              <i class="fas fa-eye memory-catalog__icon-entry-value"></i>
-              {viewsCount} visitas
-            </h6>
+        </div>
+
+        <div className="memory-catalog__memory-entry-details-container">
+          <div className="memory-catalog__memory-entry-details">
+            <div className="memory-catalog__memory-entry-details-favorite">
+              {isAFavorite ? (
+                <>
+                  <i class="fas fa-heart memory-catalog__icon-fav-memory"></i>
+                  <h5>En tus favoritos</h5>
+                </>
+              ) : (
+                <>
+                  <i class="far fa-heart memory-catalog__icon-fav-memory"></i>
+                  <h5>No está en tus favoritos</h5>
+                </>
+              )}
+            </div>
+            <div className="memory-catalog__memory-entry-details-view-count">
+              <i class="fas fa-eye memory-catalog__icon-fav-memory"></i>
+              <h5>{viewsCount} visitas</h5>
+            </div>
           </div>
         </div>
-        {!auth.uid === ownerId && (
+
+        {auth.uid === ownerId && (
           <button
             className="memory-catalog__delete-memory-button"
             onClick={handleDeleteMemory}
+            title="Este recuerdo es tuyo y sólo tú puedes eliminarlo."
           >
-            Eliminar
+            <i class="fas fa-trash memory-catalog__icon-delete-memory"></i>
           </button>
         )}
       </div>
