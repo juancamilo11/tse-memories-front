@@ -1,6 +1,21 @@
 import React from "react";
+import ErrorFlag from "./ErrorFlag";
 
-const InputMemoryImagesForm = () => {
+const InputMemoryImagesForm = ({
+  formValues,
+  handleInputChange,
+  errorsState,
+  setErrorsState,
+  handleInputValidation,
+  handleSelectImageToLoad,
+}) => {
+  const {
+    memoryPhotoText,
+    memoryPhotoImg,
+    memoryPhotoDescription,
+    memoryPhotoList,
+  } = formValues;
+
   return (
     <div className="memory-form__image-list-container">
       <div className="memory-form__input-image-container">
