@@ -1,8 +1,7 @@
 import React from "react";
-import { useEffect } from "react";
 
 const MemoryActualizationForm = () => {
-  return <div>Memory Actualization Form</div>;
+  return <div>Update or create a memory Form</div>;
 };
 
 export default MemoryActualizationForm;
