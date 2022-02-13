@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { startLogout } from "../../actions/authActions";
-import { getCatalogMemoriesFakeData } from "../../helpers/catalogMemoriesFakeData";
 import MemoryEntries from "./MemoryEntries";
 
 const Sidebar = () => {
