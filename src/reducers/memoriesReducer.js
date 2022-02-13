@@ -61,6 +61,15 @@ export const memoriesReducer = (state = initialState, action) => {
       };
     case types.memoriesLogoutCleaning:
       return { ...state, activeMemory: null, memoriesList: [] };
+
+    case types.deleteMemory:
+      return {
+        ...state,
+        memoriesList: action.payload.memories.filter(
+          (memory) => memory.id !== action.payload.memoryId
+        ),
+      };
+
     default:
       return state;
   }

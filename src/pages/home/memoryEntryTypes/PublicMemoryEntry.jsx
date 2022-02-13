@@ -1,7 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { activeMemory } from "../../../actions/memoryActions";
+import {
+  activeMemory,
+  startDeleteMemory,
+} from "../../../actions/memoryActions";
+import { sweetAlertForMemoryDeleteConfirmationBuilder } from "../../../helpers/sweetAlertBuilder";
 
 const MAX_NUM_TAGS_DISPLAYED = 10;
 
@@ -22,7 +26,8 @@ const PublicMemoryEntry = ({
   const { memories, auth } = useSelector((state) => state);
   const activedmemory = memories.activeMemory;
 
-  const handleSelectMemory = () => {
+  const handleWatchMemory = (e) => {
+    e.preventDefault();
     dispatch(
       activeMemory(id, {
         name,
@@ -39,16 +44,35 @@ const PublicMemoryEntry = ({
     );
   };
 
-  const handleWatchMemory = (e) => {
-    e.preventDefault();
-  };
   const handleModifyMemory = (e) => {
     e.preventDefault();
+    dispatch(
+      modifyMemory(id, {
+        name,
+        memoryDate,
+        creationDate,
+        visibility,
+        tagList,
+        ownerId,
+        memoryPortrait,
+        location,
+        isAFavorite,
+        viewsCount,
+      })
+    );
   };
 
   const handleDeleteMemory = (e) => {
     e.preventDefault();
+    sweetAlertForMemoryDeleteConfirmationBuilder(name, creationDate).then(
+      (res) => {
+        if (res.isConfirmed) {
+          dispatch(startDeleteMemory(id, memories));
+        }
+      }
+    );
   };
+
   return (
     <div
       className="memory-catalog__memory-entry"
@@ -76,11 +100,17 @@ const PublicMemoryEntry = ({
             {location.country}, {location.city}
           </span>
         </p>
-        <p className="memory-catalog__memory-entry-content">
+        <p
+          className="memory-catalog__memory-entry-content"
+          // style={{ marginTop: "-10px" }}
+        >
           <i class="fas fa-calendar-alt memory-catalog__icon-entry-value"></i>
           <span className="bold-text">{memoryDate}</span>
         </p>
-        <p className="memory-catalog__memory-entry-content">
+        <p
+          className="memory-catalog__memory-entry-content"
+          // style={{ marginTop: "-10px" }}
+        >
           <i class="fas fa-tags memory-catalog__icon-entry-value"></i>
           {tagList
             .slice(0, MAX_NUM_TAGS_DISPLAYED)

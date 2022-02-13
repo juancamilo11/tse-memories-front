@@ -69,9 +69,10 @@
 
 .memory-catalog__decoration-line {
   margin-top: -15px;
-  width: 80%;
-  margin-left: 9%;
-  margin-right: 11%;
+  width: 70%;
+  margin-left: 15%;
+  margin-right: 15%;
+  color: darkgray;
 }
 
 .memory-catalog__store-entry-content {
@@ -106,7 +107,7 @@
 }
 
 .memory-catalog__memory-entry-body {
-  background-color: red;
+  // background-color: red;
   position: relative;
   width: 50% !important;
 }

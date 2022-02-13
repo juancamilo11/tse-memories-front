@@ -1,16 +1,17 @@
 .memory-catalog__memory-entry-title {
   text-align: center;
   margin-left: 40px;
-  background-color: green;
   margin-right: 40px;
+  margin-top: 3px;
+  font-size: 20px;
 }
 
 .memory-catalog__memory-entry-content {
   margin-left: 10px;
   margin-right: 10px;
-  background-color: blue;
-  border: 1px solid black;
-  margin-top: -3px;
+  //   background-color: blue;
+  //   border: 1px solid black;
+  font-size: 15px;
 }
 
 .memory-catalog__delete-memory-button {
@@ -26,9 +27,10 @@
 
 .memory-catalog__memory-entry-buttons {
   display: flex;
-  flex-direction: column;
-  width: 60%;
-  margin: 0px 20%;
+  flex-direction: row;
+  width: 95%;
+  margin: 0px 2%;
+  justify-content: space-evenly;
   margin-top: -5px;
 }
 
@@ -44,7 +46,7 @@
 
 .memory-catalog__memory-entry-details {
   height: 60px;
-  background-color: yellow;
+  //   background-color: yellow;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -58,7 +60,7 @@
   justify-content: space-evenly;
   align-items: center;
   width: 50% !important;
-  border: 1px solid red;
+  //   border: 1px solid red;
   align-items: center;
   overflow-wrap: break-word;
 }
@@ -66,4 +68,9 @@
 .memory-catalog__icon-fav-memory {
   margin-top: 30px;
   margin-bottom: -10px;
+}
+
+.memory-catalog__visit-memory-button,
+.memory-catalog__visit-memory {
+  height: 30px;
 }
