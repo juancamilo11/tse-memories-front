@@ -12,6 +12,8 @@ const types = {
   setActiveMemory: "[memories] Set Active Memories",
   loadMemories: "[memories] Load Memories",
   memoriesLogoutCleaning: "[memories] Memories Logout Cleaning",
+  modifyMemory: "[memories] Modify Memory",
+  deleteMemory: "[memories] Delete Memory",
 };
 
 export default types;
