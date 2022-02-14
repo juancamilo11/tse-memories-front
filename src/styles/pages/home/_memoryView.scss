@@ -69,6 +69,7 @@
   border: 1px solid black;
   margin: 10px;
   position: relative;
+  overflow: hidden;
 }
 
 .memory-image__card-image {
@@ -78,11 +79,28 @@
 
 .memory-image__card-title {
   position: absolute;
-  bottom: -15px;
+  bottom: -20px;
   width: 96%;
   height: 50px;
   padding-top: 7px;
   padding-left: 2%;
   padding-right: 2%;
   background-color: rgb(106, 106, 240);
+}
+
+.memory-view__tag-list-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: 0px auto;
+  margin-bottom: 30px;
+}
+
+.memory-view__tag-item {
+  width: 100px;
+  margin-top: 20px;
+  text-align: center;
 }

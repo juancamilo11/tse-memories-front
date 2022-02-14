@@ -84,6 +84,11 @@ const MemoryView = () => {
           {memoryDate} y ha compartido este recuerdo llamado "{name}"
         </h4>
       </div>
+      <div className="memory-view__tag-list-section">
+        {tagList.map((tag) => (
+          <div className="memory-view__tag-item">{tag}</div>
+        ))}
+      </div>
       <div className="memory-view__images-list-section">
         <MemoryImagesList memoryImages={memoryImages || []} />
       </div>
