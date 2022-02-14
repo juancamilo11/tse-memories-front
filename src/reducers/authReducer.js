@@ -25,7 +25,6 @@ const authReducer = (state = initialState, action) => {
         name: action.payload.displayName,
         email: action.payload.email,
         photoUrl: action.payload.photoUrl,
-        lastSignInTime: action.payload.lastSignInTime,
       };
     case types.authLogout:
       return {};

@@ -1,7 +1,6 @@
+import { urlBase } from "../environments/enviroment";
 import types from "../types/types";
 import { startLoading, finishLoading } from "./uiActions";
-
-const urlBase = "http://localhost:8080";
 
 export const activeMemoryToShow = (memoryId, memory) => ({
   type: types.setActiveMemoryToShow,

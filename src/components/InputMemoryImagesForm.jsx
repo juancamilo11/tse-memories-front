@@ -16,9 +16,21 @@ const InputMemoryImagesForm = ({
     memoryPhotoList,
   } = formValues;
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    window.alert("enviando form");
+  };
+
   return (
     <div className="memory-form__image-list-container">
-      <div className="memory-form__input-image-container">
+      <h2>Ingreso de fotos para tu recuerdo</h2>
+      {memoryPhotoList.length === 0 && (
+        <ErrorFlag
+          message="Aún no has ingresado imágenes para tu recuerdo, ingresa por lo menos una"
+          color="blue"
+        />
+      )}
+      <form className="memory-form__input-image-container">
         <div className="memory-form__input-container">
           <label htmlFor="memoryPhotoText" className="memory-form__input-label">
             Nombre de la foto
@@ -35,7 +47,10 @@ const InputMemoryImagesForm = ({
         </div>
         <div className="memory-form__error-flag mt-2 mb-4">
           {errorsState.memoryPhotoText.hasErrors && (
-            <ErrorFlag message={errorsState.memoryPhotoText.message} />
+            <ErrorFlag
+              message={errorsState.memoryPhotoText.message}
+              color="red"
+            />
           )}
         </div>
         <div className="memory-form__input-container">
@@ -56,13 +71,15 @@ const InputMemoryImagesForm = ({
         </div>
         <div className="memory-form__error-flag mt-2 mb-4">
           {errorsState.memoryPhotoDescription.hasErrors && (
-            <ErrorFlag message={errorsState.memoryPhotoDescription.message} />
+            <ErrorFlag
+              message={errorsState.memoryPhotoDescription.message}
+              color="red"
+            />
           )}
         </div>
-
         <div className="memory-form__image-container">
           <button
-            className="memory-form__image-button"
+            className="memory-form__image-button memory-form__input-image-button-container"
             id="upload-img-button"
             onClick={handleSelectImageToLoad}
           >
@@ -77,14 +94,19 @@ const InputMemoryImagesForm = ({
             onChange={handleInputValidation}
           />
         </div>
-      </div>
+        <div className="memory-form__input-image-button-container">
+          <button
+            onClick={handleSubmit}
+            className="memory-catalog__visit-memory-button memory-form__input-image-button"
+          >
+            Ingresar imágen
+          </button>
+        </div>
+      </form>
       <label id="url-uploaded-img"></label>
       <div className="memory-form__error-flag mt-2 mb-4">
         {errorsState.memoryPhotoImg.hasErrors && (
-          <ErrorFlag
-            message={errorsState.memoryPhotoImg.message}
-            width="100%"
-          />
+          <ErrorFlag message={errorsState.memoryPhotoImg.message} color="red" />
         )}
         <img
           src="https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp"

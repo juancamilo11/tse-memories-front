@@ -13,18 +13,22 @@ const MemoryEntries = ({ memories }) => {
   return (
     <div className="memory-catalog__entries">
       <NewMemoryEntry />
-      {memories.memoriesList.map((memory) => {
-        switch (memory.visibility) {
-          case "PUBLIC":
-            return <PublicMemoryEntry key={memory.id} {...memory} />;
-          case "PROTECTED":
-            return <ProtectedMemoryEntry key={memory.id} {...memory} />;
-          case "PRIVATE":
-            return <PrivateMemoryEntry key={memory.id} {...memory} />;
-          default:
-            break;
-        }
-      })}
+      {memories.memoriesList
+        // .sort((firstElement, secondElement) => {
+        //   return firstElement.creationDate - secondElement.creationDate;
+        // })
+        .map((memory) => {
+          switch (memory.visibility) {
+            case "PUBLIC":
+              return <PublicMemoryEntry key={memory.id} {...memory} />;
+            case "PROTECTED":
+              return <ProtectedMemoryEntry key={memory.id} {...memory} />;
+            case "PRIVATE":
+              return <PrivateMemoryEntry key={memory.id} {...memory} />;
+            default:
+              break;
+          }
+        })}
     </div>
   );
 };

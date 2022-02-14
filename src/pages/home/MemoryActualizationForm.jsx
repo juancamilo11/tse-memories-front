@@ -57,6 +57,8 @@ const MemoryActualizationForm = () => {
 
   const handleSelectImageToLoad = (e) => {
     e.preventDefault();
+    const { id } = e.target;
+    document.getElementById("memory-form__input-image").click();
   };
 
   const getLocalDate = () => {
@@ -122,6 +124,7 @@ const MemoryActualizationForm = () => {
                     errorsState.memoryDate.message ||
                     "Error: Error de prueba de name"
                   }
+                  color="red"
                 />
               )}
             </div>
@@ -132,6 +135,7 @@ const MemoryActualizationForm = () => {
                     errorsState.name.message ||
                     "Error: Error de prueba de memoryDate"
                   }
+                  color="red"
                 />
               )}
             </div>
@@ -167,6 +171,7 @@ const MemoryActualizationForm = () => {
                     errorsState.country.message ||
                     "Error, mensaje de prueba de country"
                   }
+                  color="red"
                 />
               )}
             </div>
@@ -177,6 +182,7 @@ const MemoryActualizationForm = () => {
                     errorsState.city.message ||
                     "Error, mensaje de prueba de city"
                   }
+                  color="red"
                 />
               )}
             </div>
@@ -224,6 +230,7 @@ const MemoryActualizationForm = () => {
                   message={
                     errorsState.tag.message || "Error, error de prueba de tag"
                   }
+                  color="red"
                 />
               )}
             </div>
@@ -234,6 +241,7 @@ const MemoryActualizationForm = () => {
                     errorsState.visibility.message ||
                     "Error, error de prueba de visibility"
                   }
+                  color="red"
                 />
               )}
             </div>

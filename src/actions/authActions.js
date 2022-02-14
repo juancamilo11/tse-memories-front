@@ -2,14 +2,15 @@ import types from "../types/types";
 import app from "../firebase/firebaseConfig";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { finishLoading, startLoading } from "./uiActions";
-
+import startSaveUserIfNotExists from "./userActions";
+import { urlBase } from "../environments/enviroment";
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
 
 //Login Action to send to authReducer
-export const login = (uid, displayName, email, photoUrl, lastSignInTime) => ({
+export const login = (uid, displayName, email, photoUrl) => ({
   type: types.authLogin,
-  payload: { uid, displayName, email, photoUrl, lastSignInTime },
+  payload: { uid, displayName, email, photoUrl },
 });
 
 //Logout Action to send to authReducer
@@ -19,27 +20,34 @@ export const logout = () => ({
 
 //We're using thunk Middleware
 export const startGoogleLogin = () => {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(startLoading());
-    signInWithPopup(auth, provider)
-      .then(({ user }) => {
-        console.log(user);
-        dispatch(
-          login(
-            user.uid,
-            user.displayName,
-            user.email,
-            user.photoURL,
-            user.metadata.lastSignInTime
-          )
-        );
-        console.log(user);
-        dispatch(finishLoading());
-      })
-      .catch((err) => {
-        dispatch(finishLoading());
-        console.log(err);
+    try {
+      const firebaseResponse = await signInWithPopup(auth, provider);
+      const { uid, displayName, email, photoURL } = firebaseResponse.user;
+      dispatch(login(uid, displayName, email, photoURL));
+
+      const herokuResponse = await fetch(`${urlBase}/post/user`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: uid,
+          name: displayName,
+          email,
+          urlProfilePhoto: photoURL,
+        }),
       });
+
+      const userData = await herokuResponse.json();
+
+      dispatch(finishLoading());
+      console.log(userData);
+    } catch (err) {
+      dispatch(finishLoading());
+      console.log(err);
+    }
   };
 };
 
