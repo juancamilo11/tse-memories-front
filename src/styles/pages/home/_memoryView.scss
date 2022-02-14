@@ -136,3 +136,12 @@
 .viewer-list__viewer-profile-photo {
   width: 50px;
 }
+
+.viewer-list__pagination-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.viewer-list__pagination-button {
+  margin: 5px;
+}

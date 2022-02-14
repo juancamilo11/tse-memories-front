@@ -1,22 +1,30 @@
 import React from "react";
 import { useState } from "react";
 
+const MAX_VIEWER_RECORDS = 10;
+
 const ViewerList = ({ viewerList }) => {
   const [recordsRange, setRecordsRange] = useState({
     min: 0,
-    max: 2,
+    max: MAX_VIEWER_RECORDS,
   });
 
   const { min, max } = recordsRange;
 
-  const handlePreviusResults = (e) => {
+  const handlePreviousResults = (e) => {
     e.preventDefault();
-    setRecordsRange({ min: min - 2, max: max - 2 });
+    setRecordsRange({
+      min: min - MAX_VIEWER_RECORDS,
+      max: max - MAX_VIEWER_RECORDS,
+    });
   };
   const handleNextResults = (e) => {
     e.preventDefault();
     // if (min + max > viewerList.length) return;
-    setRecordsRange({ min: min + 2, max: max + 2 });
+    setRecordsRange({
+      min: min + MAX_VIEWER_RECORDS,
+      max: max + MAX_VIEWER_RECORDS,
+    });
   };
 
   return (
@@ -42,17 +50,18 @@ const ViewerList = ({ viewerList }) => {
           </div>
         ))}
       </div>
-      <div>
-        <br />
-        min {min}
-        max {max}
-        <br />
-        <button onClick={handlePreviusResults} disabled={min === 0}>
+      <div className="viewer-list__pagination-buttons">
+        <button
+          className="viewer-list__pagination-button"
+          onClick={handlePreviousResults}
+          disabled={min === 0}
+        >
           Anterior
         </button>
         <button
+          className="viewer-list__pagination-button"
           onClick={handleNextResults}
-          disabled={max === viewerList.length}
+          disabled={max >= viewerList.length}
         >
           Siguiente
         </button>

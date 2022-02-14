@@ -12,6 +12,7 @@ const types = {
   setActiveMemoryToShow: "[memories] Set Active Memory to Show",
   setActiveMemoryToUpdate: "[memories] Set Active Memory to Update",
   setActiveSearchPanel: "[memories] Set Active Search Panel",
+  setNothingToShow: "[memories] Set Active Nothing to Show",
 
   loadMemories: "[memories] Load Memories",
   memoriesLogoutCleaning: "[memories] Memories Logout Cleaning",

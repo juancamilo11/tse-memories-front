@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import {
+  activeNothingToShow,
   startCountMemoryView,
   startFetchMemoryAllImages,
 } from "../../actions/memoryActions";
@@ -34,6 +35,12 @@ const viewerList = [
   },
   {
     name: "Pepito andres perez marin",
+    urlPhoto:
+      "https://lh3.googleusercontent.com/a-/AOh14GjnkTKE1MwBx1jBXLj6SCsCSUANvgmn28L0yh31wg=s96-c-rg-br100",
+    visualizationDate: "2022-02-04",
+  },
+  {
+    name: "Maria camila Carodna Villada",
     urlPhoto:
       "https://lh3.googleusercontent.com/a-/AOh14GjnkTKE1MwBx1jBXLj6SCsCSUANvgmn28L0yh31wg=s96-c-rg-br100",
     visualizationDate: "2022-02-04",
@@ -117,7 +124,7 @@ const MemoryView = () => {
         );
       })
       .catch((err) => {
-        window.alert("No hay comunicación con el server");
+        //window.alert("No hay comunicación con el server");
       });
   }, []);
 
@@ -127,13 +134,22 @@ const MemoryView = () => {
       ...viewerListStatus,
       showViewerList: !showViewerList,
     });
+    if (!showViewerList) {
+      Swal.fire({
+        text: "La lista de usuarios que han visto el recuerdo aparecerá abajo",
+      });
+    }
+  };
+
+  const handleGoBack = (e) => {
+    dispatch(activeNothingToShow());
   };
 
   return (
     <div className="memory-view__main-container">
       <div className="memory-view__header-section">
         <div className="memory-view__header-view-count">
-          {activeMemoryToShow?.visibility !== "privado" ? (
+          {activeMemoryToShow.visibility !== "privado" ? (
             <button
               className="memory-view__header-view-count-button"
               onClick={handleShowViewers}
@@ -151,7 +167,12 @@ const MemoryView = () => {
           <button className="memory-view__random-search-button">
             Búsqueda aleatoria
           </button>
-          <button className="memory-view__go-back-button">Atrás</button>
+          <button
+            className="memory-view__go-back-button"
+            onClick={handleGoBack}
+          >
+            Atrás
+          </button>
         </div>
       </div>
       <div className="memory-view__description-section">

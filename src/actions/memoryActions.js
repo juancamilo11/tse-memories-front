@@ -17,6 +17,11 @@ export const activeSearchPanel = () => ({
   payload: null,
 });
 
+export const activeNothingToShow = () => ({
+  type: types.setNothingToShow,
+  payload: null,
+});
+
 //modifyMemory sólo actualiza la vida, luego habrá otra acción de
 //Actualización para un recuerdo que si atacará el backend
 export const modifyMemory = (memoryId, memory) => ({
