@@ -149,19 +149,16 @@ const MemoryView = () => {
     <div className="memory-view__main-container">
       <div className="memory-view__header-section">
         <div className="memory-view__header-view-count">
-          {activeMemoryToShow.visibility !== "privado" ? (
-            <button
-              className="memory-view__header-view-count-button"
-              onClick={handleShowViewers}
-            >
-              <i className="fas fa-eye memory-view__header-view-count-icon"></i>
-              <span>
-                <b>{activeMemoryToShow.viewsCount}</b> vistas
-              </span>
-            </button>
-          ) : (
-            <span>Este recuerdo es privado y sólo tú puedes verlo</span>
-          )}
+          <button
+            className="memory-view__header-view-count-button"
+            onClick={handleShowViewers}
+          >
+            <i className="fas fa-eye memory-view__header-view-count-icon"></i>
+            <span>
+              <b>{activeMemoryToShow.viewsCount}</b> vistas{" "}
+              {showViewerList ? "(Ocultar)" : "(Mostrar)"}
+            </span>
+          </button>
         </div>
         <div className="memory-view__buttons-section">
           <button className="memory-view__random-search-button">
