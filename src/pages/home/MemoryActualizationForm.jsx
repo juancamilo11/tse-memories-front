@@ -118,7 +118,7 @@ const MemoryActualizationForm = () => {
               />
             </div>
             <div className="memory-form__error-flag">
-              {!errorsState.memoryDate.hasErrors && (
+              {errorsState.memoryDate.hasErrors && (
                 <ErrorFlag
                   message={
                     errorsState.memoryDate.message ||
@@ -129,7 +129,7 @@ const MemoryActualizationForm = () => {
               )}
             </div>
             <div className="memory-form__error-flag mt-2 mb-4">
-              {!errorsState.name.hasErrors && (
+              {errorsState.name.hasErrors && (
                 <ErrorFlag
                   message={
                     errorsState.name.message ||
@@ -165,7 +165,7 @@ const MemoryActualizationForm = () => {
               />
             </div>
             <div className="memory-form__error-flag mt-2 mb-4">
-              {!errorsState.country.hasErrors && (
+              {errorsState.country.hasErrors && (
                 <ErrorFlag
                   message={
                     errorsState.country.message ||
@@ -176,7 +176,7 @@ const MemoryActualizationForm = () => {
               )}
             </div>
             <div className="memory-form__error-flag mt-2 mb-4">
-              {!errorsState.city.hasErrors && (
+              {errorsState.city.hasErrors && (
                 <ErrorFlag
                   message={
                     errorsState.city.message ||
@@ -225,7 +225,7 @@ const MemoryActualizationForm = () => {
               </select>
             </div>
             <div className="memory-form__error-flag mt-2 mb-4">
-              {!errorsState.tag.hasErrors && (
+              {errorsState.tag.hasErrors && (
                 <ErrorFlag
                   message={
                     errorsState.tag.message || "Error, error de prueba de tag"
@@ -235,7 +235,7 @@ const MemoryActualizationForm = () => {
               )}
             </div>
             <div className="memory-form__error-flag mt-2 mb-4">
-              {!errorsState.visibility.hasErrors && (
+              {errorsState.visibility.hasErrors && (
                 <ErrorFlag
                   message={
                     errorsState.visibility.message ||

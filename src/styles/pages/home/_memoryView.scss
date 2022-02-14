@@ -6,15 +6,14 @@
 
 .memory-view__header-section {
   width: 100%;
-  height: 100px;
-  background-color: red;
+  height: 70px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
 .memory-view__header-view-count-button {
-  margin-top: 30px;
+  margin-top: 20px;
   margin-left: 40px;
   padding: 7px 10px;
 }
@@ -23,7 +22,7 @@
 }
 
 .memory-view__buttons-section {
-  margin-top: 30px;
+  margin-top: 20px;
   margin-right: 40px;
 }
 
@@ -43,7 +42,7 @@
 }
 
 .memory-view__user-photo {
-  margin: 10px auto;
+  margin: 5px auto;
   width: 100px;
   border: 2px solid red;
   border-radius: 50%;
@@ -51,6 +50,8 @@
 
 .memory-view__description-content {
   text-align: center;
+  padding: 0px 10px;
+  line-height: 30px;
 }
 
 .images-list__main-container {
@@ -103,4 +104,35 @@
   width: 100px;
   margin-top: 20px;
   text-align: center;
+}
+
+.viewer-list__main-container {
+  margin-top: 30px;
+  width: 100%;
+}
+
+.viewer-list__viewers-container {
+  width: 90%;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.viewer-list__viewer {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  display: flex;
+  width: 80%;
+  margin: 5px 10%;
+  padding: 5px;
+  padding-top: 10px;
+  padding-left: 10px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.viewer-list__viewer-profile-photo {
+  width: 50px;
 }

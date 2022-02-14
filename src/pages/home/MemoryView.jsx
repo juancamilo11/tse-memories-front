@@ -10,12 +10,85 @@ import {
 } from "../../actions/memoryActions";
 import { startFetchMemoryOwnerInfoByMemoryId } from "../../actions/userActions";
 import MemoryImagesList from "../../components/MemoryImagesList";
+import ViewerList from "../../components/ViewerList";
+import { sweetAlertForShowingAllMemoryViewers } from "../../helpers/sweetAlertBuilder";
+
+const viewerList = [
+  {
+    name: "Doris del Carmen Mosquera Lozano",
+    urlPhoto:
+      "https://lh3.googleusercontent.com/a-/AOh14GjnkTKE1MwBx1jBXLj6SCsCSUANvgmn28L0yh31wg=s96-c-rg-br100",
+    visualizationDate: "2022-02-04",
+  },
+  {
+    name: "Juan Camilo Cardona Calderón",
+    urlPhoto:
+      "https://lh3.googleusercontent.com/a-/AOh14GjnkTKE1MwBx1jBXLj6SCsCSUANvgmn28L0yh31wg=s96-c-rg-br100",
+    visualizationDate: "2022-02-04",
+  },
+  {
+    name: "Wilmar Mosquera Lozano",
+    urlPhoto:
+      "https://lh3.googleusercontent.com/a-/AOh14GjnkTKE1MwBx1jBXLj6SCsCSUANvgmn28L0yh31wg=s96-c-rg-br100",
+    visualizationDate: "2022-02-04",
+  },
+  {
+    name: "Pepito andres perez marin",
+    urlPhoto:
+      "https://lh3.googleusercontent.com/a-/AOh14GjnkTKE1MwBx1jBXLj6SCsCSUANvgmn28L0yh31wg=s96-c-rg-br100",
+    visualizationDate: "2022-02-04",
+  },
+  {
+    name: "Maria camila Carodna Villada",
+    urlPhoto:
+      "https://lh3.googleusercontent.com/a-/AOh14GjnkTKE1MwBx1jBXLj6SCsCSUANvgmn28L0yh31wg=s96-c-rg-br100",
+    visualizationDate: "2022-02-04",
+  },
+  {
+    name: "Maria camila Carodna Villada",
+    urlPhoto:
+      "https://lh3.googleusercontent.com/a-/AOh14GjnkTKE1MwBx1jBXLj6SCsCSUANvgmn28L0yh31wg=s96-c-rg-br100",
+    visualizationDate: "2022-02-04",
+  },
+  {
+    name: "Maria camila Carodna Villada",
+    urlPhoto:
+      "https://lh3.googleusercontent.com/a-/AOh14GjnkTKE1MwBx1jBXLj6SCsCSUANvgmn28L0yh31wg=s96-c-rg-br100",
+    visualizationDate: "2022-02-04",
+  },
+  {
+    name: "Maria camila Carodna Villada",
+    urlPhoto:
+      "https://lh3.googleusercontent.com/a-/AOh14GjnkTKE1MwBx1jBXLj6SCsCSUANvgmn28L0yh31wg=s96-c-rg-br100",
+    visualizationDate: "2022-02-04",
+  },
+  {
+    name: "Maria camila Carodna Villada",
+    urlPhoto:
+      "https://lh3.googleusercontent.com/a-/AOh14GjnkTKE1MwBx1jBXLj6SCsCSUANvgmn28L0yh31wg=s96-c-rg-br100",
+    visualizationDate: "2022-02-04",
+  },
+  {
+    name: "Maria camila Carodna Villada",
+    urlPhoto:
+      "https://lh3.googleusercontent.com/a-/AOh14GjnkTKE1MwBx1jBXLj6SCsCSUANvgmn28L0yh31wg=s96-c-rg-br100",
+    visualizationDate: "2022-02-04",
+  },
+];
 
 const MemoryView = () => {
   const { userId } = useSelector((state) => state.auth);
   const { activeMemoryToShow, memoriesList } = useSelector(
     (state) => state.memories
   );
+
+  const [viewerListStatus, setViewerListStatus] = useState({
+    viewerList: [],
+    showViewerList: false,
+  });
+
+  const { showViewerList } = viewerListStatus;
+
   const {
     id: memoryId,
     name,
@@ -48,12 +121,23 @@ const MemoryView = () => {
       });
   }, []);
 
+  const handleShowViewers = (e) => {
+    e.preventDefault();
+    setViewerListStatus({
+      ...viewerListStatus,
+      showViewerList: !showViewerList,
+    });
+  };
+
   return (
     <div className="memory-view__main-container">
       <div className="memory-view__header-section">
         <div className="memory-view__header-view-count">
           {activeMemoryToShow?.visibility !== "privado" ? (
-            <button className="memory-view__header-view-count-button">
+            <button
+              className="memory-view__header-view-count-button"
+              onClick={handleShowViewers}
+            >
               <i className="fas fa-eye memory-view__header-view-count-icon"></i>
               <span>
                 <b>{activeMemoryToShow.viewsCount}</b> vistas
@@ -92,6 +176,7 @@ const MemoryView = () => {
       <div className="memory-view__images-list-section">
         <MemoryImagesList memoryImages={memoryImages || []} />
       </div>
+      {showViewerList && <ViewerList viewerList={viewerList || []} />}
     </div>
   );
 };
