@@ -19,11 +19,11 @@ const MemoryEntries = ({ memories }) => {
         // })
         .map((memory) => {
           switch (memory.visibility) {
-            case "PUBLIC":
+            case "publico":
               return <PublicMemoryEntry key={memory.id} {...memory} />;
-            case "PROTECTED":
+            case "protegido":
               return <ProtectedMemoryEntry key={memory.id} {...memory} />;
-            case "PRIVATE":
+            case "privado":
               return <PrivateMemoryEntry key={memory.id} {...memory} />;
             default:
               break;

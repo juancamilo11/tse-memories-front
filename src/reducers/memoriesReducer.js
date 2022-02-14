@@ -7,7 +7,7 @@ const initialState = {
       name: "Recuerdos de Miami",
       memoryDate: "2020-02-05",
       creationDate: "2022-10-25",
-      visibility: "PUBLIC",
+      visibility: "publico",
       tagList: ["Miami", "Viaje", "Sol", "Mar", "Playa"],
       ownerId: "buFHTLA40uRLBy5zaIfWdQcloLB3",
       memoryPortrait: "./../assets/img/emptyImage.png",
@@ -20,7 +20,7 @@ const initialState = {
       name: "Viaje a París",
       memoryDate: "2010-10-03",
       creationDate: "2021-01-20",
-      visibility: "PUBLIC",
+      visibility: "publico",
       tagList: ["Torre Eiffel", "Viaje", "Sol", "Mar", "Playa"],
       ownerId: "buFHTLA40uRLBy5zaIfWdQcloLB3",
       memoryPortrait: "./../assets/img/emptyImage.png",
@@ -33,7 +33,7 @@ const initialState = {
       name: "Viaje en Familia  New York",
       memoryDate: "2019-01-09",
       creationDate: "2020-06-11",
-      visibility: "PUBLIC",
+      visibility: "publico",
       tagList: ["New york", "Nieve", "Manhattan", "Viaje", "Familia"],
       ownerId: "buFHTLA40uRLBy5zaIfWdQcloLB3",
       memoryPortrait: "./../assets/img/emptyImage.png",
@@ -96,7 +96,18 @@ export const memoriesReducer = (state = initialState, action) => {
           (memory) => memory.id !== action.payload.memoryId
         ),
       };
-
+    case types.registerMemoryView:
+      const { viewsCount } = action.payload.memories.find(
+        (memory) => memory.id === action.payload.memoryId
+      );
+      return {
+        ...state,
+        memoriesList: action.payload.memories.map((memory) =>
+          memory.id === action.payload.memoryId
+            ? { ...memory, viewsCount: viewsCount + 1 }
+            : memory
+        ),
+      };
     default:
       return state;
   }

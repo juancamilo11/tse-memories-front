@@ -8,7 +8,6 @@ import types from "../types/types";
     name: Juan Camilo Cardona Calderón,
     email: juancamilo19997814@gmail.com
     photoUrl: https://lh3.googleusercontent.com/a-/AOh14GjnkTKE1MwBx1jBXLj6SCsCSUANvgmn28L0yh31wg=s96-c-rg-br100,
-    lastSignInTime: 1640235253245 
   }
 
   if(!logged) -> {} //Empty object (Initial State)

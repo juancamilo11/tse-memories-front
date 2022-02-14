@@ -29,6 +29,44 @@ export const deleteMemory = (memoryId, memories) => ({
   payload: { memoryId, memories },
 });
 
+export const countMemoryView = (memoryId, memories) => ({
+  type: types.registerMemoryView,
+  payload: memoryId,
+});
+
+const getCurrentDate = () => {
+  return new Date().toISOString().split("T")[0];
+};
+
+export const startCountMemoryView = (
+  memoryId,
+  userId,
+  visibility,
+  memories
+) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(
+        `${urlBase}/put/${visibility}-memory/count-view/${memoryId}`,
+        {
+          method: "PUT",
+          body: JSON.stringify({
+            userId,
+            visualizationDate: getCurrentDate(),
+          }),
+        }
+      );
+      if (response.ok) {
+        dispatch(countMemoryView(memoryId, memories));
+      } else {
+        throw await response.json();
+      }
+    } catch (err) {
+      throw err;
+    }
+  };
+};
+
 export const startDeleteMemory = (uid, memoryId, memories) => {
   return async (dispatch) => {
     dispatch(startLoading());
@@ -51,4 +89,19 @@ export const startDeleteMemory = (uid, memoryId, memories) => {
       dispatch(finishLoading());
     }
   };
+};
+
+export const startFetchMemoryAllImages = async (memoryId, visibility) => {
+  try {
+    const response = await fetch(
+      `${urlBase}/get/${visibility}-memory/${memoryId}`
+    );
+    if (response.ok) {
+      return await response.json();
+    } else {
+      throw await response.json();
+    }
+  } catch (err) {
+    throw err;
+  }
 };

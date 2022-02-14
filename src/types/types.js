@@ -17,6 +17,7 @@ const types = {
   memoriesLogoutCleaning: "[memories] Memories Logout Cleaning",
   modifyMemory: "[memories] Modify Memory",
   deleteMemory: "[memories] Delete Memory",
+  registerMemoryView: "[memories] Register Memory View",
 };
 
 export default types;
