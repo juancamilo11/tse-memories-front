@@ -52,3 +52,37 @@
 .memory-view__description-content {
   text-align: center;
 }
+
+.images-list__main-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.memory-image__card-container {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  border: 1px solid black;
+  margin: 10px;
+  position: relative;
+}
+
+.memory-image__card-image {
+  width: inherit;
+  border: 1px solid green;
+}
+
+.memory-image__card-title {
+  position: absolute;
+  bottom: -15px;
+  width: 96%;
+  height: 50px;
+  padding-top: 7px;
+  padding-left: 2%;
+  padding-right: 2%;
+  background-color: rgb(106, 106, 240);
+}

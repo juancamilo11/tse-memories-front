@@ -9,13 +9,22 @@ import {
   startFetchMemoryAllImages,
 } from "../../actions/memoryActions";
 import { startFetchMemoryOwnerInfoByMemoryId } from "../../actions/userActions";
+import MemoryImagesList from "../../components/MemoryImagesList";
 
 const MemoryView = () => {
   const { userId } = useSelector((state) => state.auth);
   const { activeMemoryToShow, memoriesList } = useSelector(
     (state) => state.memories
   );
-  const { id: memoryId, ownerId, visibility } = activeMemoryToShow;
+  const {
+    id: memoryId,
+    name,
+    ownerId,
+    visibility,
+    location,
+    tagList,
+    memoryDate,
+  } = activeMemoryToShow;
 
   const [ownerInfo, setOwnerInfo] = useState(null);
   const [memoryImages, setMemoryImages] = useState(null);
@@ -71,8 +80,12 @@ const MemoryView = () => {
           alt="Profile photo"
         />
         <h4 className="memory-view__description-content">
-          {ownerInfo?.name} ha compartido un recuerdo en {}
+          {ownerInfo?.name} estuvo en {location.city}, {location.country} el{" "}
+          {memoryDate} y ha compartido este recuerdo llamado "{name}"
         </h4>
+      </div>
+      <div className="memory-view__images-list-section">
+        <MemoryImagesList memoryImages={memoryImages || []} />
       </div>
     </div>
   );
