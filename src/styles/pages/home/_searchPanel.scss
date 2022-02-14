@@ -1,7 +1,6 @@
 .search-panel__main-container {
   height: 100vh;
   width: 55%;
-  background-color: green;
   display: flex;
   flex-direction: column;
 }
@@ -28,13 +27,21 @@
   height: 35px;
   border-radius: 5px;
   border: 1px solid lightgray;
+  text-indent: 10px;
+  font-size: 15px;
 }
 
 .search-panel__search-button {
   width: 150px;
-  margin-top: 20px;
+  margin-top: 30px;
   height: 35px;
   align-self: center;
   border-radius: 5px;
   border: 1px solid lightgray;
+  cursor: pointer;
+  background-color: rgb(124, 143, 253);
+}
+
+.search-panel__input--submit {
+  cursor: pointer;
 }
