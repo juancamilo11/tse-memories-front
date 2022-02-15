@@ -12,9 +12,11 @@ const FormMemoryImage = ({
     setMemoryPhotoList((memoryPhotoList) =>
       memoryPhotoList.filter(
         (memoryPhoto) =>
-          memoryPhoto.urlPhoto !== urlPhoto &&
-          memoryPhoto.title !== title &&
-          memoryPhoto.description !== description
+          !(
+            memoryPhoto.urlPhoto === urlPhoto &&
+            memoryPhoto.title === title &&
+            memoryPhoto.description === description
+          )
       )
     );
   };

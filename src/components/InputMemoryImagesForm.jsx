@@ -2,6 +2,8 @@ import React from "react";
 import ErrorFlag from "./ErrorFlag";
 import FormMemoryImagesList from "./FormMemoryImagesList";
 
+const MAX_NUM_PHOTOS = 10;
+
 const InputMemoryImagesForm = ({
   formValues,
   errorsState,
@@ -77,6 +79,7 @@ const InputMemoryImagesForm = ({
             autoComplete="off"
             value={memoryPhotoText}
             onChange={handleInputValidation}
+            disabled={memoryPhotoList.length >= MAX_NUM_PHOTOS}
           />
         </div>
         <div className="memory-form__error-flag mt-2 mb-4">
@@ -102,6 +105,7 @@ const InputMemoryImagesForm = ({
             value={memoryPhotoDescription}
             onChange={handleInputValidation}
             placeholder="Opcional"
+            disabled={memoryPhotoList.length >= MAX_NUM_PHOTOS}
           ></textarea>
         </div>
         <div className="memory-form__error-flag mt-2 mb-4">
@@ -117,6 +121,7 @@ const InputMemoryImagesForm = ({
             className="memory-form__image-button memory-form__input-image-button-container"
             id="upload-img-button"
             onClick={handleSelectImageToLoad}
+            disabled={memoryPhotoList.length >= MAX_NUM_PHOTOS}
           >
             Carga una imágen
           </button>
@@ -138,6 +143,12 @@ const InputMemoryImagesForm = ({
           </button>
         </div>
       </form>
+      {memoryPhotoList.length >= MAX_NUM_PHOTOS && (
+        <ErrorFlag
+          message="Número máximo de fotos para tu recuerdo alcanzado"
+          color="blue"
+        />
+      )}
       <label id="url-uploaded-img"></label>
       <div className="memory-form__error-flag mt-2 mb-4">
         {errorsState.memoryPhotoImg.hasErrors && (
@@ -157,9 +168,11 @@ const InputMemoryImagesForm = ({
           id="memory-image-preview-url"
         ></a>
       </div>
-      <h3 className="memory-form__image-list-title text-center">
-        Lista de imágenes de tu viaje
-      </h3>
+      {memoryPhotoList.length > 0 && (
+        <h3 className="memory-form__image-list-title text-center">
+          Lista de imágenes de tu viaje
+        </h3>
+      )}
       <FormMemoryImagesList
         memoryPhotoList={memoryPhotoList}
         setMemoryPhotoList={setMemoryPhotoList}
