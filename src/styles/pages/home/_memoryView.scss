@@ -67,6 +67,7 @@
   display: flex;
   flex-direction: column;
   width: 250px;
+  height: 250px;
   margin: 10px;
   position: relative;
   overflow: hidden;
@@ -81,6 +82,7 @@
 .memory-image__card-image {
   width: inherit;
   border: 1px solid green;
+  margin: auto;
 }
 
 .memory-image__card-title {

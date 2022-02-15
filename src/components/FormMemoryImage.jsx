@@ -1,7 +1,7 @@
 import React from "react";
 import Swal from "sweetalert2";
 
-const MemoryImage = ({ urlPhoto, title, description }) => {
+const FormMemoryImage = ({ urlPhoto, title, description }) => {
   const handleDisplayImage = (e) => {
     Swal.fire({
       title: `${title}`,
@@ -18,10 +18,10 @@ const MemoryImage = ({ urlPhoto, title, description }) => {
       <img src={urlPhoto} alt={title} className="memory-image__card-image" />
 
       <p className="memory-image__card-title text-center">
-        Recuerdos de miami con toda mi familia{" "}
+        {title || "Recuerdos de Miami con toda mi familia"}
       </p>
     </div>
   );
 };
 
-export default MemoryImage;
+export default FormMemoryImage;

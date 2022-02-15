@@ -35,13 +35,7 @@ export const visibilityTypes = [
   { type: "PRIVATE", label: "Private" },
 ];
 
-export const memoryFormValidator = (
-  e,
-  setErrorsState,
-  userId,
-  memoryId,
-  setMemoryPhotoList
-) => {
+export const memoryFormValidator = (e, setErrorsState, userId, memoryId) => {
   const { name: fieldName, value, files } = e.target;
   switch (fieldName) {
     case "name":
@@ -64,8 +58,7 @@ export const memoryFormValidator = (
         files[0],
         setErrorsState,
         userId,
-        memoryId,
-        setMemoryPhotoList
+        memoryId
       );
       break;
     case "memoryPhotoDescription":
@@ -196,8 +189,7 @@ const handleMemoryPhotoImgValidation = (
   file,
   setErrorsState,
   userId,
-  memoryId,
-  setMemoryPhotoList
+  memoryId
 ) => {
   if (!file?.type.startsWith("image")) {
     const imagePreview = document.getElementById("memory-image-preview");
@@ -219,10 +211,11 @@ const handleMemoryPhotoImgValidation = (
   }
   //Enviar la imagen a cloudinary y en base a la peticion hacer lo siguiente.
   uploadFileToCloudinary(file, userId, memoryId).then((responseUrl) => {
-    console.log(responseUrl);
     const imagePreview = document.getElementById("memory-image-preview");
+    const urlImage = document.getElementById("memory-image-preview-url");
     imagePreview.src = `${responseUrl}`;
-    setMemoryPhotoList((imagesList) => [...imagesList, responseUrl]);
+    urlImage.setAttribute("href", responseUrl);
+    urlImage.textContent = "Ver la imágen en tamaño grande";
     imagePreview.classList.replace(
       "memory-image-preview--no-content",
       "memory-image-preview--with-content"

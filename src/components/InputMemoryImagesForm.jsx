@@ -1,20 +1,32 @@
 import React from "react";
 import ErrorFlag from "./ErrorFlag";
+import FormMemoryImagesList from "./FormMemoryImagesList";
 
 const InputMemoryImagesForm = ({
   formValues,
-  handleInputChange,
   errorsState,
-  setErrorsState,
   handleInputValidation,
   handleSelectImageToLoad,
   memoryPhotoList,
+  setMemoryPhotoList,
 }) => {
   const { memoryPhotoText, memoryPhotoImg, memoryPhotoDescription } =
     formValues;
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const urlImage = document
+      .getElementById("memory-image-preview-url")
+      .getAttribute("href");
+
+    //Validate photoUrl different to default
+
+    const newMemoryImage = {
+      urlPhoto: urlImage,
+      title: formValues.memoryPhotoText,
+      description: formValues.memoryPhotoDescription,
+    };
+    setMemoryPhotoList((photoList) => [...photoList, newMemoryImage]);
   };
 
   return (
@@ -26,8 +38,10 @@ const InputMemoryImagesForm = ({
           color="blue"
         />
       )}
-      {}
-      <form className="memory-form__input-image-container">
+      <form
+        className="memory-form__input-image-container"
+        onSubmit={handleSubmit}
+      >
         <div className="memory-form__input-container">
           <label htmlFor="memoryPhotoText" className="memory-form__input-label">
             Nombre de la foto
@@ -113,25 +127,18 @@ const InputMemoryImagesForm = ({
           className="memory-image-preview--no-content"
           id="memory-image-preview"
           alt=" "
-        />{" "}
+        />
         <a
           href="#"
           target="_blank"
-          className="memory-form__url-image-label"
+          className="store-setup__url-image-label"
           id="memory-image-preview-url"
         ></a>
       </div>
-
       <h3 className="memory-form__image-list-title text-center">
         Lista de imágenes de tu viaje
       </h3>
-      <div className="memory-form__images-list">
-        {memoryPhotoList.map((memoryPhoto) => (
-          //Recordar subir las imágenes una vez que se suben a cloudinary
-          //Crear el componente para mostrar la foto, la descripción, y el título
-          <p>{JSON.stringify(memoryPhoto)}</p>
-        ))}
-      </div>
+      <FormMemoryImagesList memoryPhotoList={memoryPhotoList} />
     </div>
   );
 };

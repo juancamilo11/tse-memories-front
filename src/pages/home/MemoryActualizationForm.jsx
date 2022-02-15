@@ -50,8 +50,7 @@ const MemoryActualizationForm = () => {
       e,
       setErrorsState,
       userId,
-      activeMemoryToUpdate.memoryId,
-      setMemoryPhotoList
+      activeMemoryToUpdate.memoryId
     );
   };
 
@@ -260,12 +259,11 @@ const MemoryActualizationForm = () => {
 
           <InputMemoryImagesForm
             formValues={formValues}
-            handleInputChange={handleInputChange}
             errorsState={errorsState}
-            setErrorsState={setErrorsState}
             handleInputValidation={handleInputValidation}
             handleSelectImageToLoad={handleSelectImageToLoad}
             memoryPhotoList={memoryPhotoList}
+            setMemoryPhotoList={setMemoryPhotoList}
           />
         </div>
       </form>
