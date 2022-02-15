@@ -8,13 +8,10 @@ const InputMemoryImagesForm = ({
   setErrorsState,
   handleInputValidation,
   handleSelectImageToLoad,
+  memoryPhotoList,
 }) => {
-  const {
-    memoryPhotoText,
-    memoryPhotoImg,
-    memoryPhotoDescription,
-    memoryPhotoList,
-  } = formValues;
+  const { memoryPhotoText, memoryPhotoImg, memoryPhotoDescription } =
+    formValues;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,7 +20,7 @@ const InputMemoryImagesForm = ({
 
   return (
     <div className="memory-form__image-list-container">
-      <h2>Ingreso de fotos para tu recuerdo</h2>
+      <h2 className="text-center">Ingreso de fotos para tu recuerdo</h2>
       {memoryPhotoList.length === 0 && (
         <ErrorFlag
           message="Aún no has ingresado imágenes para tu recuerdo, ingresa por lo menos una"

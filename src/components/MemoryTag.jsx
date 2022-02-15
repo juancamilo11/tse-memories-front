@@ -1,14 +1,14 @@
 import React from "react";
 
-const MemoryTag = ({ tag, setFormValues }) => {
+const MemoryTag = ({ tag, setTagList }) => {
   const handleDeleteTag = (e) => {
     e.preventDefault();
-    // setFormValues()
+    setTagList((tagList) => tagList.filter((theTag) => theTag !== tag));
   };
 
   return (
-    <div>
-      <span className="store-setup__tag-name mb-2">{tag}</span>
+    <div className="memory-form__tag-container">
+      <span className="memory-form__tag-name">{tag}</span>
       <button
         className="btn btn-danger btn-delete-tag"
         onClick={handleDeleteTag}

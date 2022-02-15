@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import {
   formInitialErrorState,
   formInitialValues,
+  isTheTagAlreadyDefined,
   memoryFormSubmitValidation,
   memoryFormValidator,
   visibilityTypes,
@@ -13,6 +14,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useSelector } from "react-redux";
 import MemoryTagList from "../../components/MemoryTagList";
 import InputMemoryImagesForm from "../../components/InputMemoryImagesForm";
+import { sweetalertForInputTagAlreadyDefinedBuilder } from "../../helpers/sweetAlertBuilder";
 
 const MemoryActualizationForm = () => {
   const [formValues, handleInputChange, resetForm] = useForm(formInitialValues);
@@ -20,31 +22,30 @@ const MemoryActualizationForm = () => {
 
   const { activeMemoryToUpdate } = useSelector((state) => state.memories);
 
+  const [tagList, setTagList] = useState([]);
+  const [memoryPhotoList, setMemoryPhotoList] = useState([]);
+
   const dispatch = useDispatch();
 
-  const {
-    id,
-    name,
-    memoryDate,
-    creationDate,
-    visibility,
-    tag,
-    tagList,
-    memoryPhotoText,
-    memoryPhotoImg,
-    memoryPhotoDescription,
-    memoryPhotoList,
-    country,
-    city,
-  } = formValues;
+  const { id, name, memoryDate, creationDate, visibility, tag, country, city } =
+    formValues;
 
   const handleAddNewTag = (e) => {
     e.preventDefault();
+    const tagValue = document.getElementById("tag").value.trim();
+    const cleanEvent = { target: { name: "tag", value: "" } };
+    if (tagValue === "" || errorsState.tag.hasErrors) return;
+    if (isTheTagAlreadyDefined(tagValue, tagList, setErrorsState)) {
+      sweetalertForInputTagAlreadyDefinedBuilder(tagValue);
+      return;
+    }
+    setTagList([...tagList, tagValue]);
+    handleInputValidation(cleanEvent);
   };
 
   const handleInputValidation = (e) => {
-    e.preventDefault();
     handleInputChange(e);
+    memoryFormValidator(e, setErrorsState);
   };
 
   const handleMemoryFormSubmit = (e) => {
@@ -205,6 +206,7 @@ const MemoryActualizationForm = () => {
                 className="memory-form__input memory-form__button-input-tag btn btn-primary"
                 disabled={errorsState.tag.hasErrors}
                 type="button"
+                disabled={tagList.length >= 25}
               >
                 Ingresar
               </button>
@@ -247,10 +249,7 @@ const MemoryActualizationForm = () => {
             </div>
           </div>
 
-          <MemoryTagList
-            tagList={tagList}
-            handleInputChange={handleInputChange}
-          />
+          <MemoryTagList tagList={tagList} setTagList={setTagList} />
 
           <InputMemoryImagesForm
             formValues={formValues}
@@ -259,6 +258,7 @@ const MemoryActualizationForm = () => {
             setErrorsState={setErrorsState}
             handleInputValidation={handleInputValidation}
             handleSelectImageToLoad={handleSelectImageToLoad}
+            memoryPhotoList={memoryPhotoList}
           />
         </div>
       </form>

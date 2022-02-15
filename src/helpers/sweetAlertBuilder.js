@@ -19,3 +19,12 @@ export const sweetAlertForMemoryDeleteConfirmationBuilder = (
     allowEscapeKey: false,
     allowOutsideClick: false,
   });
+
+export const sweetalertForInputTagAlreadyDefinedBuilder = (newTag) =>
+  Swal.fire({
+    icon: "error",
+    title: "Oops...",
+    text: `La etiqueta '${newTag}' ya ha sido ingresada, intenta con otro valor.`,
+    showConfirmButton: false,
+    timer: 3500,
+  });

@@ -1,6 +1,6 @@
 import React from "react";
 
-const ErrorFlag = ({ message, color }) => {
+const ErrorFlag = ({ message, color, maxNumTags }) => {
   return (
     <div
       className="error-flag__container"

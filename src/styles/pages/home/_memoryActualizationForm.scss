@@ -123,8 +123,9 @@
 }
 
 .memory-form__left-counting-tags {
-  margin-bottom: -20px;
-  width: 100%;
+  margin-bottom: 20px;
+  width: 96%;
+  margin: 0px auto;
 }
 
 .memory-form__textarea-slogan {
@@ -258,4 +259,30 @@
 
 .memory-form__input-image-button {
   margin: 0px auto;
+}
+
+.memory-form__tag-list {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.memory-form__tag-container {
+  width: 150px;
+  background-color: rgb(243, 240, 240);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid darkgray;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.memory-form__tag-name {
+  margin-bottom: 10px;
 }

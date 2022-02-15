@@ -26,7 +26,7 @@ const PublicMemoryEntry = ({
 }) => {
   const dispatch = useDispatch();
   const { memories, auth } = useSelector((state) => state);
-  const activedmemory = memories.activeMemory;
+  const activeMemory = memories.activeMemoryToShow;
 
   const handleWatchMemory = (e) => {
     e.preventDefault();
@@ -78,7 +78,7 @@ const PublicMemoryEntry = ({
   return (
     <div
       className="memory-catalog__memory-entry"
-      style={{ backgroundColor: activedmemory?.id === id && "#94DAFF" }}
+      style={{ backgroundColor: activeMemory?.memoryId === id && "#94DAFF" }}
     >
       <div
         className="memory-catalog__memory-entry-picture"

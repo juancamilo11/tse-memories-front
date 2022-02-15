@@ -1,34 +1,39 @@
 import React from "react";
+import ErrorFlag from "./ErrorFlag";
 import MemoryTag from "./MemoryTag";
 
-const MemoryTagList = ({ tagList, setFormValues }) => {
+const MemoryTagList = ({ tagList, setTagList }) => {
   return (
     <div className="memory-form__tag-list-container">
       <h3 className="memory-form__tag-list-title text-center">
         Lista de palabras claves (Etiquetas) de tu viaje
       </h3>
 
-      <div className="store-setup__left-counting-tags">
-        {tagList.length > 0 && tagList.length < 10 && (
-          <div className="alert alert-primary text-center mt-3">
-            Debes tener entre <b>tres</b> y <b>diez</b> etiquetas para cada
-            producto, aún puedes ingresar {10 - tagList.length} etiquetas
-            (Máximo diez).
-          </div>
+      <div className="memory-form__left-counting-tags">
+        {tagList.length === 0 && (
+          <ErrorFlag
+            message="Aún no has ingresado palabras claves de tu viaje."
+            color="blue"
+          />
         )}
-      </div>
-      <div className="store-setup__left-counting-tags">
-        {tagList.length === 10 && (
-          <div className="alert alert-primary text-center mt-3">
-            Número máximo de etiquetas para este producto alcanzado.
-          </div>
-        )}
-      </div>
 
+        {tagList.length > 0 && tagList.length < 25 && (
+          <ErrorFlag
+            message="Puedes tener hasta 25 etiquetas no repetidas para recuerdo de viaje"
+            color="blue"
+          />
+        )}
+
+        {tagList.length === 25 && (
+          <ErrorFlag
+            message="Número máximo de etiquetas para este recuerdo alcanzado."
+            color="blue"
+          />
+        )}
+      </div>
       <div className="memory-form__tag-list">
         {tagList.map((tag, index) => (
-          //Crear el componente tag con el ícono de la basura
-          <MemoryTag id={index} tag={tag} setFormValues={setFormValues} />
+          <MemoryTag id={index} tag={tag} setTagList={setTagList} />
         ))}
       </div>
     </div>

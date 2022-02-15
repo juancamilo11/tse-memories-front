@@ -6,11 +6,9 @@ export const formInitialValues = {
   creationDate: "",
   visibility: "",
   tag: "",
-  tagList: [],
   memoryPhotoText: "",
   memoryPhotoImg: "",
   memoryPhotoDescription: "",
-  memoryPhotoList: [],
   country: "",
   city: "",
 };
@@ -36,33 +34,33 @@ export const visibilityTypes = [
 ];
 
 export const memoryFormValidator = (e, setErrorsState) => {
-  const { name: fieldName, value } = e.target;
+  const { name: fieldName, value, files } = e.target;
   switch (fieldName) {
-    case "storeName":
+    case "name":
       handleNameValidation(value, setErrorsState);
       break;
-    case "slogan":
+    case "memoryDate":
       handleMemoryDateValidation(value, setErrorsState);
       break;
-    case "description":
-      handleVisibilityValidation(value, setErrorsState);
+      // case "visibility":
+      //   handleVisibilityValidation(value, setErrorsState);
       break;
     case "tag":
       handleTagValidation(value, setErrorsState);
       break;
-    case "startingDate":
+    case "memoryPhotoText": //title
       handleMemoryPhotoTextValidation(value, setErrorsState);
       break;
-    case "startingDate":
-      handleMemoryPhotoImgValidation(value, setErrorsState);
+    case "memoryPhotoImg":
+      handleMemoryPhotoImgValidation(files, setErrorsState);
       break;
-    case "startingDate":
+    case "memoryPhotoDescription":
       handleMemoryPhotoDescriptionValidation(value, setErrorsState);
       break;
-    case "startingDate":
+    case "country":
       handleCountryValidation(value, setErrorsState);
       break;
-    case "endingDate":
+    case "city":
       handleCityValidation(value, setErrorsState);
       break;
     default:
@@ -88,15 +86,87 @@ const setErrorStateForField = (
   });
 };
 
-const handleNameValidation = (value, setErrorsState) => {};
+export const isTheTagAlreadyDefined = (tagName, tagsList, setErrorsState) => {
+  if (tagsList.includes(tagName)) {
+    setErrorsState((state) => {
+      return {
+        ...state,
+        ["tag"]: {
+          hasErrors: true,
+          message: `La etiqueta '${tagName}' ya ha sido ingresada, intente con otro valor.`,
+        },
+      };
+    });
+    return true;
+  }
+};
+
+const handleNameValidation = (value, setErrorsState) => {
+  if (
+    (value.trim().length >= 5 && value.trim().length <= 50) ||
+    value.trim() === ""
+  ) {
+    setErrorStateForField(setErrorsState, "name", false, "");
+    return;
+  }
+  setErrorStateForField(
+    setErrorsState,
+    "name",
+    true,
+    "El nombre del recuerdo debe tener entre 5 y 50 caracteres."
+  );
+};
 const handleMemoryDateValidation = (value, setErrorsState) => {};
 const handleVisibilityValidation = (value, setErrorsState) => {};
-const handleTagValidation = (value, setErrorsState) => {};
+const handleTagValidation = (value, setErrorsState) => {
+  if (
+    (value.trim().length >= 3 && value.trim().length <= 20) ||
+    value.trim() === ""
+  ) {
+    setErrorStateForField(setErrorsState, "tag", false, "");
+    return;
+  }
+  setErrorStateForField(
+    setErrorsState,
+    "tag",
+    true,
+    "El nombre de la etiqueta de tu recuerdo debe tener entre 3 y 20 caracteres."
+  );
+};
+
 const handleMemoryPhotoTextValidation = (value, setErrorsState) => {};
 const handleMemoryPhotoImgValidation = (value, setErrorsState) => {};
 const handleMemoryPhotoDescriptionValidation = (value, setErrorsState) => {};
-const handleCountryValidation = (value, setErrorsState) => {};
-const handleCityValidation = (value, setErrorsState) => {};
+const handleCountryValidation = (value, setErrorsState) => {
+  if (
+    (value.trim().length >= 2 && value.trim().length <= 30) ||
+    value.trim() === ""
+  ) {
+    setErrorStateForField(setErrorsState, "country", false, "");
+    return;
+  }
+  setErrorStateForField(
+    setErrorsState,
+    "country",
+    true,
+    "El nombre país debe tener entre 2 y 30 caracteres."
+  );
+};
+const handleCityValidation = (value, setErrorsState) => {
+  if (
+    (value.trim().length >= 2 && value.trim().length <= 30) ||
+    value.trim() === ""
+  ) {
+    setErrorStateForField(setErrorsState, "city", false, "");
+    return;
+  }
+  setErrorStateForField(
+    setErrorsState,
+    "city",
+    true,
+    "El nombre de la ciudad debe tener entre 2 y 30 caracteres."
+  );
+};
 
 export const memoryFormSubmitValidation = (
   formValues,
