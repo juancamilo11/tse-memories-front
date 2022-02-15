@@ -239,13 +239,11 @@
 
 //Input memory image form
 .memory-form__image-list-container {
-  background-color: red;
   width: 96%;
   margin: 0px 2%;
 }
 
 .memory-form__input-image-container {
-  background-color: purple;
   padding-top: 25px;
   padding-bottom: 25px;
 }
@@ -285,4 +283,15 @@
 
 .memory-form__tag-name {
   margin-bottom: 10px;
+}
+
+.memory-image-preview--with-content {
+  margin: 20px 10%;
+  width: 80%;
+}
+
+.memory-image-preview--no-content {
+  margin: 20px 40%;
+  width: 20%;
+  border-radius: 5px;
 }

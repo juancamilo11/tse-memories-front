@@ -50,7 +50,8 @@ const MemoryActualizationForm = () => {
       e,
       setErrorsState,
       userId,
-      activeMemoryToUpdate.memoryId
+      activeMemoryToUpdate.memoryId,
+      setMemoryPhotoList
     );
   };
 

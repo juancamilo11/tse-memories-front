@@ -19,6 +19,9 @@ const types = {
   modifyMemory: "[memories] Modify Memory",
   deleteMemory: "[memories] Delete Memory",
   registerMemoryView: "[memories] Register Memory View",
+
+  addUploadedImageUrl: "[loadedImages] add Loaded image",
+  removeUploadedImageUrl: "[loadedImages] remove Loaded image",
 };
 
 export default types;

@@ -35,7 +35,13 @@ export const visibilityTypes = [
   { type: "PRIVATE", label: "Private" },
 ];
 
-export const memoryFormValidator = (e, setErrorsState, userId, memoryId) => {
+export const memoryFormValidator = (
+  e,
+  setErrorsState,
+  userId,
+  memoryId,
+  setMemoryPhotoList
+) => {
   const { name: fieldName, value, files } = e.target;
   switch (fieldName) {
     case "name":
@@ -58,7 +64,8 @@ export const memoryFormValidator = (e, setErrorsState, userId, memoryId) => {
         files[0],
         setErrorsState,
         userId,
-        memoryId
+        memoryId,
+        setMemoryPhotoList
       );
       break;
     case "memoryPhotoDescription":
@@ -189,7 +196,8 @@ const handleMemoryPhotoImgValidation = (
   file,
   setErrorsState,
   userId,
-  memoryId
+  memoryId,
+  setMemoryPhotoList
 ) => {
   if (!file?.type.startsWith("image")) {
     const imagePreview = document.getElementById("memory-image-preview");
@@ -214,6 +222,7 @@ const handleMemoryPhotoImgValidation = (
     console.log(responseUrl);
     const imagePreview = document.getElementById("memory-image-preview");
     imagePreview.src = `${responseUrl}`;
+    setMemoryPhotoList((imagesList) => [...imagesList, responseUrl]);
     imagePreview.classList.replace(
       "memory-image-preview--no-content",
       "memory-image-preview--with-content"

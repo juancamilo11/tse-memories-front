@@ -107,9 +107,10 @@ const InputMemoryImagesForm = ({
         {errorsState.memoryPhotoImg.hasErrors && (
           <ErrorFlag message={errorsState.memoryPhotoImg.message} color="red" />
         )}
+        <h5 className="text-center">(Previsualización)</h5>
         <img
           src="https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp"
-          className="uploaded-img-preview--no-content"
+          className="memory-image-preview--no-content"
           id="memory-image-preview"
           alt=" "
         />{" "}
