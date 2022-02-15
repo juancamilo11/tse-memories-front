@@ -9,19 +9,17 @@ const InputMemoryImagesForm = ({
   handleSelectImageToLoad,
   memoryPhotoList,
   setMemoryPhotoList,
+  resetForm,
 }) => {
   const { memoryPhotoText, memoryPhotoImg, memoryPhotoDescription } =
     formValues;
 
   const cleanUpInputImageForm = () => {
-    const cleanEventTitle = {
-      target: { name: "memoryPhotoText", value: "" },
-    };
-    const cleanEventDescription = {
-      target: { name: "memoryPhotoDescription", value: "" },
-    };
-    handleInputValidation(cleanEventTitle);
-    handleInputValidation(cleanEventDescription);
+    resetForm({
+      ...formValues,
+      memoryPhotoText: "",
+      memoryPhotoDescription: "",
+    });
     const imageComponent = document.getElementById("memory-image-preview");
     const anchorComponent = document.getElementById("memory-image-preview-url");
     imageComponent.setAttribute(
@@ -58,7 +56,7 @@ const InputMemoryImagesForm = ({
       <h3 className="text-center">Ingreso de fotos para tu recuerdo</h3>
       {memoryPhotoList.length === 0 && (
         <ErrorFlag
-          message="Aún no has ingresado imágenes para tu recuerdo, ingresa al menos una"
+          message="Aún no has ingresado imágenes para tu recuerdo, debes ingresar al menos una y máximo diez."
           color="blue"
         />
       )}
@@ -162,7 +160,10 @@ const InputMemoryImagesForm = ({
       <h3 className="memory-form__image-list-title text-center">
         Lista de imágenes de tu viaje
       </h3>
-      <FormMemoryImagesList memoryPhotoList={memoryPhotoList} />
+      <FormMemoryImagesList
+        memoryPhotoList={memoryPhotoList}
+        setMemoryPhotoList={setMemoryPhotoList}
+      />
     </div>
   );
 };

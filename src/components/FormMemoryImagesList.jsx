@@ -1,11 +1,14 @@
 import React from "react";
 import FormMemoryImage from "./FormMemoryImage";
 
-const FormMemoryImagesList = ({ memoryPhotoList }) => {
+const FormMemoryImagesList = ({ memoryPhotoList, setMemoryPhotoList }) => {
   return (
     <div className="images-list__main-container">
       {memoryPhotoList.map((memoryImage) => (
-        <FormMemoryImage {...memoryImage} />
+        <FormMemoryImage
+          {...memoryImage}
+          setMemoryPhotoList={setMemoryPhotoList}
+        />
       ))}
     </div>
   );
