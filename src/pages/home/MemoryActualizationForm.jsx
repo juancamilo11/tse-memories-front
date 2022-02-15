@@ -17,7 +17,7 @@ import InputMemoryImagesForm from "../../components/InputMemoryImagesForm";
 import { sweetalertForInputTagAlreadyDefinedBuilder } from "../../helpers/sweetAlertBuilder";
 
 const MemoryActualizationForm = () => {
-  const { uid: userId } = useSelector((state) => state.auth);
+  const { email } = useSelector((state) => state.auth);
   const [formValues, handleInputChange, resetForm] = useForm(formInitialValues);
   const [errorsState, setErrorsState] = useState(formInitialErrorState);
 
@@ -49,7 +49,7 @@ const MemoryActualizationForm = () => {
     memoryFormValidator(
       e,
       setErrorsState,
-      userId,
+      email,
       activeMemoryToUpdate.memoryId
     );
   };

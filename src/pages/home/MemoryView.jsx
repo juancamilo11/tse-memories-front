@@ -141,6 +141,10 @@ const MemoryView = () => {
     }
   };
 
+  const handleAddOrRemoveFromFavorites = (e) => {
+    e.preventDefault();
+  };
+
   const handleGoBack = (e) => {
     dispatch(activeNothingToShow());
   };
@@ -158,6 +162,22 @@ const MemoryView = () => {
               <b>{activeMemoryToShow.viewsCount}</b> vistas{" "}
               {showViewerList ? "(Ocultar)" : "(Mostrar)"}
             </span>
+          </button>
+          <button
+            className="memory-view__header-view-count-button"
+            onClick={handleAddOrRemoveFromFavorites}
+          >
+            {!true ? (
+              <span>
+                <i className="fas fa-heart memory-view__header-view-count-icon"></i>{" "}
+                Eliminar
+              </span>
+            ) : (
+              <span>
+                <i className="far fa-heart memory-view__header-view-count-icon"></i>{" "}
+                Agregar
+              </span>
+            )}
           </button>
         </div>
         <div className="memory-view__buttons-section">

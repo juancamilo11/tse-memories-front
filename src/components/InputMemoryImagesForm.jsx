@@ -13,13 +13,36 @@ const InputMemoryImagesForm = ({
   const { memoryPhotoText, memoryPhotoImg, memoryPhotoDescription } =
     formValues;
 
+  const cleanUpInputImageForm = () => {
+    const cleanEventTitle = {
+      target: { name: "memoryPhotoText", value: "" },
+    };
+    const cleanEventDescription = {
+      target: { name: "memoryPhotoDescription", value: "" },
+    };
+    handleInputValidation(cleanEventTitle);
+    handleInputValidation(cleanEventDescription);
+    const imageComponent = document.getElementById("memory-image-preview");
+    const anchorComponent = document.getElementById("memory-image-preview-url");
+    imageComponent.setAttribute(
+      "src",
+      "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp"
+    );
+    imageComponent.classList.replace(
+      "memory-image-preview--with-content",
+      "memory-image-preview--no-content"
+    );
+    anchorComponent.setAttribute("href", "#");
+    anchorComponent.textContent = "";
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const urlImage = document
       .getElementById("memory-image-preview-url")
       .getAttribute("href");
 
-    //Validate photoUrl different to default
+    //toDo -> Validate photoUrl different to default
 
     const newMemoryImage = {
       urlPhoto: urlImage,
@@ -27,6 +50,7 @@ const InputMemoryImagesForm = ({
       description: formValues.memoryPhotoDescription,
     };
     setMemoryPhotoList((photoList) => [...photoList, newMemoryImage]);
+    cleanUpInputImageForm();
   };
 
   return (
@@ -126,7 +150,7 @@ const InputMemoryImagesForm = ({
           src="https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp"
           className="memory-image-preview--no-content"
           id="memory-image-preview"
-          alt=" "
+          alt="previsualización de tu foto"
         />
         <a
           href="#"

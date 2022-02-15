@@ -35,7 +35,7 @@ export const visibilityTypes = [
   { type: "PRIVATE", label: "Private" },
 ];
 
-export const memoryFormValidator = (e, setErrorsState, userId, memoryId) => {
+export const memoryFormValidator = (e, setErrorsState, userEmail, memoryId) => {
   const { name: fieldName, value, files } = e.target;
   switch (fieldName) {
     case "name":
@@ -57,7 +57,7 @@ export const memoryFormValidator = (e, setErrorsState, userId, memoryId) => {
       handleMemoryPhotoImgValidation(
         files[0],
         setErrorsState,
-        userId,
+        userEmail,
         memoryId
       );
       break;
@@ -188,7 +188,7 @@ const handleMemoryPhotoDescriptionValidation = (value, setErrorsState) => {
 const handleMemoryPhotoImgValidation = (
   file,
   setErrorsState,
-  userId,
+  userEmail,
   memoryId
 ) => {
   if (!file?.type.startsWith("image")) {
@@ -210,7 +210,7 @@ const handleMemoryPhotoImgValidation = (
     return;
   }
   //Enviar la imagen a cloudinary y en base a la peticion hacer lo siguiente.
-  uploadFileToCloudinary(file, userId, memoryId).then((responseUrl) => {
+  uploadFileToCloudinary(file, userEmail, memoryId).then((responseUrl) => {
     const imagePreview = document.getElementById("memory-image-preview");
     const urlImage = document.getElementById("memory-image-preview-url");
     imagePreview.src = `${responseUrl}`;

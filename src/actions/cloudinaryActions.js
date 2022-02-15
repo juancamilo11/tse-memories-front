@@ -1,11 +1,11 @@
-export const uploadFileToCloudinary = async (file, userId, memoryId) => {
+export const uploadFileToCloudinary = async (file, userEmail, memoryId) => {
   const cloudinaryURL = `https://api.cloudinary.com/v1_1/dahwtwzdl/upload`;
 
   const formData = new FormData();
 
   formData.append("upload_preset", "react-journal-cloudinary");
   formData.append("file", file);
-  formData.append("folder", `/tse_memories/memories/${userId}/${memoryId}`);
+  formData.append("folder", `/tse_memories/memories/${userEmail}/${memoryId}`);
 
   try {
     const response = await fetch(cloudinaryURL, {
