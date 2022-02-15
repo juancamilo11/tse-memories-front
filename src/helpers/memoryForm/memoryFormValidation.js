@@ -1,3 +1,5 @@
+import { uploadFileToCloudinary } from "../../actions/cloudinaryActions";
+
 //Initial values for the section #1 form of the store setup.
 export const formInitialValues = {
   id: "",
@@ -33,7 +35,7 @@ export const visibilityTypes = [
   { type: "PRIVATE", label: "Private" },
 ];
 
-export const memoryFormValidator = (e, setErrorsState) => {
+export const memoryFormValidator = (e, setErrorsState, userId, memoryId) => {
   const { name: fieldName, value, files } = e.target;
   switch (fieldName) {
     case "name":
@@ -52,7 +54,12 @@ export const memoryFormValidator = (e, setErrorsState) => {
       handleMemoryPhotoTextValidation(value, setErrorsState);
       break;
     case "memoryPhotoImg":
-      handleMemoryPhotoImgValidation(files, setErrorsState);
+      handleMemoryPhotoImgValidation(
+        files[0],
+        setErrorsState,
+        userId,
+        memoryId
+      );
       break;
     case "memoryPhotoDescription":
       handleMemoryPhotoDescriptionValidation(value, setErrorsState);
@@ -116,8 +123,22 @@ const handleNameValidation = (value, setErrorsState) => {
     "El nombre del recuerdo debe tener entre 5 y 50 caracteres."
   );
 };
-const handleMemoryDateValidation = (value, setErrorsState) => {};
+
+const handleMemoryDateValidation = (value, setErrorsState) => {
+  if (new Date(value).getTime() > new Date().getTime()) {
+    setErrorStateForField(
+      setErrorsState,
+      "memoryDate",
+      true,
+      "La fecha ingresada está el futuro, por favor ingresa una fecha válida."
+    );
+    return;
+  }
+  setErrorStateForField(setErrorsState, "memoryDate", false, "");
+};
+
 const handleVisibilityValidation = (value, setErrorsState) => {};
+
 const handleTagValidation = (value, setErrorsState) => {
   if (
     (value.trim().length >= 3 && value.trim().length <= 20) ||
@@ -134,9 +155,73 @@ const handleTagValidation = (value, setErrorsState) => {
   );
 };
 
-const handleMemoryPhotoTextValidation = (value, setErrorsState) => {};
-const handleMemoryPhotoImgValidation = (value, setErrorsState) => {};
-const handleMemoryPhotoDescriptionValidation = (value, setErrorsState) => {};
+const handleMemoryPhotoTextValidation = (value, setErrorsState) => {
+  if (
+    (value.trim().length >= 3 && value.trim().length <= 20) ||
+    value.trim() === ""
+  ) {
+    setErrorStateForField(setErrorsState, "memoryPhotoText", false, "");
+    return;
+  }
+  setErrorStateForField(
+    setErrorsState,
+    "memoryPhotoText",
+    true,
+    "El nombre de la foto debe tener entre 3 y 20 caracteres o debe estar vacío."
+  );
+};
+const handleMemoryPhotoDescriptionValidation = (value, setErrorsState) => {
+  if (
+    (value.trim().length >= 3 && value.trim().length <= 200) ||
+    value.trim() === ""
+  ) {
+    setErrorStateForField(setErrorsState, "memoryPhotoDescription", false, "");
+    return;
+  }
+  setErrorStateForField(
+    setErrorsState,
+    "memoryPhotoDescription",
+    true,
+    "La descripción de la foto debe tener entre 3 y 200 caracteres o debe estar vacío."
+  );
+};
+const handleMemoryPhotoImgValidation = (
+  file,
+  setErrorsState,
+  userId,
+  memoryId
+) => {
+  if (!file?.type.startsWith("image")) {
+    const imagePreview = document.getElementById("memory-image-preview");
+    imagePreview.setAttribute(
+      "src",
+      "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp"
+    );
+    imagePreview.classList.replace(
+      "memory-image-preview--with-content",
+      "memory-image-preview--no-content"
+    );
+    setErrorStateForField(
+      setErrorsState,
+      "memoryPhotoImg",
+      true,
+      "Error: El archivo ingresado no es una imágen, por favor suba un archivo con formato correcto."
+    );
+    return;
+  }
+  //Enviar la imagen a cloudinary y en base a la peticion hacer lo siguiente.
+  uploadFileToCloudinary(file, userId, memoryId).then((responseUrl) => {
+    console.log(responseUrl);
+    const imagePreview = document.getElementById("memory-image-preview");
+    imagePreview.src = `${responseUrl}`;
+    imagePreview.classList.replace(
+      "memory-image-preview--no-content",
+      "memory-image-preview--with-content"
+    );
+    setErrorStateForField(setErrorsState, "memoryPhotoImg", false, "", true);
+  });
+};
+
 const handleCountryValidation = (value, setErrorsState) => {
   if (
     (value.trim().length >= 2 && value.trim().length <= 30) ||

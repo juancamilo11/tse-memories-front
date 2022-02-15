@@ -15,18 +15,18 @@ const InputMemoryImagesForm = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    window.alert("enviando form");
   };
 
   return (
     <div className="memory-form__image-list-container">
-      <h2 className="text-center">Ingreso de fotos para tu recuerdo</h2>
+      <h3 className="text-center">Ingreso de fotos para tu recuerdo</h3>
       {memoryPhotoList.length === 0 && (
         <ErrorFlag
-          message="Aún no has ingresado imágenes para tu recuerdo, ingresa por lo menos una"
+          message="Aún no has ingresado imágenes para tu recuerdo, ingresa al menos una"
           color="blue"
         />
       )}
+      {}
       <form className="memory-form__input-image-container">
         <div className="memory-form__input-container">
           <label htmlFor="memoryPhotoText" className="memory-form__input-label">
@@ -35,6 +35,7 @@ const InputMemoryImagesForm = ({
           <input
             type="text"
             name="memoryPhotoText"
+            placeholder="Opcional"
             id="memoryPhotoText"
             className="memory-form__input"
             autoComplete="off"
@@ -64,6 +65,7 @@ const InputMemoryImagesForm = ({
             autoComplete="off"
             value={memoryPhotoDescription}
             onChange={handleInputValidation}
+            placeholder="Opcional"
           ></textarea>
         </div>
         <div className="memory-form__error-flag mt-2 mb-4">
@@ -80,7 +82,7 @@ const InputMemoryImagesForm = ({
             id="upload-img-button"
             onClick={handleSelectImageToLoad}
           >
-            Carga un archivo
+            Carga una imágen
           </button>
           <input
             type="file"
@@ -96,7 +98,7 @@ const InputMemoryImagesForm = ({
             onClick={handleSubmit}
             className="memory-catalog__visit-memory-button memory-form__input-image-button"
           >
-            Ingresar imágen
+            Ingresar
           </button>
         </div>
       </form>
@@ -108,14 +110,14 @@ const InputMemoryImagesForm = ({
         <img
           src="https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp"
           className="uploaded-img-preview--no-content"
-          id="uploaded-img-preview"
+          id="memory-image-preview"
           alt=" "
         />{" "}
         <a
           href="#"
           target="_blank"
           className="memory-form__url-image-label"
-          id="uploaded-img-preview-url"
+          id="memory-image-preview-url"
         ></a>
       </div>
 
