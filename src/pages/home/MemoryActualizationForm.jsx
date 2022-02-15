@@ -20,7 +20,7 @@ const MemoryActualizationForm = () => {
   const { email } = useSelector((state) => state.auth);
   const [formValues, handleInputChange, resetForm] = useForm(formInitialValues);
   const [errorsState, setErrorsState] = useState(formInitialErrorState);
-
+  const [newMemoryId, setNewMemoryId] = useState(uuidv4());
   const { activeMemoryToUpdate } = useSelector((state) => state.memories);
 
   const [tagList, setTagList] = useState([]);
@@ -78,7 +78,7 @@ const MemoryActualizationForm = () => {
         <div className="memory-form__id-container">
           <b className="memory-form__id-label">Identificador</b>
           <div className="memory-form__id-content">
-            <b className="memory-form__id-value">{id || `${uuidv4()}`}</b>
+            <b className="memory-form__id-value">{id || newMemoryId}</b>
             <button className="memory-form__id-copy-button">
               <i className="fas fa-copy memory-form__id-copy"></i>
             </button>
@@ -264,6 +264,7 @@ const MemoryActualizationForm = () => {
             handleSelectImageToLoad={handleSelectImageToLoad}
             memoryPhotoList={memoryPhotoList}
             setMemoryPhotoList={setMemoryPhotoList}
+            resetForm={resetForm}
           />
         </div>
       </form>
