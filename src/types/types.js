@@ -32,6 +32,10 @@ const types = {
     "[FetchUserMemories] Fetch All User Private Memories",
   fetchAllMemoriesSharedWithTheUser:
     "[FetchUserMemories] Fetch All Memories Shared With The Current User",
+  fetchAllSpecificUserMemoriesByEmail:
+    "[FetchUserMemories] Fetch All Specific User Memories By Email",
+  fetchAllMemoriesByNameOrTagname:
+    "[FetchUserMemories] Fetch All Memories By Memory Name or Tagname",
 };
 
 export default types;

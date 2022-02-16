@@ -557,6 +557,20 @@ export const memoriesReducer = (state = initialState, action) => {
         memoriesList: [...allMemoriesSharedWithTheUser],
       };
 
+    case types.fetchAllSpecificUserMemoriesByEmail:
+      const { allUserPublicMemoriesByEmail } = action.payload;
+      return {
+        ...state,
+        memoriesList: [...allUserPublicMemoriesByEmail],
+      };
+
+    case types.fetchAllMemoriesByNameOrTagname:
+      const { allMemoriesByNameOrTagname } = action.payload;
+      return {
+        ...state,
+        memoriesList: [...allMemoriesByNameOrTagname],
+      };
+
     default:
       return state;
   }

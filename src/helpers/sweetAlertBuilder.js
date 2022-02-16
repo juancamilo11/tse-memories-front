@@ -41,3 +41,12 @@ export const sweetalertForFetchingMemoriesBuilder = () =>
     allowEscapeKey: false,
     allowOutsideClick: false,
   });
+
+export const sweetalertForInvalidSearchValueBuilder = (message) =>
+  Swal.fire({
+    icon: "error",
+    title: "Oops...",
+    text: message,
+    showConfirmButton: false,
+    timer: 3500,
+  });
