@@ -11,7 +11,32 @@ const initialState = {
       visibility: "publico",
       tagList: ["Miami", "Viaje", "Sol", "Mar", "Playa"],
       creatorId: "R5bPuQsNHoWRxG1NUqf45fb6Eff2",
-      memoryPortrait: "./../assets/img/emptyImage.png",
+      memoryPhotoList: [
+        {
+          urlPhoto:
+            "https://kaikucaffelatte.com/blog/wp-content/uploads/2020/03/shutterstock_510679489-scaled.jpg",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+      ],
       location: { country: "USA", city: "Miami" },
       isAFavorite: true,
       viewsCount: 100,
@@ -35,7 +60,32 @@ const initialState = {
         "Playa",
       ],
       creatorId: "buFHTLA40uRLBy5zaIfWdQcloLB3",
-      memoryPortrait: "./../assets/img/emptyImage.png",
+      memoryPhotoList: [
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+      ],
       location: { country: "Francia", city: "París" },
       isAFavorite: false,
       viewsCount: 50,
@@ -48,7 +98,32 @@ const initialState = {
       visibility: "publico",
       tagList: ["New york", "Nieve", "Manhattan", "Viaje", "Familia"],
       creatorId: "R5bPuQsNHoWRxG1NUqf45fb6Eff2",
-      memoryPortrait: "./../assets/img/emptyImage.png",
+      memoryPhotoList: [
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+      ],
       location: { country: "USA", city: "New York" },
       isAFavorite: true,
       viewsCount: 100,
@@ -61,7 +136,32 @@ const initialState = {
       visibility: "publico",
       tagList: ["New york", "Nieve", "Manhattan", "Viaje", "Familia"],
       creatorId: "HFfDtL7kmNdrFylobVfqiH53Uc62",
-      memoryPortrait: "./../assets/img/emptyImage.png",
+      memoryPhotoList: [
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+      ],
       location: { country: "USA", city: "New York" },
       isAFavorite: true,
       viewsCount: 100,
@@ -74,7 +174,32 @@ const initialState = {
       visibility: "publico",
       tagList: ["New york", "Nieve", "Manhattan", "Viaje", "Familia"],
       creatorId: "buFHTLA40uRLBy5zaIfWdQcloLB3",
-      memoryPortrait: "./../assets/img/emptyImage.png",
+      memoryPhotoList: [
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+      ],
       location: { country: "USA", city: "New York" },
       isAFavorite: true,
       viewsCount: 100,
@@ -87,7 +212,32 @@ const initialState = {
       visibility: "publico",
       tagList: ["New york", "Nieve", "Manhattan", "Viaje", "Familia"],
       creatorId: "buFHTLA40uRLBy5zaIfWdQcloLB3",
-      memoryPortrait: "./../assets/img/emptyImage.png",
+      memoryPhotoList: [
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+      ],
       location: { country: "USA", city: "New York" },
       isAFavorite: true,
       viewsCount: 100,
@@ -100,7 +250,32 @@ const initialState = {
       visibility: "publico",
       tagList: ["New york", "Nieve", "Manhattan", "Viaje", "Familia"],
       creatorId: "buFHTLA40uRLBy5zaIfWdQcloLB3",
-      memoryPortrait: "./../assets/img/emptyImage.png",
+      memoryPhotoList: [
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+      ],
       location: { country: "USA", city: "New York" },
       isAFavorite: true,
       viewsCount: 100,
@@ -113,7 +288,32 @@ const initialState = {
       visibility: "publico",
       tagList: ["Ontario", "Nieve", "Primavera", "Viaje", "Amigos"],
       creatorId: "HFfDtL7kmNdrFylobVfqiH53Uc62",
-      memoryPortrait: "./../assets/img/emptyImage.png",
+      memoryPhotoList: [
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+      ],
       location: { country: "Canadá", city: "Ontario" },
       isAFavorite: true,
       viewsCount: 100,
@@ -129,10 +329,86 @@ const initialState = {
       visibility: "protegido",
       tagList: ["New york", "Nieve", "Manhattan", "Viaje", "Familia"],
       creatorId: "HFfDtL7kmNdrFylobVfqiH53Uc62",
-      memoryPortrait: "./../assets/img/emptyImage.png",
+      memoryPhotoList: [
+        {
+          urlPhoto:
+            "https://kaikucaffelatte.com/blog/wp-content/uploads/2020/03/shutterstock_510679489-scaled.jpg",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+      ],
       location: { country: "USA", city: "New York" },
       isAFavorite: true,
       viewsCount: 100,
+      authorizedIdList: [
+        "tjvvoCKlgyT3pe2MRcmWN2x6Arx2",
+        "R5bPuQsNHoWRxG1NUqf45fb6Eff2",
+        "8LsA24typZcStKIk7JQOpJLK1B93",
+        "buFHTLA40uRLBy5zaIfWdQcloLB3",
+      ],
+    },
+    {
+      id: "493J83465NFV9458KGVN4",
+      name: "Viaje en Familia en Antioquia",
+      memoryDate: "2019-01-09",
+      creationDate: "2020-06-11",
+      visibility: "protegido",
+      tagList: ["Medellín", "Arepa", "Bandeja Paisa", "Paisajes", "Alegría"],
+      creatorId: "HFfDtL7kmNdrFylobVfqiH53Uc62",
+      memoryPhotoList: [
+        {
+          urlPhoto:
+            "https://kaikucaffelatte.com/blog/wp-content/uploads/2020/03/shutterstock_510679489-scaled.jpg",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+      ],
+      location: { country: "Colombia", city: "Antioquia" },
+      isAFavorite: true,
+      viewsCount: 100,
+      authorizedIdList: [
+        "tjvvoCKlgyT3pe2MRcmWN2x6Arx2",
+        "R5bPuQsNHoWRxG1NUqf45fb6Eff2",
+        "8LsA24typZcStKIk7JQOpJLK1B93",
+        "HFfDtL7kmNdrFylobVfqiH53Uc62",
+        "QXjZzpQoxreWpsGmUqJGsJpZ4qo1",
+      ],
     },
 
     //******************* PRIVATE MEMORIES ********************
@@ -145,7 +421,32 @@ const initialState = {
       visibility: "privado",
       tagList: ["New york", "Nieve", "Manhattan", "Viaje", "Familia"],
       creatorId: "HFfDtL7kmNdrFylobVfqiH53Uc62",
-      memoryPortrait: "./../assets/img/emptyImage.png",
+      memoryPhotoList: [
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+        {
+          urlPhoto:
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp",
+          title: "mi tiulo",
+          description: "Descripción del recuerdo",
+        },
+      ],
       location: { country: "USA", city: "New York" },
       isAFavorite: true,
       viewsCount: 100,

@@ -19,7 +19,7 @@ const PublicMemoryEntry = ({
   visibility,
   tagList,
   creatorId,
-  memoryPortrait,
+  memoryPhotoList,
   location,
   isAFavorite,
   viewsCount,
@@ -39,7 +39,7 @@ const PublicMemoryEntry = ({
         visibility,
         tagList,
         creatorId,
-        memoryPortrait,
+        memoryPhotoList,
         location,
         isAFavorite,
         viewsCount,
@@ -57,7 +57,7 @@ const PublicMemoryEntry = ({
         visibility,
         tagList,
         creatorId,
-        memoryPortrait,
+        memoryPhotoList,
         location,
         isAFavorite,
         viewsCount,
@@ -89,8 +89,8 @@ const PublicMemoryEntry = ({
         className="memory-catalog__memory-entry-picture"
         style={{
           backgroundSize: "cover",
-          // backgroundImage: `url(${memoryPortrait})`,
-          backgroundImage: `url(https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp)`,
+          backgroundImage: `url(${memoryPhotoList[0].urlPhoto})`,
+          // backgroundImage: `url(https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp)`,
         }}
       ></div>
 

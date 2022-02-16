@@ -19,10 +19,11 @@ const ProtectedMemoryEntry = ({
   visibility,
   tagList,
   creatorId,
-  memoryPortrait,
+  memoryPhotoList,
   location,
   isAFavorite,
   viewsCount,
+  authorizedIdList,
 }) => {
   const dispatch = useDispatch();
   const { memories, auth } = useSelector((state) => state);
@@ -39,10 +40,11 @@ const ProtectedMemoryEntry = ({
         visibility,
         tagList,
         creatorId,
-        memoryPortrait,
+        memoryPhotoList,
         location,
         isAFavorite,
         viewsCount,
+        authorizedIdList,
       })
     );
   };
@@ -57,10 +59,11 @@ const ProtectedMemoryEntry = ({
         visibility,
         tagList,
         creatorId,
-        memoryPortrait,
+        memoryPhotoList,
         location,
         isAFavorite,
         viewsCount,
+        authorizedIdList,
       })
     );
   };
@@ -81,15 +84,15 @@ const ProtectedMemoryEntry = ({
       className="memory-catalog__memory-entry"
       style={{
         backgroundColor:
-          (activeMemory?.memoryId === id && "#94DAFF") ||
-          (activeMemoryUpdating?.memoryId === id && "#94DAAA"),
+          (activeMemory?.memoryId === id && "#C0C999") ||
+          (activeMemoryUpdating?.memoryId === id && "#FAFF70"),
       }}
     >
       <div
         className="memory-catalog__memory-entry-picture"
         style={{
           backgroundSize: "cover",
-          // backgroundImage: `url(${memoryPortrait})`,
+          backgroundImage: `url(${memoryPhotoList[0].urlPhoto})`,
           backgroundImage: `url(https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp)`,
         }}
       ></div>
@@ -154,6 +157,10 @@ const ProtectedMemoryEntry = ({
             <div className="memory-catalog__memory-entry-details-view-count">
               <i class="fas fa-eye memory-catalog__icon-fav-memory"></i>
               <h5>{viewsCount} visitas</h5>
+            </div>
+            <div className="memory-catalog__memory-entry-details-view-count">
+              <i class="fas fa-eye memory-catalog__icon-fav-memory"></i>
+              <h5>{authorizedIdList.length} autorizados</h5>
             </div>
           </div>
         </div>
