@@ -104,7 +104,7 @@ const ProtectedMemoryEntry = ({
         <p className="memory-catalog__memory-entry-content">
           <i class="fas fa-map-marker-alt memory-catalog__icon-entry-value"></i>
           <span className="bold-text">
-            {location.country}, {location.city}
+            {location.city}, {location.country}
           </span>
         </p>
         <p className="memory-catalog__memory-entry-content">
@@ -147,7 +147,7 @@ const ProtectedMemoryEntry = ({
               ) : (
                 <>
                   <i class="far fa-heart memory-catalog__icon-fav-memory"></i>
-                  <h5 className="text-center">No está en tus favoritos</h5>
+                  <h5 className="text-center">No en favoritos</h5>
                 </>
               )}
             </div>

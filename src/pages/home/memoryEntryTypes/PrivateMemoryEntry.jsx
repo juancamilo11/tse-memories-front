@@ -101,7 +101,7 @@ const PrivateMemoryEntry = ({
         <p className="memory-catalog__memory-entry-content">
           <i class="fas fa-map-marker-alt memory-catalog__icon-entry-value"></i>
           <span className="bold-text">
-            {location.country}, {location.city}
+            {location.city}, {location.country}
           </span>
         </p>
         <p className="memory-catalog__memory-entry-content">
@@ -144,7 +144,7 @@ const PrivateMemoryEntry = ({
               ) : (
                 <>
                   <i class="far fa-heart memory-catalog__icon-fav-memory"></i>
-                  <h5>No está en tus favoritos</h5>
+                  <h5>No en favoritos</h5>
                 </>
               )}
             </div>
@@ -162,8 +162,8 @@ const PrivateMemoryEntry = ({
         )}
         <p className="memory-catalog__visibility-icon">
           <i
-            className="fas fa-key"
-            title="Este recuerdo es protegido, lo cual significa que el creador te dió permiso de verlo"
+            className="fas fa-lock"
+            title="Este recuerdo es privado, Sólo tú puedes verlo"
           ></i>
         </p>
       </div>

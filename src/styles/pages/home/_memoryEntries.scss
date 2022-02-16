@@ -4,3 +4,16 @@
   overflow-y: scroll;
   border-radius: 5px;
 }
+
+.memory-catalog__empty-entries-container {
+  padding-top: 10px;
+  height: 400px;
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+}
+
+.memory-catalog__empty-entries-img {
+  width: 30%;
+  margin: 10px auto;
+}
