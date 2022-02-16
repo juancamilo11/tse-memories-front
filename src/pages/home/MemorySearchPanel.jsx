@@ -8,6 +8,7 @@ import {
   startFetchAllUserPrivateMemories,
   startFetchAllUserProtectedMemories,
   startFetchAllUserPublicMemories,
+  startFetchAllMemoriesSharedWithTheCurrentUser,
 } from "./../../actions/memoryActions";
 
 const MemorySearchPanel = () => {
@@ -46,6 +47,12 @@ const MemorySearchPanel = () => {
   const handleSearchPrivateMemories = (e) => {
     e.preventDefault();
     dispatch(startFetchAllUserPrivateMemories(uid));
+    sweetalertForFetchingMemoriesBuilder();
+  };
+
+  const handleSearchSharedMemories = (e) => {
+    e.preventDefault();
+    dispatch(startFetchAllMemoriesSharedWithTheCurrentUser(uid));
     sweetalertForFetchingMemoriesBuilder();
   };
 
@@ -151,6 +158,7 @@ const MemorySearchPanel = () => {
               type="submit"
               className="search-panel__input search-panel__input--submit"
               value="Mis recuerdos privados"
+              onClick={handleSearchSharedMemories}
             >
               Buscar todos los recuerdos compartidos contigo
             </button>

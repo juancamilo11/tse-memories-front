@@ -85,6 +85,20 @@ const fetchAllUserPrivateMemories = (allUserPrivateMemories) => ({
     */
 });
 
+const fetchAllMemoriesSharedWithTheCurrentUser = (
+  allMemoriesSharedWithTheUser
+) => ({
+  type: types.fetchAllMemoriesSharedWithTheUser,
+  payload: allMemoriesSharedWithTheUser,
+  /*[{},
+    {},
+    {},
+    ...,
+    {}
+    ]
+    */
+});
+
 export const startFetchAllUserMemories = (userId) => {
   return async (dispatch) => {
     try {
@@ -142,6 +156,24 @@ export const startFetchAllUserPrivateMemories = (userId) => {
       if (response.ok) {
         const allUserPrivateMemories = await response.json();
         dispatch(fetchAllUserPrivateMemories(allUserPrivateMemories));
+      } else {
+        throw await response.json();
+      }
+    } catch (err) {
+      throw err;
+    }
+  };
+};
+
+export const startFetchAllMemoriesSharedWithTheCurrentUser = (userId) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(`${urlBase}/get/shared-memories/${userId}`);
+      if (response.ok) {
+        const allMemoriesSharedWithTheUser = await response.json();
+        dispatch(
+          fetchAllMemoriesSharedWithTheCurrentUser(allMemoriesSharedWithTheUser)
+        );
       } else {
         throw await response.json();
       }

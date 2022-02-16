@@ -142,21 +142,21 @@ const ProtectedMemoryEntry = ({
               {isAFavorite ? (
                 <>
                   <i class="fas fa-heart memory-catalog__icon-fav-memory"></i>
-                  <h5>En tus favoritos</h5>
+                  <h5 className="text-center">En tus favoritos</h5>
                 </>
               ) : (
                 <>
                   <i class="far fa-heart memory-catalog__icon-fav-memory"></i>
-                  <h5>No está en tus favoritos</h5>
+                  <h5 className="text-center">No está en tus favoritos</h5>
                 </>
               )}
             </div>
             <div className="memory-catalog__memory-entry-details-view-count">
               <i class="fas fa-eye memory-catalog__icon-fav-memory"></i>
-              <h5> 0 visitas</h5>
+              <h5 className="text-center"> 0 visitas</h5>
             </div>
             <div className="memory-catalog__memory-entry-details-view-count">
-              <i class="fas fa-eye memory-catalog__icon-fav-memory"></i>
+              <i class="fas fa-unlock memory-catalog__icon-fav-memory"></i>
               <h5>{authorizedIdList.length} autorizados</h5>
             </div>
           </div>
