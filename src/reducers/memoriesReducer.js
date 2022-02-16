@@ -38,7 +38,7 @@ const initialState = {
         },
       ],
       location: { country: "USA", city: "Miami" },
-      isAFavorite: true,
+
       viewsCount: 100,
     },
     {
@@ -125,7 +125,7 @@ const initialState = {
         },
       ],
       location: { country: "USA", city: "New York" },
-      isAFavorite: true,
+
       viewsCount: 100,
     },
     {
@@ -163,7 +163,7 @@ const initialState = {
         },
       ],
       location: { country: "USA", city: "New York" },
-      isAFavorite: true,
+
       viewsCount: 100,
     },
     {
@@ -201,7 +201,7 @@ const initialState = {
         },
       ],
       location: { country: "USA", city: "New York" },
-      isAFavorite: true,
+
       viewsCount: 100,
     },
     {
@@ -239,7 +239,7 @@ const initialState = {
         },
       ],
       location: { country: "USA", city: "New York" },
-      isAFavorite: true,
+
       viewsCount: 100,
     },
     {
@@ -277,7 +277,7 @@ const initialState = {
         },
       ],
       location: { country: "USA", city: "New York" },
-      isAFavorite: true,
+
       viewsCount: 100,
     },
     {
@@ -315,7 +315,7 @@ const initialState = {
         },
       ],
       location: { country: "Canadá", city: "Ontario" },
-      isAFavorite: true,
+
       viewsCount: 100,
     },
 
@@ -356,7 +356,7 @@ const initialState = {
         },
       ],
       location: { country: "USA", city: "New York" },
-      isAFavorite: true,
+
       viewsCount: 100,
       authorizedIdList: [
         "tjvvoCKlgyT3pe2MRcmWN2x6Arx2",
@@ -400,7 +400,7 @@ const initialState = {
         },
       ],
       location: { country: "Colombia", city: "Antioquia" },
-      isAFavorite: true,
+
       viewsCount: 100,
       authorizedIdList: [
         "tjvvoCKlgyT3pe2MRcmWN2x6Arx2",
@@ -448,8 +448,6 @@ const initialState = {
         },
       ],
       location: { country: "USA", city: "New York" },
-      isAFavorite: true,
-      viewsCount: 100,
     },
   ],
   activeMemoryToShow: null,

@@ -21,8 +21,7 @@ const ProtectedMemoryEntry = ({
   creatorId,
   memoryPhotoList,
   location,
-  isAFavorite,
-  viewsCount,
+  isAFavorite, // No implemented yet
   authorizedIdList,
 }) => {
   const dispatch = useDispatch();
@@ -43,7 +42,6 @@ const ProtectedMemoryEntry = ({
         memoryPhotoList,
         location,
         isAFavorite,
-        viewsCount,
         authorizedIdList,
       })
     );
@@ -62,7 +60,6 @@ const ProtectedMemoryEntry = ({
         memoryPhotoList,
         location,
         isAFavorite,
-        viewsCount,
         authorizedIdList,
       })
     );
@@ -156,7 +153,7 @@ const ProtectedMemoryEntry = ({
             </div>
             <div className="memory-catalog__memory-entry-details-view-count">
               <i class="fas fa-eye memory-catalog__icon-fav-memory"></i>
-              <h5>{viewsCount} visitas</h5>
+              <h5> 0 visitas</h5>
             </div>
             <div className="memory-catalog__memory-entry-details-view-count">
               <i class="fas fa-eye memory-catalog__icon-fav-memory"></i>
@@ -165,7 +162,7 @@ const ProtectedMemoryEntry = ({
           </div>
         </div>
 
-        {auth.uid === creatorId && (
+        {!auth.uid === creatorId ? (
           <button
             className="memory-catalog__delete-memory-button"
             onClick={handleDeleteMemory}
@@ -173,6 +170,13 @@ const ProtectedMemoryEntry = ({
           >
             <i class="fas fa-trash memory-catalog__icon-delete-memory"></i>
           </button>
+        ) : (
+          <p className="memory-catalog__shared-memory-icon">
+            <i
+              className="fas fa-share"
+              title="El creador ha compartido contigo este recuerdo"
+            ></i>
+          </p>
         )}
         <p className="memory-catalog__visibility-icon">
           <i

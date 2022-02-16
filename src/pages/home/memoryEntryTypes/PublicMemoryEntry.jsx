@@ -21,7 +21,7 @@ const PublicMemoryEntry = ({
   creatorId,
   memoryPhotoList,
   location,
-  isAFavorite,
+  isAFavorite, // No implemented yet
   viewsCount,
 }) => {
   const dispatch = useDispatch();
