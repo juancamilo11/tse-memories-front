@@ -11,7 +11,7 @@ const MemoryEntries = ({ memories }) => {
 
   //Luego colocar los protegidos compartidos con uno, y finalmente los públicos
 
-  if (false) {
+  if (memories.memoriesList.length == 0) {
     return (
       <div>
         <NewMemoryEntry />

@@ -99,6 +99,30 @@ const fetchAllMemoriesSharedWithTheCurrentUser = (
     */
 });
 
+const fetchAllSpecificUserMemoriesByEmail = (allUserPublicMemoriesByEmail) => ({
+  type: types.fetchAllSpecificUserMemoriesByEmail,
+  payload: allUserPublicMemoriesByEmail,
+  /*[{},
+    {},
+    {},
+    ...,
+    {}
+    ]
+    */
+});
+
+const fetchAllMemoriesByNameOrTagname = (allMemoriesByNameOrTagname) => ({
+  type: types.fetchAllMemoriesByNameOrTagname,
+  payload: allMemoriesByNameOrTagname,
+  /*[{},
+    {},
+    {},
+    ...,
+    {}
+    ]
+    */
+});
+
 export const startFetchAllUserMemories = (userId) => {
   return async (dispatch) => {
     try {
@@ -174,6 +198,44 @@ export const startFetchAllMemoriesSharedWithTheCurrentUser = (userId) => {
         dispatch(
           fetchAllMemoriesSharedWithTheCurrentUser(allMemoriesSharedWithTheUser)
         );
+      } else {
+        throw await response.json();
+      }
+    } catch (err) {
+      throw err;
+    }
+  };
+};
+
+export const startFetchAllSpecificUserMemoriesByEmail = (email) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(
+        `${urlBase}/get/public-memories/owner-email/${email}` //SOLO LAS PÚBLICAS
+      );
+      if (response.ok) {
+        const allUserPublicMemoriesByEmail = await response.json();
+        dispatch(
+          fetchAllSpecificUserMemoriesByEmail(allUserPublicMemoriesByEmail)
+        );
+      } else {
+        throw await response.json();
+      }
+    } catch (err) {
+      throw err;
+    }
+  };
+};
+
+export const startFetchAllMemoriesByNameOrTagname = (nameOrTagName) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(
+        `${urlBase}/get/public-memories/name-or-tagname/${nameOrTagName}` //SOLO LAS PÚBLICAS
+      );
+      if (response.ok) {
+        const allMemoriesByNameOrTagname = await response.json();
+        dispatch(fetchAllMemoriesByNameOrTagname(allMemoriesByNameOrTagname));
       } else {
         throw await response.json();
       }

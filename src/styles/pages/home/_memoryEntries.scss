@@ -7,10 +7,11 @@
 
 .memory-catalog__empty-entries-container {
   padding-top: 10px;
-  height: 400px;
-  background-color: red;
+  height: 380px;
+  background-color: rgb(241, 89, 89);
   display: flex;
   flex-direction: column;
+  border-radius: 10px;
 }
 
 .memory-catalog__empty-entries-img {
