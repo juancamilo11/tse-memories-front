@@ -14,13 +14,18 @@ import { v4 as uuidv4 } from "uuid";
 import { useSelector } from "react-redux";
 import MemoryTagList from "../../components/MemoryTagList";
 import InputMemoryImagesForm from "../../components/InputMemoryImagesForm";
-import { sweetalertForInputTagAlreadyDefinedBuilder } from "../../helpers/sweetAlertBuilder";
+import {
+  sweetalertForInputTagAlreadyDefinedBuilder,
+  sweetalertForVisibilityChangeBuilder,
+} from "../../helpers/sweetAlertBuilder";
+import Swal from "sweetalert2";
 
 const MemoryActualizationForm = () => {
   const { email } = useSelector((state) => state.auth);
   const [formValues, handleInputChange, resetForm] = useForm(formInitialValues);
   const [errorsState, setErrorsState] = useState(formInitialErrorState);
   const [newMemoryId, setNewMemoryId] = useState(uuidv4());
+  const [warningColor, setWarningColor] = useState("yellow");
   const { activeMemoryToUpdate } = useSelector((state) => state.memories);
 
   const [tagList, setTagList] = useState([]);
@@ -60,6 +65,7 @@ const MemoryActualizationForm = () => {
 
   const handleResetForm = (e) => {
     e.preventDefault();
+    resetForm();
   };
 
   const handleSelectImageToLoad = (e) => {
@@ -70,6 +76,14 @@ const MemoryActualizationForm = () => {
 
   const getLocalDate = () => {
     return new Date().toISOString().split("T")[0];
+  };
+
+  const changeSetDangerColor = (e) => {
+    setWarningColor("red");
+  };
+
+  const changeDefaultWarningColor = (e) => {
+    setWarningColor("yellow");
   };
 
   return (
@@ -223,6 +237,8 @@ const MemoryActualizationForm = () => {
                 autoComplete="off"
                 value={visibility}
                 onChange={handleInputValidation}
+                onMouseOver={changeSetDangerColor}
+                onMouseOut={changeDefaultWarningColor}
               >
                 <option value="NN" selected>
                   Seleccione la visibilidad
@@ -231,6 +247,16 @@ const MemoryActualizationForm = () => {
                   <option value={visibility.type}>{visibility.label}</option>
                 ))}
               </select>
+            </div>
+            <div className="memory-form__error-flag mt-2 mb-4">
+              {
+                <ErrorFlag
+                  message="Antes de cambiar la visibilidad de un recuerdo tenga presente lo siguiente: 
+                              Si cambia la visibilidad de un recuerdo protegido a público o privado se eliminará la lista de usuarios autorizados para ver el recuerdo
+                              Si cambia la visibilidad de un recuerdo protegido o público a privado se eliminará la lista de usuarios que han visto el recuerdo"
+                  color={warningColor}
+                />
+              }
             </div>
             <div className="memory-form__error-flag mt-2 mb-4">
               {errorsState.tag.hasErrors && (
@@ -253,6 +279,7 @@ const MemoryActualizationForm = () => {
                 />
               )}
             </div>
+            {visibility === "protegido" && <div>hola</div>}
           </div>
 
           <MemoryTagList tagList={tagList} setTagList={setTagList} />

@@ -30,9 +30,9 @@ export const formInitialErrorState = {
 };
 
 export const visibilityTypes = [
-  { type: "PRIVATE", label: "Private" },
-  { type: "PUBLIC", label: "Public" },
-  { type: "PROTECTED", label: "Protected" },
+  { type: "privado", label: "privado" },
+  { type: "publico", label: "publico" },
+  { type: "protegido", label: "protegido" },
 ];
 
 export const memoryFormValidator = (e, setErrorsState, userEmail, memoryId) => {
