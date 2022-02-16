@@ -39,6 +39,118 @@ export const countMemoryView = (memoryId, memories) => ({
   payload: memoryId,
 });
 
+const fetchAllUserMemories = (allUserMemories) => ({
+  type: types.fetchAllUserMemories,
+  payload: allUserMemories,
+  /*{
+      publicMemories: [{},{},{},...,{}],
+      protectedMemories: [{},{},{},...,{}],
+      privateMemories: [{},{},{},...,{}],
+    */
+});
+
+const fetchAllUserPublicMemories = (allUserPublicMemories) => ({
+  type: types.fetchAllUserPublicMemories,
+  payload: allUserPublicMemories,
+  /*[{},
+    {},
+    {},
+    ...,
+    {}
+    ]
+    */
+});
+
+const fetchAllUserProtectedMemories = (allUserProtectedMemories) => ({
+  type: types.fetchAllUserProtectedMemories,
+  payload: allUserProtectedMemories,
+  /*[{},
+    {},
+    {},
+    ...,
+    {}
+    ]
+    */
+});
+
+const fetchAllUserPrivateMemories = (allUserPrivateMemories) => ({
+  type: types.fetchAllUserPrivateMemories,
+  payload: allUserPrivateMemories,
+  /*[{},
+    {},
+    {},
+    ...,
+    {}
+    ]
+    */
+});
+
+export const startFetchAllUserMemories = (userId) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(`${urlBase}/get/all-memories/${userId}`);
+      if (response.ok) {
+        const allUserMemories = await response.json();
+        dispatch(fetchAllUserMemories(allUserMemories));
+      } else {
+        throw await response.json();
+      }
+    } catch (err) {
+      throw err;
+    }
+  };
+};
+
+export const startFetchAllUserPublicMemories = (userId) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(`${urlBase}/get/public-memories/${userId}`);
+      if (response.ok) {
+        const allUserPublicMemories = await response.json();
+        dispatch(fetchAllUserPublicMemories(allUserPublicMemories));
+      } else {
+        throw await response.json();
+      }
+    } catch (err) {
+      throw err;
+    }
+  };
+};
+
+export const startFetchAllUserProtectedMemories = (userId) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(
+        `${urlBase}/get/protected-memories/${userId}`
+      );
+      if (response.ok) {
+        const allUserProtectedMemories = await response.json();
+        dispatch(fetchAllUserProtectedMemories(allUserProtectedMemories));
+      } else {
+        throw await response.json();
+      }
+    } catch (err) {
+      throw err;
+    }
+  };
+};
+
+export const startFetchAllUserPrivateMemories = (userId) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(`${urlBase}/get/private-memories/${userId}`);
+      if (response.ok) {
+        const allUserMemories = await response.json();
+        dispatch(fetchAllUserPrivateMemories(allUserMemories));
+      } else {
+        throw await response.json();
+      }
+    } catch (err) {
+      throw err;
+    }
+  };
+};
+
 const getCurrentDate = () => {
   return new Date().toISOString().split("T")[0];
 };

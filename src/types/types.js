@@ -22,6 +22,14 @@ const types = {
 
   addUploadedImageUrl: "[loadedImages] add Loaded image",
   removeUploadedImageUrl: "[loadedImages] remove Loaded image",
+
+  fetchAllUserMemories: "[FetchUserMemories] Fetch All User Memories",
+  fetchAllUserPublicMemories:
+    "[FetchUserMemories] Fetch All User Public Memories",
+  fetchAllUserProtectedMemories:
+    "[FetchUserMemories] Fetch All User Protected Memories",
+  fetchAllUserPrivateMemories:
+    "[FetchUserMemories] Fetch All User Private Memories",
 };
 
 export default types;

@@ -9,14 +9,14 @@ const initialState = {
       creationDate: "2022-10-25",
       visibility: "publico",
       tagList: ["Miami", "Viaje", "Sol", "Mar", "Playa"],
-      ownerId: "buFHTLA40uRLBy5zaIfWdQcloLB3",
+      ownerId: "R5bPuQsNHoWRxG1NUqf45fb6Eff2",
       memoryPortrait: "./../assets/img/emptyImage.png",
       location: { country: "USA", city: "Miami" },
       isAFavorite: true,
       viewsCount: 100,
     },
     {
-      id: "7J3JD983KR854MCD834NF74",
+      id: "7J3JD983KR854ZCZXC",
       name: "Viaje a París",
       memoryDate: "2010-10-03",
       creationDate: "2021-01-20",
@@ -40,13 +40,91 @@ const initialState = {
       viewsCount: 50,
     },
     {
-      id: "493J83465NFV9458KGVN4V3",
+      id: "493J83465NFCXVZCV",
+      name: "Viaje en Familia  New York",
+      memoryDate: "2019-01-09",
+      creationDate: "2020-06-11",
+      visibility: "publico",
+      tagList: ["New york", "Nieve", "Manhattan", "Viaje", "Familia"],
+      ownerId: "R5bPuQsNHoWRxG1NUqf45fb6Eff2",
+      memoryPortrait: "./../assets/img/emptyImage.png",
+      location: { country: "USA", city: "New York" },
+      isAFavorite: true,
+      viewsCount: 100,
+    },
+    {
+      id: "493J83465NFV9458KGZXV",
+      name: "Viaje en Familia a Estados Unidos",
+      memoryDate: "2019-01-09",
+      creationDate: "2020-06-11",
+      visibility: "publico",
+      tagList: ["New york", "Nieve", "Manhattan", "Viaje", "Familia"],
+      ownerId: "HFfDtL7kmNdrFylobVfqiH53Uc62",
+      memoryPortrait: "./../assets/img/emptyImage.png",
+      location: { country: "USA", city: "New York" },
+      isAFavorite: true,
+      viewsCount: 100,
+    },
+    {
+      id: "493J83465NFV9458KGXVZXCV",
       name: "Viaje en Familia  New York",
       memoryDate: "2019-01-09",
       creationDate: "2020-06-11",
       visibility: "publico",
       tagList: ["New york", "Nieve", "Manhattan", "Viaje", "Familia"],
       ownerId: "buFHTLA40uRLBy5zaIfWdQcloLB3",
+      memoryPortrait: "./../assets/img/emptyImage.png",
+      location: { country: "USA", city: "New York" },
+      isAFavorite: true,
+      viewsCount: 100,
+    },
+    {
+      id: "493J83465NFV9458ASFDSDF",
+      name: "Viaje en Familia  New York",
+      memoryDate: "2019-01-09",
+      creationDate: "2020-06-11",
+      visibility: "publico",
+      tagList: ["New york", "Nieve", "Manhattan", "Viaje", "Familia"],
+      ownerId: "buFHTLA40uRLBy5zaIfWdQcloLB3",
+      memoryPortrait: "./../assets/img/emptyImage.png",
+      location: { country: "USA", city: "New York" },
+      isAFavorite: true,
+      viewsCount: 100,
+    },
+    {
+      id: "493J83465NFV9458HGFHFH",
+      name: "Viaje en Familia  New York",
+      memoryDate: "2019-01-09",
+      creationDate: "2020-06-11",
+      visibility: "publico",
+      tagList: ["New york", "Nieve", "Manhattan", "Viaje", "Familia"],
+      ownerId: "buFHTLA40uRLBy5zaIfWdQcloLB3",
+      memoryPortrait: "./../assets/img/emptyImage.png",
+      location: { country: "USA", city: "New York" },
+      isAFavorite: true,
+      viewsCount: 100,
+    },
+    {
+      id: "493J83465NFV9458KGDFDF",
+      name: "Viaje con amigos en Canadá",
+      memoryDate: "2019-01-01",
+      creationDate: "2020-06-18",
+      visibility: "publico",
+      tagList: ["Ontario", "Nieve", "Primavera", "Viaje", "Amigos"],
+      ownerId: "HFfDtL7kmNdrFylobVfqiH53Uc62",
+      memoryPortrait: "./../assets/img/emptyImage.png",
+      location: { country: "Canadá", city: "Ontario" },
+      isAFavorite: true,
+      viewsCount: 100,
+    },
+    {
+      id: "493J83465NFV9458KGVN4",
+      name: "Viaje en Familia  New York",
+      memoryDate: "2019-01-09",
+      creationDate: "2020-06-11",
+      visibility: "publico",
+      tagList: ["New york", "Nieve", "Manhattan", "Viaje", "Familia"],
+      ownerId: "HFfDtL7kmNdrFylobVfqiH53Uc62",
       memoryPortrait: "./../assets/img/emptyImage.png",
       location: { country: "USA", city: "New York" },
       isAFavorite: true,
@@ -119,6 +197,40 @@ export const memoriesReducer = (state = initialState, action) => {
             : memory
         ),
       };
+
+    case types.fetchAllUserMemories:
+      const { publicMemories, protectedMemories, privateMemories } =
+        action.payload.allUserMemories;
+      return {
+        ...state,
+        memoriesList: [
+          ...publicMemories,
+          ...protectedMemories,
+          ...privateMemories,
+        ],
+      };
+
+    case types.fetchAllUserPublicMemories:
+      const { allUserPublicMemories } = action.payload;
+      return {
+        ...state,
+        memoriesList: [...allUserPublicMemories],
+      };
+
+    case types.fetchAllUserProtectedMemories:
+      const { allUserProtectedMemories } = action.payload;
+      return {
+        ...state,
+        memoriesList: [...allUserProtectedMemories],
+      };
+
+    case types.fetchAllUserPrivateMemories:
+      const { allUserPrivateMemories } = action.payload;
+      return {
+        ...state,
+        memoriesList: [...allUserPrivateMemories],
+      };
+
     default:
       return state;
   }

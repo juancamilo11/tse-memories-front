@@ -1,16 +1,27 @@
 import React, { Fragment } from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { startFetchAllUserMemories } from "./../../actions/memoryActions";
 
 const MemorySearchPanel = () => {
+  const dispatch = useDispatch();
   const [searchMethod, setSearchMethod] = useState("search-by-owner-email");
+  const { uid } = useSelector((state) => state.auth);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
   };
 
   const handleSearchMethodChange = (e) => {
+    e.preventDefault();
     const { id } = e.target;
     setSearchMethod(id);
+  };
+
+  const handleSearchAllUserMemories = (e) => {
+    e.preventDefault();
+    dispatch(startFetchAllUserMemories(uid));
   };
 
   const handleSearchPublicMemories = (e) => {
@@ -86,9 +97,18 @@ const MemorySearchPanel = () => {
               Ó también puedes...
             </label>
             <button
+              onClick={handleSearchAllUserMemories}
+              className="search-panel__input search-panel__input--submit"
+              value="Todos Mis recuerdos"
+            >
+              Buscar todos tus recuerdos
+            </button>
+          </div>
+          <div className="search-panel__search-option">
+            <button
               onClick={handleSearchPublicMemories}
               className="search-panel__input search-panel__input--submit"
-              value="Mis recuerdos públicos"
+              value="Mis recuerdos protegidos"
             >
               Buscar todos tus recuerdos públicos
             </button>
@@ -96,7 +116,7 @@ const MemorySearchPanel = () => {
           <div className="search-panel__search-option">
             <button
               onClick={handleSearchProtectedMemories}
-              className="search-panel__input"
+              className="search-panel__input search-panel__input--submit"
               value="Mis recuerdos protegidos"
             >
               Buscar todos tus recuerdos protegidos
@@ -105,7 +125,7 @@ const MemorySearchPanel = () => {
           <div className="search-panel__search-option">
             <button
               onClick={handleSearchPrivateMemories}
-              className="search-panel__input"
+              className="search-panel__input search-panel__input--submit"
               value="Mis recuerdos protegidos"
             >
               Buscar todos tus recuerdos privados
@@ -114,7 +134,7 @@ const MemorySearchPanel = () => {
           <div className="search-panel__search-option">
             <button
               type="submit"
-              className="search-panel__input"
+              className="search-panel__input search-panel__input--submit"
               value="Mis recuerdos privados"
             >
               Buscar todos los recuerdos compartidos contigo
