@@ -2,7 +2,13 @@ import React, { Fragment } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { startFetchAllUserMemories } from "./../../actions/memoryActions";
+import { sweetalertForFetchingMemoriesBuilder } from "../../helpers/sweetAlertBuilder";
+import {
+  startFetchAllUserMemories,
+  startFetchAllUserPrivateMemories,
+  startFetchAllUserProtectedMemories,
+  startFetchAllUserPublicMemories,
+} from "./../../actions/memoryActions";
 
 const MemorySearchPanel = () => {
   const dispatch = useDispatch();
@@ -22,16 +28,25 @@ const MemorySearchPanel = () => {
   const handleSearchAllUserMemories = (e) => {
     e.preventDefault();
     dispatch(startFetchAllUserMemories(uid));
+    sweetalertForFetchingMemoriesBuilder();
   };
 
   const handleSearchPublicMemories = (e) => {
     e.preventDefault();
+    dispatch(startFetchAllUserPublicMemories(uid));
+    sweetalertForFetchingMemoriesBuilder();
   };
+
   const handleSearchProtectedMemories = (e) => {
     e.preventDefault();
+    dispatch(startFetchAllUserProtectedMemories(uid));
+    sweetalertForFetchingMemoriesBuilder();
   };
+
   const handleSearchPrivateMemories = (e) => {
     e.preventDefault();
+    dispatch(startFetchAllUserPrivateMemories(uid));
+    sweetalertForFetchingMemoriesBuilder();
   };
 
   return (

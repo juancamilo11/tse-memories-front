@@ -28,3 +28,16 @@ export const sweetalertForInputTagAlreadyDefinedBuilder = (newTag) =>
     showConfirmButton: false,
     timer: 3500,
   });
+
+export const sweetalertForFetchingMemoriesBuilder = () =>
+  Swal.fire({
+    icon: "success",
+    title: "Solicitud exitosa",
+    text: `Estamos buscando los recuerdos solicitados.`,
+    timerProgressBar: true,
+    timer: 3000,
+    allowEnterKey: false,
+    showConfirmButton: false,
+    allowEscapeKey: false,
+    allowOutsideClick: false,
+  });

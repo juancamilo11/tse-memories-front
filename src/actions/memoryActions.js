@@ -140,8 +140,8 @@ export const startFetchAllUserPrivateMemories = (userId) => {
     try {
       const response = await fetch(`${urlBase}/get/private-memories/${userId}`);
       if (response.ok) {
-        const allUserMemories = await response.json();
-        dispatch(fetchAllUserPrivateMemories(allUserMemories));
+        const allUserPrivateMemories = await response.json();
+        dispatch(fetchAllUserPrivateMemories(allUserPrivateMemories));
       } else {
         throw await response.json();
       }

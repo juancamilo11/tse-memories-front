@@ -18,7 +18,7 @@ const PublicMemoryEntry = ({
   creationDate,
   visibility,
   tagList,
-  ownerId,
+  creatorId,
   memoryPortrait,
   location,
   isAFavorite,
@@ -38,7 +38,7 @@ const PublicMemoryEntry = ({
         creationDate,
         visibility,
         tagList,
-        ownerId,
+        creatorId,
         memoryPortrait,
         location,
         isAFavorite,
@@ -56,7 +56,7 @@ const PublicMemoryEntry = ({
         creationDate,
         visibility,
         tagList,
-        ownerId,
+        creatorId,
         memoryPortrait,
         location,
         isAFavorite,
@@ -126,7 +126,7 @@ const PublicMemoryEntry = ({
           >
             Ver Recuerdo
           </button>
-          {auth.uid === ownerId && (
+          {auth.uid === creatorId && (
             <button
               className="memory-catalog__visit-memory mt-1"
               onClick={handleModifyMemory}
@@ -158,7 +158,7 @@ const PublicMemoryEntry = ({
           </div>
         </div>
 
-        {auth.uid === ownerId && (
+        {auth.uid === creatorId && (
           <button
             className="memory-catalog__delete-memory-button"
             onClick={handleDeleteMemory}

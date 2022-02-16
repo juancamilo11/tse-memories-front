@@ -34,9 +34,9 @@ export const startFetchUserInfoById = async (userId) => {
   }
 };
 
-export const startFetchMemoryOwnerInfoByMemoryId = async (ownerId) => {
+export const startFetchMemoryOwnerInfoByMemoryId = async (creatorId) => {
   try {
-    const response = await fetch(`${urlBase}/get/user-owner/${ownerId}`);
+    const response = await fetch(`${urlBase}/get/user-owner/${creatorId}`);
     if (response.ok) {
       return await response.json();
     } else {

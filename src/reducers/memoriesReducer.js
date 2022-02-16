@@ -2,6 +2,7 @@ import types from "../types/types";
 
 const initialState = {
   memoriesList: [
+    //******************* PUBLIC MEMORIES ********************
     {
       id: "9347CJ3JJFV5KD474DKJ7D",
       name: "Recuerdos de Miami",
@@ -9,7 +10,7 @@ const initialState = {
       creationDate: "2022-10-25",
       visibility: "publico",
       tagList: ["Miami", "Viaje", "Sol", "Mar", "Playa"],
-      ownerId: "R5bPuQsNHoWRxG1NUqf45fb6Eff2",
+      creatorId: "R5bPuQsNHoWRxG1NUqf45fb6Eff2",
       memoryPortrait: "./../assets/img/emptyImage.png",
       location: { country: "USA", city: "Miami" },
       isAFavorite: true,
@@ -33,7 +34,7 @@ const initialState = {
         "Mar",
         "Playa",
       ],
-      ownerId: "buFHTLA40uRLBy5zaIfWdQcloLB3",
+      creatorId: "buFHTLA40uRLBy5zaIfWdQcloLB3",
       memoryPortrait: "./../assets/img/emptyImage.png",
       location: { country: "Francia", city: "París" },
       isAFavorite: false,
@@ -46,7 +47,7 @@ const initialState = {
       creationDate: "2020-06-11",
       visibility: "publico",
       tagList: ["New york", "Nieve", "Manhattan", "Viaje", "Familia"],
-      ownerId: "R5bPuQsNHoWRxG1NUqf45fb6Eff2",
+      creatorId: "R5bPuQsNHoWRxG1NUqf45fb6Eff2",
       memoryPortrait: "./../assets/img/emptyImage.png",
       location: { country: "USA", city: "New York" },
       isAFavorite: true,
@@ -59,7 +60,7 @@ const initialState = {
       creationDate: "2020-06-11",
       visibility: "publico",
       tagList: ["New york", "Nieve", "Manhattan", "Viaje", "Familia"],
-      ownerId: "HFfDtL7kmNdrFylobVfqiH53Uc62",
+      creatorId: "HFfDtL7kmNdrFylobVfqiH53Uc62",
       memoryPortrait: "./../assets/img/emptyImage.png",
       location: { country: "USA", city: "New York" },
       isAFavorite: true,
@@ -72,7 +73,7 @@ const initialState = {
       creationDate: "2020-06-11",
       visibility: "publico",
       tagList: ["New york", "Nieve", "Manhattan", "Viaje", "Familia"],
-      ownerId: "buFHTLA40uRLBy5zaIfWdQcloLB3",
+      creatorId: "buFHTLA40uRLBy5zaIfWdQcloLB3",
       memoryPortrait: "./../assets/img/emptyImage.png",
       location: { country: "USA", city: "New York" },
       isAFavorite: true,
@@ -85,7 +86,7 @@ const initialState = {
       creationDate: "2020-06-11",
       visibility: "publico",
       tagList: ["New york", "Nieve", "Manhattan", "Viaje", "Familia"],
-      ownerId: "buFHTLA40uRLBy5zaIfWdQcloLB3",
+      creatorId: "buFHTLA40uRLBy5zaIfWdQcloLB3",
       memoryPortrait: "./../assets/img/emptyImage.png",
       location: { country: "USA", city: "New York" },
       isAFavorite: true,
@@ -98,7 +99,7 @@ const initialState = {
       creationDate: "2020-06-11",
       visibility: "publico",
       tagList: ["New york", "Nieve", "Manhattan", "Viaje", "Familia"],
-      ownerId: "buFHTLA40uRLBy5zaIfWdQcloLB3",
+      creatorId: "buFHTLA40uRLBy5zaIfWdQcloLB3",
       memoryPortrait: "./../assets/img/emptyImage.png",
       location: { country: "USA", city: "New York" },
       isAFavorite: true,
@@ -111,20 +112,39 @@ const initialState = {
       creationDate: "2020-06-18",
       visibility: "publico",
       tagList: ["Ontario", "Nieve", "Primavera", "Viaje", "Amigos"],
-      ownerId: "HFfDtL7kmNdrFylobVfqiH53Uc62",
+      creatorId: "HFfDtL7kmNdrFylobVfqiH53Uc62",
       memoryPortrait: "./../assets/img/emptyImage.png",
       location: { country: "Canadá", city: "Ontario" },
       isAFavorite: true,
       viewsCount: 100,
     },
+
+    //******************* PROTECTED MEMORIES ********************
+
     {
       id: "493J83465NFV9458KGVN4",
       name: "Viaje en Familia  New York",
       memoryDate: "2019-01-09",
       creationDate: "2020-06-11",
-      visibility: "publico",
+      visibility: "protegido",
       tagList: ["New york", "Nieve", "Manhattan", "Viaje", "Familia"],
-      ownerId: "HFfDtL7kmNdrFylobVfqiH53Uc62",
+      creatorId: "HFfDtL7kmNdrFylobVfqiH53Uc62",
+      memoryPortrait: "./../assets/img/emptyImage.png",
+      location: { country: "USA", city: "New York" },
+      isAFavorite: true,
+      viewsCount: 100,
+    },
+
+    //******************* PRIVATE MEMORIES ********************
+
+    {
+      id: "493J83465NFV9458KGVN4",
+      name: "Viaje en Familia  New York",
+      memoryDate: "2019-01-09",
+      creationDate: "2020-06-11",
+      visibility: "privado",
+      tagList: ["New york", "Nieve", "Manhattan", "Viaje", "Familia"],
+      creatorId: "HFfDtL7kmNdrFylobVfqiH53Uc62",
       memoryPortrait: "./../assets/img/emptyImage.png",
       location: { country: "USA", city: "New York" },
       isAFavorite: true,

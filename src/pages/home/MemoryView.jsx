@@ -99,7 +99,7 @@ const MemoryView = () => {
   const {
     id: memoryId,
     name,
-    ownerId,
+    creatorId,
     visibility,
     location,
     tagList,

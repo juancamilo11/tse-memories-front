@@ -7,7 +7,7 @@ import NewMemoryEntry from "./NewMemoryEntry";
 const MemoryEntries = ({ memories }) => {
   //Obtener los recuerdos propios, ponerlos de primero
   //Luego con los recuerdos propios, colocar primero los
-  //públicos, luego los protegidos y luego los privados
+  //públicos, luego los protegidos y luego los privados --> Ordenando c/u de estos grupos por la fecha de ocurrencia del recuerdo
 
   //Luego colocar los protegidos compartidos con uno, y finalmente los públicos
   return (
