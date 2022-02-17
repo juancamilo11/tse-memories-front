@@ -29,6 +29,15 @@ export const sweetalertForInputTagAlreadyDefinedBuilder = (newTag) =>
     timer: 3500,
   });
 
+export const sweetalertForEmailAlreadyDefinedBuilder = (newEmail) =>
+  Swal.fire({
+    icon: "error",
+    title: "Oops...",
+    text: `El email '${newEmail}' ya ha sido ingresado.`,
+    showConfirmButton: false,
+    timer: 3500,
+  });
+
 export const sweetalertForFetchingMemoriesBuilder = () =>
   Swal.fire({
     icon: "success",

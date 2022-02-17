@@ -6,6 +6,7 @@ import {
   formInitialErrorState,
   formInitialValues,
   isTheTagAlreadyDefined,
+  isTheEmailAlreadyDefined,
   memoryFormSubmitValidation,
   memoryFormValidator,
   visibilityTypes,
@@ -15,6 +16,7 @@ import { useSelector } from "react-redux";
 import MemoryTagList from "../../components/MemoryTagList";
 import InputMemoryImagesForm from "../../components/InputMemoryImagesForm";
 import {
+  sweetalertForEmailAlreadyDefinedBuilder,
   sweetalertForInputTagAlreadyDefinedBuilder,
   sweetalertForVisibilityChangeBuilder,
 } from "../../helpers/sweetAlertBuilder";
@@ -65,6 +67,21 @@ const MemoryActualizationForm = () => {
       return;
     }
     setTagList([...tagList, tagValue]);
+    handleInputValidation(cleanEvent);
+  };
+
+  const handleAddNewEmailForShareMemory = (e) => {
+    e.preventDefault();
+    const emailValue = document.getElementById("authorizedEmail").value.trim();
+    const cleanEvent = { target: { name: "authorizedEmail", value: "" } };
+    if (emailValue === "" || errorsState.authorizedEmail.hasErrors) return;
+    if (
+      isTheEmailAlreadyDefined(emailValue, authorizedEmailList, setErrorsState)
+    ) {
+      sweetalertForEmailAlreadyDefinedBuilder(emailValue);
+      return;
+    }
+    setAuthorizedEmailList([emailValue, ...authorizedEmailList]);
     handleInputValidation(cleanEvent);
   };
 
@@ -298,15 +315,51 @@ const MemoryActualizationForm = () => {
                 />
               )}
             </div>
+            <MemoryTagList tagList={tagList} setTagList={setTagList} />
+
             {visibility === "protegido" && (
-              <AuthorizedUserList
-                authorizedEmailList={authorizedEmailList}
-                setAuthorizedEmailList={setAuthorizedEmailList}
-              />
+              <div>
+                <div className="memory-form__input-container">
+                  <label
+                    htmlFor="memoryPhotoText"
+                    className="memory-form__input-label"
+                  >
+                    Email del usuario
+                  </label>
+                  <input
+                    type="text"
+                    name="authorizedEmail"
+                    id="authorizedEmail"
+                    className="memory-form__input memory-form__input-shared-email"
+                    autoComplete="off"
+                    value={authorizedEmail}
+                    onChange={handleInputValidation}
+                  />
+                  <button
+                    onClick={handleAddNewEmailForShareMemory}
+                    className="memory-form__input memory-form__button-input-tag btn btn-primary"
+                    disabled={errorsState.authorizedEmail.hasErrors}
+                    type="button"
+                  >
+                    Ingresar
+                  </button>
+                </div>
+                <div className="memory-form__error-flag mt-2 mb-4">
+                  {errorsState.authorizedEmail.hasErrors && (
+                    <ErrorFlag
+                      message={errorsState.authorizedEmail.message}
+                      color="red"
+                    />
+                  )}
+                </div>
+
+                <AuthorizedUserList
+                  authorizedEmailList={authorizedEmailList}
+                  setAuthorizedEmailList={setAuthorizedEmailList}
+                />
+              </div>
             )}
           </div>
-
-          <MemoryTagList tagList={tagList} setTagList={setTagList} />
 
           <InputMemoryImagesForm
             formValues={formValues}

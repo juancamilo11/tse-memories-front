@@ -1,4 +1,5 @@
 import { uploadFileToCloudinary } from "../../actions/cloudinaryActions";
+import validator from "validator";
 
 //Initial values for the section #1 form of the store setup.
 export const formInitialValues = {
@@ -72,6 +73,9 @@ export const memoryFormValidator = (e, setErrorsState, userEmail, memoryId) => {
     case "city":
       handleCityValidation(value, setErrorsState);
       break;
+    case "authorizedEmail":
+      handleAuthorizedEmailValidation(value, setErrorsState);
+      break;
     default:
       break;
   }
@@ -103,6 +107,25 @@ export const isTheTagAlreadyDefined = (tagName, tagsList, setErrorsState) => {
         ["tag"]: {
           hasErrors: true,
           message: `La etiqueta '${tagName}' ya ha sido ingresada, intente con otro valor.`,
+        },
+      };
+    });
+    return true;
+  }
+};
+
+export const isTheEmailAlreadyDefined = (
+  email,
+  authorizedEmailList,
+  setErrorsState
+) => {
+  if (authorizedEmailList.includes(email)) {
+    setErrorsState((state) => {
+      return {
+        ...state,
+        ["authorizedEmail"]: {
+          hasErrors: true,
+          message: `El correo electrónico '${email}' ya ha sido ingresado.`,
         },
       };
     });
@@ -254,6 +277,19 @@ const handleCityValidation = (value, setErrorsState) => {
     "city",
     true,
     "El nombre de la ciudad debe tener entre 2 y 30 caracteres."
+  );
+};
+
+export const handleAuthorizedEmailValidation = (value, setErrorsState) => {
+  if (validator.isEmail(value.trim()) || value.trim() === "") {
+    setErrorStateForField(setErrorsState, "authorizedEmail", false, "");
+    return;
+  }
+  setErrorStateForField(
+    setErrorsState,
+    "authorizedEmail",
+    true,
+    "El valor ingresado no es un email."
   );
 };
 
