@@ -137,9 +137,9 @@ export const sweetalertForFormSubmitErrorsReportBuilder = (errorsReport) =>
 export const sweetalertForMemorySuccessfullyCreatedOrUpdateBuilder = () =>
   Swal.fire({
     icon: "success",
-    text: "¡Creación/Actualización exitosa!",
+    text: "¡Creación/Actualización exitosa de tu recuerdo!",
     timerProgressBar: true,
-    timer: 3000,
+    timer: 4000,
     allowEnterKey: false,
     showConfirmButton: false,
     allowEscapeKey: false,

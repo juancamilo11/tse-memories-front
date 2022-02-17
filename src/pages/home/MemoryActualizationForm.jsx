@@ -27,7 +27,7 @@ import AuthorizedUserList from "../../components/AuthorizedUserList";
 import { startSaveOrUpdateMemory } from "../../actions/memoryActions";
 
 const MemoryActualizationForm = () => {
-  const { email } = useSelector((state) => state.auth);
+  const { email, uid } = useSelector((state) => state.auth);
   const [formValues, handleInputChange, resetForm] = useForm(formInitialValues);
   const [errorsState, setErrorsState] = useState(formInitialErrorState);
   const [newMemoryId, setNewMemoryId] = useState(uuidv4());
@@ -103,8 +103,9 @@ const MemoryActualizationForm = () => {
       sweetalertForFormSubmitErrorsReportBuilder(errorsReport);
       return;
     }
-    startSaveOrUpdateMemory(memoryInfo);
-    sweetalertForMemorySuccessfullyCreatedOrUpdateBuilder(errorsReport);
+    startSaveOrUpdateMemory(memoryInfo, uid).then((res) => {
+      sweetalertForMemorySuccessfullyCreatedOrUpdateBuilder();
+    });
   };
 
   const handleSelectImageToLoad = (e) => {
