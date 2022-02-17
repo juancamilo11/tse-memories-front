@@ -316,3 +316,15 @@ export const startFetchMemoryAllImages = async (memoryId, visibility) => {
     throw err;
   }
 };
+
+export const startSaveOrUpdateMemory = (memoryInfo) => {
+  try {
+    if (memoryInfo.visibility === "privado") {
+      window.alert("It's private");
+    } else if (memoryInfo.visibility === "publico") {
+      window.alert("It's public");
+    } else if (memoryInfo.visibility === "protegido") {
+      window.alert("It's protected");
+    }
+  } catch (err) {}
+};

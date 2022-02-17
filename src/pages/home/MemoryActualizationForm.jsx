@@ -17,11 +17,14 @@ import MemoryTagList from "../../components/MemoryTagList";
 import InputMemoryImagesForm from "../../components/InputMemoryImagesForm";
 import {
   sweetalertForEmailAlreadyDefinedBuilder,
+  sweetalertForFormSubmitErrorsReportBuilder,
   sweetalertForInputTagAlreadyDefinedBuilder,
+  sweetalertForMemorySuccessfullyCreatedOrUpdateBuilder,
   sweetalertForVisibilityChangeBuilder,
 } from "../../helpers/sweetAlertBuilder";
 import Swal from "sweetalert2";
 import AuthorizedUserList from "../../components/AuthorizedUserList";
+import { startSaveOrUpdateMemory } from "../../actions/memoryActions";
 
 const MemoryActualizationForm = () => {
   const { email } = useSelector((state) => state.auth);
@@ -33,15 +36,7 @@ const MemoryActualizationForm = () => {
 
   const [tagList, setTagList] = useState([]);
   const [memoryPhotoList, setMemoryPhotoList] = useState([]);
-  const [authorizedEmailList, setAuthorizedEmailList] = useState([
-    //Validar que estos correos no estén repetidos
-    "juancamilo19997814@gmail.com",
-    "doris-carmen@udea.edu.co",
-    "juan.cardona@sofka.com.co",
-    "juancamilo19997814@gmail.com",
-    "doris-carmen@udea.edu.co",
-    "juan.cardona@sofka.com.co",
-  ]);
+  const [authorizedEmailList, setAuthorizedEmailList] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -90,18 +85,26 @@ const MemoryActualizationForm = () => {
     memoryFormValidator(
       e,
       setErrorsState,
-      email,
-      activeMemoryToUpdate.memoryId
+      email, //To build the cloudinary folder target
+      activeMemoryToUpdate.memoryId //To build the cloudinary folder target
     );
   };
 
   const handleMemoryFormSubmit = (e) => {
     e.preventDefault();
-  };
-
-  const handleResetForm = (e) => {
-    e.preventDefault();
-    resetForm();
+    const memoryInfo = {
+      ...formValues,
+      tagList,
+      memoryPhotoList,
+      authorizedEmailList,
+    };
+    const errorsReport = memoryFormSubmitValidation(memoryInfo, errorsState);
+    if (errorsReport.hasErrors) {
+      sweetalertForFormSubmitErrorsReportBuilder(errorsReport);
+      return;
+    }
+    startSaveOrUpdateMemory(memoryInfo);
+    sweetalertForMemorySuccessfullyCreatedOrUpdateBuilder(errorsReport);
   };
 
   const handleSelectImageToLoad = (e) => {
@@ -145,8 +148,9 @@ const MemoryActualizationForm = () => {
 
       <form onSubmit={handleMemoryFormSubmit}>
         <div className="memory-form__command-buttons">
-          <button className="memory-form__command-button">Visualizar</button>
-          <button className="memory-form__command-button">Guardar</button>
+          <button className="memory-form__command-button" type="submit">
+            Guardar
+          </button>
         </div>
         <div className="memory-form__form-container">
           <div className="memory-form__inputs-container">
@@ -280,7 +284,9 @@ const MemoryActualizationForm = () => {
                   Seleccione la visibilidad
                 </option>
                 {visibilityTypes.map((visibility) => (
-                  <option value={visibility.type}>{visibility.label}</option>
+                  <option title={visibility.title} value={visibility.type}>
+                    {visibility.label}
+                  </option>
                 ))}
               </select>
             </div>

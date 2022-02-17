@@ -36,6 +36,17 @@ export const sweetalertForEmailAlreadyDefinedBuilder = (newEmail) =>
     text: `El email '${newEmail}' ya ha sido ingresado.`,
     showConfirmButton: false,
     timer: 3500,
+    timerProgressBar: true,
+  });
+
+export const sweetalertForNoImageUploaded = () =>
+  Swal.fire({
+    icon: "error",
+    title: "Oops...",
+    text: `No ha seleccionado ninguna imágen para su foto del recuerdo.`,
+    timer: 3500,
+    timerProgressBar: true,
+    showConfirmButton: true,
   });
 
 export const sweetalertForFetchingMemoriesBuilder = () =>
@@ -79,4 +90,58 @@ export const sweetalertForVisibilityChangeBuilder = () =>
     confirmButtonColor: "red",
     showCancelButton: true,
     cancelButtonText: "Cancelar",
+  });
+
+export const sweetalertForFormSubmitErrorsReportBuilder = (errorsReport) =>
+  Swal.fire({
+    icon: "error",
+    title: "Error en el formulario",
+    html: `<h3>El formulario tiene los siguientes errores:</h3>
+      <ul>  
+        ${errorsReport.id !== undefined && +`<li>${errorsReport.id}</li>`}
+        ${errorsReport.name !== undefined && `<li>${errorsReport.name}</li>`}
+        ${
+          errorsReport.memoryDate !== undefined &&
+          `<li>${errorsReport.memoryDate}</li>`
+        }
+        ${
+          errorsReport.visibility !== undefined &&
+          `<li>${errorsReport.visibility}</li>`
+        }
+        ${errorsReport.tag !== undefined && `<li>${errorsReport.tag}</li>`}
+        ${
+          errorsReport.country !== undefined &&
+          `<li>${errorsReport.country}</li>`
+        }
+        ${errorsReport.city !== undefined && `<li>${errorsReport.city}</li>`}
+        ${
+          errorsReport.authorizedEmail !== undefined &&
+          `<li>${errorsReport.authorizedEmail}</li>`
+        }
+        ${
+          errorsReport.memoryPhotoText !== undefined &&
+          `<li>${errorsReport.memoryPhotoText}</li>`
+        }
+        ${
+          errorsReport.memoryPhotoDescription !== undefined &&
+          `<li>${errorsReport.memoryPhotoDescription}</li>`
+        }
+      </ul>`,
+    footer: `<b>Verifica los valores ingresados e intenta nuevamente</b>`,
+    showConfirmButton: true,
+    width: 600,
+    confirmButtonText: "Continuar",
+    cancelButtonText: "Cancelar",
+  });
+
+export const sweetalertForMemorySuccessfullyCreatedOrUpdateBuilder = () =>
+  Swal.fire({
+    icon: "success",
+    text: "¡Creación/Actualización exitosa!",
+    timerProgressBar: true,
+    timer: 3000,
+    allowEnterKey: false,
+    showConfirmButton: false,
+    allowEscapeKey: false,
+    allowOutsideClick: false,
   });
