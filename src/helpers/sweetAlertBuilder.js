@@ -50,3 +50,24 @@ export const sweetalertForInvalidSearchValueBuilder = (message) =>
     showConfirmButton: false,
     timer: 3500,
   });
+
+export const sweetalertForVisibilityChangeBuilder = () =>
+  Swal.fire({
+    icon: "info",
+    title: "Cambio de visibilidad de un recuerdo",
+    html: `<h3>Antes de cambiar la visibilidad de un recuerdo tenga presente lo siguiente:</h3>
+      <ul>  
+        <li>Si cambia la visibilidad de un recuerdo <b>protegido</b> a <b>público</b> o <b>privado</b> se eliminará la lista de usuarios autorizados para ver el recuerdo</li>
+        <li>Si cambia la visibilidad de un recuerdo <b>protegido</b> o <b>público</b> a <b>privado</b> se eliminará la lista de usuarios que han visto el recuerdo</li>
+      </ul>`,
+    footer: `<b>Si estás creando el recuerdo puedes elegir libremente la visibilidad</b>`,
+    showConfirmButton: false,
+    timer: 60000,
+    width: 600,
+    timerProgressBar: true,
+    showConfirmButton: true,
+    confirmButtonText: "Continuar",
+    confirmButtonColor: "red",
+    showCancelButton: true,
+    cancelButtonText: "Cancelar",
+  });

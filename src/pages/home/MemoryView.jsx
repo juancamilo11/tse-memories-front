@@ -99,15 +99,15 @@ const MemoryView = () => {
   const {
     id: memoryId,
     name,
-    creatorId,
+    creatorId, //Utilizar este campo para traer la data del usuario
     visibility,
     location,
     tagList,
     memoryDate,
+    memoryPhotoList,
   } = activeMemoryToShow;
 
   const [ownerInfo, setOwnerInfo] = useState(null);
-  const [memoryImages, setMemoryImages] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -115,10 +115,6 @@ const MemoryView = () => {
     startFetchMemoryOwnerInfoByMemoryId(memoryId)
       .then((ownerInfoResponse) => {
         setOwnerInfo(ownerInfoResponse);
-        return startFetchMemoryAllImages(memoryId, visibility);
-      })
-      .then((memoryImagesResponse) => {
-        setMemoryImages(memoryImagesResponse);
         dispatch(
           startCountMemoryView(memoryId, userId, visibility, memoriesList)
         );
@@ -137,6 +133,8 @@ const MemoryView = () => {
     if (!showViewerList) {
       Swal.fire({
         text: "La lista de usuarios que han visto el recuerdo aparecerá abajo",
+        timer: 3000,
+        timerProgressBar: true,
       });
     }
   };
@@ -153,16 +151,18 @@ const MemoryView = () => {
     <div className="memory-view__main-container">
       <div className="memory-view__header-section">
         <div className="memory-view__header-view-count">
-          <button
-            className="memory-view__header-view-count-button"
-            onClick={handleShowViewers}
-          >
-            <i className="fas fa-eye memory-view__header-view-count-icon"></i>
-            <span>
-              <b>{activeMemoryToShow.viewsCount}</b> vistas{" "}
-              {showViewerList ? "(Ocultar)" : "(Mostrar)"}
-            </span>
-          </button>
+          {activeMemoryToShow.visibility !== "privado" && (
+            <button
+              className="memory-view__header-view-count-button"
+              onClick={handleShowViewers}
+            >
+              <i className="fas fa-eye memory-view__header-view-count-icon"></i>
+              <span>
+                <b>{activeMemoryToShow.viewsCount}</b> vistas{" "}
+                {showViewerList ? "(Ocultar)" : "(Mostrar)"}
+              </span>
+            </button>
+          )}
           <button
             className="memory-view__header-view-count-button"
             onClick={handleAddOrRemoveFromFavorites}
@@ -202,8 +202,9 @@ const MemoryView = () => {
           alt="Profile photo"
         />
         <h4 className="memory-view__description-content">
-          {ownerInfo?.name} estuvo en {location.city}, {location.country} el{" "}
-          {memoryDate} y ha compartido este recuerdo llamado "{name}"
+          {ownerInfo?.name || "Nombre Usuario"} estuvo en {location.city},{" "}
+          {location.country} el {memoryDate} y ha compartido este recuerdo
+          llamado "{name}"
         </h4>
       </div>
       <div className="memory-view__tag-list-section">
@@ -212,7 +213,7 @@ const MemoryView = () => {
         ))}
       </div>
       <div className="memory-view__images-list-section">
-        <MemoryImagesList memoryImages={memoryImages || []} />
+        <MemoryImagesList memoryImages={memoryPhotoList} />
       </div>
       {showViewerList && <ViewerList viewerList={viewerList || []} />}
     </div>
