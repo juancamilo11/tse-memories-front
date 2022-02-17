@@ -6,11 +6,10 @@ export const startSaveUserIfNotExists = (user) => {
     try {
       const response = await fetch(`${urlBase}/post/user`, {
         method: "POST",
-        body: user,
+        body: JSON.stringify(user),
       });
       if (response.ok) {
         const user = await response.json();
-        console.log("****************");
         console.log(user);
       } else {
         throw await response.json();

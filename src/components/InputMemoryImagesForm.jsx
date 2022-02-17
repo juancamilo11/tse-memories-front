@@ -1,8 +1,11 @@
 import React from "react";
+import { sweetalertForNoImageUploaded } from "../helpers/sweetAlertBuilder";
 import ErrorFlag from "./ErrorFlag";
 import FormMemoryImagesList from "./FormMemoryImagesList";
 
 const MAX_NUM_PHOTOS = 10;
+const NO_CONTENT_IMAGE =
+  "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp";
 
 const InputMemoryImagesForm = ({
   formValues,
@@ -42,7 +45,7 @@ const InputMemoryImagesForm = ({
       .getElementById("memory-image-preview-url")
       .getAttribute("href");
 
-    //toDo -> Validate photoUrl different to default
+    if (urlImage.trim() === "#") sweetalertForNoImageUploaded();
 
     const newMemoryImage = {
       urlPhoto: urlImage,
@@ -156,7 +159,7 @@ const InputMemoryImagesForm = ({
         )}
         <h5 className="text-center">(Previsualización)</h5>
         <img
-          src="https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp"
+          src={NO_CONTENT_IMAGE}
           className="memory-image-preview--no-content"
           id="memory-image-preview"
           alt="previsualización de tu foto"

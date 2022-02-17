@@ -6,6 +6,7 @@ import {
   formInitialErrorState,
   formInitialValues,
   isTheTagAlreadyDefined,
+  isTheEmailAlreadyDefined,
   memoryFormSubmitValidation,
   memoryFormValidator,
   visibilityTypes,
@@ -15,14 +16,18 @@ import { useSelector } from "react-redux";
 import MemoryTagList from "../../components/MemoryTagList";
 import InputMemoryImagesForm from "../../components/InputMemoryImagesForm";
 import {
+  sweetalertForEmailAlreadyDefinedBuilder,
+  sweetalertForFormSubmitErrorsReportBuilder,
   sweetalertForInputTagAlreadyDefinedBuilder,
+  sweetalertForMemorySuccessfullyCreatedOrUpdateBuilder,
   sweetalertForVisibilityChangeBuilder,
 } from "../../helpers/sweetAlertBuilder";
 import Swal from "sweetalert2";
 import AuthorizedUserList from "../../components/AuthorizedUserList";
+import { startSaveOrUpdateMemory } from "../../actions/memoryActions";
 
 const MemoryActualizationForm = () => {
-  const { email } = useSelector((state) => state.auth);
+  const { email, uid } = useSelector((state) => state.auth);
   const [formValues, handleInputChange, resetForm] = useForm(formInitialValues);
   const [errorsState, setErrorsState] = useState(formInitialErrorState);
   const [newMemoryId, setNewMemoryId] = useState(uuidv4());
@@ -31,15 +36,7 @@ const MemoryActualizationForm = () => {
 
   const [tagList, setTagList] = useState([]);
   const [memoryPhotoList, setMemoryPhotoList] = useState([]);
-  const [authorizedEmailList, setAuthorizedEmailList] = useState([
-    //Validar que estos correos no estén repetidos
-    "juancamilo19997814@gmail.com",
-    "doris-carmen@udea.edu.co",
-    "juan.cardona@sofka.com.co",
-    "juancamilo19997814@gmail.com",
-    "doris-carmen@udea.edu.co",
-    "juan.cardona@sofka.com.co",
-  ]);
+  const [authorizedEmailList, setAuthorizedEmailList] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -68,23 +65,47 @@ const MemoryActualizationForm = () => {
     handleInputValidation(cleanEvent);
   };
 
+  const handleAddNewEmailForShareMemory = (e) => {
+    e.preventDefault();
+    const emailValue = document.getElementById("authorizedEmail").value.trim();
+    const cleanEvent = { target: { name: "authorizedEmail", value: "" } };
+    if (emailValue === "" || errorsState.authorizedEmail.hasErrors) return;
+    if (
+      isTheEmailAlreadyDefined(emailValue, authorizedEmailList, setErrorsState)
+    ) {
+      sweetalertForEmailAlreadyDefinedBuilder(emailValue);
+      return;
+    }
+    setAuthorizedEmailList([emailValue, ...authorizedEmailList]);
+    handleInputValidation(cleanEvent);
+  };
+
   const handleInputValidation = (e) => {
     handleInputChange(e);
     memoryFormValidator(
       e,
       setErrorsState,
-      email,
-      activeMemoryToUpdate.memoryId
+      email, //To build the cloudinary folder target
+      activeMemoryToUpdate.memoryId //To build the cloudinary folder target
     );
   };
 
   const handleMemoryFormSubmit = (e) => {
     e.preventDefault();
-  };
-
-  const handleResetForm = (e) => {
-    e.preventDefault();
-    resetForm();
+    const memoryInfo = {
+      ...formValues,
+      tagList,
+      memoryPhotoList,
+      authorizedEmailList,
+    };
+    const errorsReport = memoryFormSubmitValidation(memoryInfo, errorsState);
+    if (errorsReport.hasErrors) {
+      sweetalertForFormSubmitErrorsReportBuilder(errorsReport);
+      return;
+    }
+    startSaveOrUpdateMemory(memoryInfo, uid).then((res) => {
+      sweetalertForMemorySuccessfullyCreatedOrUpdateBuilder();
+    });
   };
 
   const handleSelectImageToLoad = (e) => {
@@ -128,8 +149,9 @@ const MemoryActualizationForm = () => {
 
       <form onSubmit={handleMemoryFormSubmit}>
         <div className="memory-form__command-buttons">
-          <button className="memory-form__command-button">Visualizar</button>
-          <button className="memory-form__command-button">Guardar</button>
+          <button className="memory-form__command-button" type="submit">
+            Guardar
+          </button>
         </div>
         <div className="memory-form__form-container">
           <div className="memory-form__inputs-container">
@@ -263,7 +285,9 @@ const MemoryActualizationForm = () => {
                   Seleccione la visibilidad
                 </option>
                 {visibilityTypes.map((visibility) => (
-                  <option value={visibility.type}>{visibility.label}</option>
+                  <option title={visibility.title} value={visibility.type}>
+                    {visibility.label}
+                  </option>
                 ))}
               </select>
             </div>
@@ -298,15 +322,51 @@ const MemoryActualizationForm = () => {
                 />
               )}
             </div>
+            <MemoryTagList tagList={tagList} setTagList={setTagList} />
+
             {visibility === "protegido" && (
-              <AuthorizedUserList
-                authorizedEmailList={authorizedEmailList}
-                setAuthorizedEmailList={setAuthorizedEmailList}
-              />
+              <div>
+                <div className="memory-form__input-container">
+                  <label
+                    htmlFor="memoryPhotoText"
+                    className="memory-form__input-label"
+                  >
+                    Email del usuario
+                  </label>
+                  <input
+                    type="text"
+                    name="authorizedEmail"
+                    id="authorizedEmail"
+                    className="memory-form__input memory-form__input-shared-email"
+                    autoComplete="off"
+                    value={authorizedEmail}
+                    onChange={handleInputValidation}
+                  />
+                  <button
+                    onClick={handleAddNewEmailForShareMemory}
+                    className="memory-form__input memory-form__button-input-tag btn btn-primary"
+                    disabled={errorsState.authorizedEmail.hasErrors}
+                    type="button"
+                  >
+                    Ingresar
+                  </button>
+                </div>
+                <div className="memory-form__error-flag mt-2 mb-4">
+                  {errorsState.authorizedEmail.hasErrors && (
+                    <ErrorFlag
+                      message={errorsState.authorizedEmail.message}
+                      color="red"
+                    />
+                  )}
+                </div>
+
+                <AuthorizedUserList
+                  authorizedEmailList={authorizedEmailList}
+                  setAuthorizedEmailList={setAuthorizedEmailList}
+                />
+              </div>
             )}
           </div>
-
-          <MemoryTagList tagList={tagList} setTagList={setTagList} />
 
           <InputMemoryImagesForm
             formValues={formValues}

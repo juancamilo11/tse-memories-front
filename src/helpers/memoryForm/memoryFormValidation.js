@@ -1,4 +1,5 @@
 import { uploadFileToCloudinary } from "../../actions/cloudinaryActions";
+import validator from "validator";
 
 //Initial values for the section #1 form of the store setup.
 export const formInitialValues = {
@@ -32,9 +33,21 @@ export const formInitialErrorState = {
 };
 
 export const visibilityTypes = [
-  { type: "privado", label: "Privado" },
-  { type: "publico", label: "Publico" },
-  { type: "protegido", label: "Protegido" },
+  {
+    type: "privado",
+    label: "Privado",
+    title: "Los recuerdos privados sólo tú los puedes ver",
+  },
+  {
+    type: "publico",
+    label: "Publico",
+    title: "Los recuerdos públicos cualquier usuario los puede ver",
+  },
+  {
+    type: "protegido",
+    label: "Protegido",
+    title: "Los recuerdos protegidos sólo los pueden ver a quien autorices",
+  },
 ];
 
 export const memoryFormValidator = (e, setErrorsState, userEmail, memoryId) => {
@@ -72,6 +85,9 @@ export const memoryFormValidator = (e, setErrorsState, userEmail, memoryId) => {
     case "city":
       handleCityValidation(value, setErrorsState);
       break;
+    case "authorizedEmail":
+      handleAuthorizedEmailValidation(value, setErrorsState);
+      break;
     default:
       break;
   }
@@ -103,6 +119,25 @@ export const isTheTagAlreadyDefined = (tagName, tagsList, setErrorsState) => {
         ["tag"]: {
           hasErrors: true,
           message: `La etiqueta '${tagName}' ya ha sido ingresada, intente con otro valor.`,
+        },
+      };
+    });
+    return true;
+  }
+};
+
+export const isTheEmailAlreadyDefined = (
+  email,
+  authorizedEmailList,
+  setErrorsState
+) => {
+  if (authorizedEmailList.includes(email)) {
+    setErrorsState((state) => {
+      return {
+        ...state,
+        ["authorizedEmail"]: {
+          hasErrors: true,
+          message: `El correo electrónico '${email}' ya ha sido ingresado.`,
         },
       };
     });
@@ -257,8 +292,98 @@ const handleCityValidation = (value, setErrorsState) => {
   );
 };
 
-export const memoryFormSubmitValidation = (
-  formValues,
-  tagsList,
-  errorsState
-) => {};
+const handleAuthorizedEmailValidation = (value, setErrorsState) => {
+  if (validator.isEmail(value.trim()) || value.trim() === "") {
+    setErrorStateForField(setErrorsState, "authorizedEmail", false, "");
+    return;
+  }
+  setErrorStateForField(
+    setErrorsState,
+    "authorizedEmail",
+    true,
+    "El valor ingresado no es un email."
+  );
+};
+
+export const memoryFormSubmitValidation = (formValues, errorsState) => {
+  const { id, name, memoryDate, visibility, country, city } = formValues;
+
+  let errorsReport = { hasErrors: false };
+
+  // if (id === "") {
+  //   errorsReport = {
+  //     ...errorsReport,
+  //     hasErrors: true,
+  //     id: "El Id del recuerdo ha quedado vacío",
+  //   };
+  // }
+  if (errorsState.name.hasErrors || name === "") {
+    errorsReport = {
+      ...errorsReport,
+      hasErrors: true,
+      name: "El nombre ha quedado vacío o tiene errores",
+    };
+  }
+  if (errorsState.memoryDate.hasErrors || memoryDate === "") {
+    errorsReport = {
+      ...errorsReport,
+      hasErrors: true,
+      memoryDate:
+        "La fecha de ocurrencia del recuerdo ha quedado vacía o tiene errores",
+    };
+  }
+  if (errorsState.visibility.hasErrors || visibility === "") {
+    errorsReport = {
+      ...errorsReport,
+      hasErrors: true,
+      visibility: "La visibilidad del recuerdo ha quedado vacía",
+    };
+  }
+  if (errorsState.tag.hasErrors) {
+    errorsReport = {
+      ...errorsReport,
+      hasErrors: true,
+      tag: "La última etiqueta que estabas ingresando ha quedado con errores",
+    };
+  }
+  if (errorsState.country.hasErrors || country === "") {
+    errorsReport = {
+      ...errorsReport,
+      hasErrors: true,
+      country: "El país en el que ocurrió el recuerdo ha quedado con errores",
+    };
+  }
+  if (errorsState.city.hasErrors || city === "") {
+    errorsReport = {
+      ...errorsReport,
+      hasErrors: true,
+      city: "La ciudad en el que ocurrió el recuerdo ha quedado con errores",
+    };
+  }
+  if (errorsState.authorizedEmail.hasErrors) {
+    errorsReport = {
+      ...errorsReport,
+      hasErrors: true,
+      authorizedEmail:
+        "El último email de usuario para compartir tu recuerdo que estabas ingresando ha quedado con errores",
+    };
+  }
+  if (errorsState.memoryPhotoText.hasErrors) {
+    errorsReport = {
+      ...errorsReport,
+      hasErrors: true,
+      memoryPhotoText:
+        "El título de la última imágen que estabas ingresando ha quedado con errores",
+    };
+  }
+  if (errorsState.memoryPhotoDescription.hasErrors) {
+    errorsReport = {
+      ...errorsReport,
+      hasErrors: true,
+      memoryPhotoDescription:
+        "La descripción de la última imágen que estabas ingresando ha quedado con errores",
+    };
+  }
+
+  return errorsReport;
+};

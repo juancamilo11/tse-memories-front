@@ -316,3 +316,47 @@ export const startFetchMemoryAllImages = async (memoryId, visibility) => {
     throw err;
   }
 };
+
+//Verificar que no exista un recuerdo con el mismo Id y con otra visibilidad, si es así, actualizarla
+const saveOrUpdateMemory = async (memoryInfo, visibility) => {
+  try {
+    const response = await fetch(`${urlBase}/post/${visibility}-memory`, {
+      method: "POST",
+      body: JSON.stringify(memoryInfo),
+    });
+    if (response.ok) {
+      return await response.json();
+    } else {
+      throw await response.json();
+    }
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const startSaveOrUpdateMemory = async (memoryInfo, uid) => {
+  try {
+    delete memoryInfo.memoryPhotoImg;
+    delete memoryInfo.authorizedEmail;
+    delete memoryInfo.memoryPhotoText;
+    delete memoryInfo.memoryPhotoDescription;
+    delete memoryInfo.tag;
+    memoryInfo.creatorId = uid;
+    memoryInfo.location = {
+      country: memoryInfo.country,
+      city: memoryInfo.city,
+    };
+    delete memoryInfo.country;
+    delete memoryInfo.city;
+    window.alert(JSON.stringify(memoryInfo));
+    if (memoryInfo.visibility === "privado") {
+      delete memoryInfo.authorizedEmailList;
+      return await saveOrUpdateMemory(memoryInfo, "private");
+    } else if (memoryInfo.visibility === "publico") {
+      delete memoryInfo.authorizedEmailList;
+      return await saveOrUpdateMemory(memoryInfo, "public");
+    } else {
+      return await saveOrUpdateMemory(memoryInfo, "protected");
+    }
+  } catch (err) {}
+};
