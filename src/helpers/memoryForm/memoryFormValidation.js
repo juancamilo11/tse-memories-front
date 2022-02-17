@@ -13,6 +13,7 @@ export const formInitialValues = {
   memoryPhotoDescription: "",
   country: "",
   city: "",
+  authorizedEmail: "",
 };
 
 export const formInitialErrorState = {
@@ -27,12 +28,13 @@ export const formInitialErrorState = {
   memoryPhotoDescription: { hasErrors: false, message: "" },
   country: { hasErrors: false, message: "" },
   city: { hasErrors: false, message: "" },
+  authorizedEmail: { hasErrors: false, message: "" },
 };
 
 export const visibilityTypes = [
-  { type: "privado", label: "privado" },
-  { type: "publico", label: "publico" },
-  { type: "protegido", label: "protegido" },
+  { type: "privado", label: "Privado" },
+  { type: "publico", label: "Publico" },
+  { type: "protegido", label: "Protegido" },
 ];
 
 export const memoryFormValidator = (e, setErrorsState, userEmail, memoryId) => {

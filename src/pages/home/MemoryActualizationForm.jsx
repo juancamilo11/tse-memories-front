@@ -19,6 +19,7 @@ import {
   sweetalertForVisibilityChangeBuilder,
 } from "../../helpers/sweetAlertBuilder";
 import Swal from "sweetalert2";
+import AuthorizedUserList from "../../components/AuthorizedUserList";
 
 const MemoryActualizationForm = () => {
   const { email } = useSelector((state) => state.auth);
@@ -30,11 +31,29 @@ const MemoryActualizationForm = () => {
 
   const [tagList, setTagList] = useState([]);
   const [memoryPhotoList, setMemoryPhotoList] = useState([]);
+  const [authorizedEmailList, setAuthorizedEmailList] = useState([
+    //Validar que estos correos no estén repetidos
+    "juancamilo19997814@gmail.com",
+    "doris-carmen@udea.edu.co",
+    "juan.cardona@sofka.com.co",
+    "juancamilo19997814@gmail.com",
+    "doris-carmen@udea.edu.co",
+    "juan.cardona@sofka.com.co",
+  ]);
 
   const dispatch = useDispatch();
 
-  const { id, name, memoryDate, creationDate, visibility, tag, country, city } =
-    formValues;
+  const {
+    id,
+    name,
+    memoryDate,
+    creationDate,
+    visibility,
+    tag,
+    country,
+    city,
+    authorizedEmail,
+  } = formValues;
 
   const handleAddNewTag = (e) => {
     e.preventDefault();
@@ -251,9 +270,9 @@ const MemoryActualizationForm = () => {
             <div className="memory-form__error-flag mt-2 mb-4">
               {
                 <ErrorFlag
-                  message="Antes de cambiar la visibilidad de un recuerdo tenga presente lo siguiente: 
-                              Si cambia la visibilidad de un recuerdo protegido a público o privado se eliminará la lista de usuarios autorizados para ver el recuerdo
-                              Si cambia la visibilidad de un recuerdo protegido o público a privado se eliminará la lista de usuarios que han visto el recuerdo"
+                  message="IMPORTANTE: Antes de cambiar la visibilidad de un recuerdo tenga presente lo siguiente: 
+                              Si cambia la visibilidad de un recuerdo protegido a público o privado se eliminará la lista de usuarios autorizados para ver el recuerdo, o 
+                              si cambia la visibilidad de un recuerdo protegido o público a privado se eliminará la lista de usuarios que han visto el recuerdo"
                   color={warningColor}
                 />
               }
@@ -279,7 +298,12 @@ const MemoryActualizationForm = () => {
                 />
               )}
             </div>
-            {visibility === "protegido" && <div>hola</div>}
+            {visibility === "protegido" && (
+              <AuthorizedUserList
+                authorizedEmailList={authorizedEmailList}
+                setAuthorizedEmailList={setAuthorizedEmailList}
+              />
+            )}
           </div>
 
           <MemoryTagList tagList={tagList} setTagList={setTagList} />
