@@ -4,16 +4,16 @@ import validator from "validator";
 //Initial values for the section #1 form of the store setup.
 export const formInitialValues = {
   id: "",
-  name: "",
-  memoryDate: "",
-  creationDate: "",
-  visibility: "",
+  name: "Recuerdos de Miami",
+  memoryDate: "2020-02-01",
+  creationDate: "2022-05-10",
+  visibility: "privado",
   tag: "",
-  memoryPhotoText: "",
+  memoryPhotoText: "Titulo de la foto",
   memoryPhotoImg: "",
-  memoryPhotoDescription: "",
-  country: "",
-  city: "",
+  memoryPhotoDescription: "Descripción de la foto",
+  country: "Colombia",
+  city: "Antioquia",
   authorizedEmail: "",
 };
 
