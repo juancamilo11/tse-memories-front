@@ -7,12 +7,16 @@ import Swal from "sweetalert2";
 import {
   activeNothingToShow,
   startCountMemoryView,
+  startFetchAndShowRandomMemory,
   startFetchMemoryAllImages,
 } from "../../actions/memoryActions";
 import { startFetchMemoryOwnerInfoByMemoryId } from "../../actions/userActions";
 import MemoryImagesList from "../../components/MemoryImagesList";
 import ViewerList from "../../components/ViewerList";
-import { sweetAlertForShowingAllMemoryViewers } from "../../helpers/sweetAlertBuilder";
+import {
+  sweetalertForFetchingMemoriesBuilder,
+  sweetAlertForShowingAllMemoryViewers,
+} from "../../helpers/sweetAlertBuilder";
 
 const viewerList = [
   {
@@ -88,6 +92,7 @@ const MemoryView = () => {
   const { activeMemoryToShow, memoriesList } = useSelector(
     (state) => state.memories
   );
+  const { memories } = useSelector((state) => state);
 
   const [viewerListStatus, setViewerListStatus] = useState({
     viewerList: [],
@@ -143,7 +148,14 @@ const MemoryView = () => {
     e.preventDefault();
   };
 
+  const handleRandomSearch = (e) => {
+    e.preventDefault();
+    sweetalertForFetchingMemoriesBuilder();
+    dispatch(startFetchAndShowRandomMemory());
+  };
+
   const handleGoBack = (e) => {
+    e.preventDefault();
     dispatch(activeNothingToShow());
   };
 
@@ -181,7 +193,10 @@ const MemoryView = () => {
           </button>
         </div>
         <div className="memory-view__buttons-section">
-          <button className="memory-view__random-search-button">
+          <button
+            className="memory-view__random-search-button"
+            onClick={handleRandomSearch}
+          >
             Búsqueda aleatoria
           </button>
           <button

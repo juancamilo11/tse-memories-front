@@ -53,7 +53,7 @@ export const sweetalertForFetchingMemoriesBuilder = () =>
   Swal.fire({
     icon: "success",
     title: "Solicitud exitosa",
-    text: `Estamos buscando los recuerdos solicitados.`,
+    text: `Estamos buscando el(los) recuerdo(s) solicitado(s).`,
     timerProgressBar: true,
     timer: 3000,
     allowEnterKey: false,
