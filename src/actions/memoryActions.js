@@ -128,6 +128,23 @@ const fetchAllMemoriesByNameOrTagname = (allMemoriesByNameOrTagname) => ({
     */
 });
 
+export const startFetchAndShowRandomMemory = () => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(`${urlBase}/get/random-public-memory`);
+      if (response.ok) {
+        const publicRandomMemory = await response.json();
+        const { memoryId } = publicRandomMemory;
+        dispatch(activeMemoryToShow(memoryId, publicRandomMemory));
+      } else {
+        throw await response.json();
+      }
+    } catch (err) {
+      throw err;
+    }
+  };
+};
+
 export const startFetchAllUserMemories = (userId) => {
   return async (dispatch) => {
     try {

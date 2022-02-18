@@ -1,7 +1,6 @@
 import React, { useEffect, useReducer, useState } from "react";
 import ErrorFlag from "../../components/ErrorFlag";
 import useForm from "../../hooks/useForm";
-import { useDispatch } from "react-redux";
 import {
   formInitialErrorState,
   formInitialValues,
@@ -18,12 +17,16 @@ import InputMemoryImagesForm from "../../components/InputMemoryImagesForm";
 import {
   sweetalertForEmailAlreadyDefinedBuilder,
   sweetalertForFormSubmitErrorsReportBuilder,
+  sweetalertForGenericErrorBuilder,
   sweetalertForInputTagAlreadyDefinedBuilder,
   sweetalertForMemorySuccessfullyCreatedOrUpdateBuilder,
   sweetalertForVisibilityChangeBuilder,
 } from "../../helpers/sweetAlertBuilder";
 import AuthorizedUserList from "../../components/AuthorizedUserList";
-import { startSaveOrUpdateMemory } from "../../actions/memoryActions";
+import {
+  activeMemoryToShow,
+  startSaveOrUpdateMemory,
+} from "../../actions/memoryActions";
 
 const MemoryActualizationForm = () => {
   const { email, uid } = useSelector((state) => state.auth);
@@ -103,19 +106,24 @@ const MemoryActualizationForm = () => {
       sweetalertForFormSubmitErrorsReportBuilder(errorsReport);
       return;
     }
-    startSaveOrUpdateMemory(memoryInfo, uid).then((res) => {
-      sweetalertForMemorySuccessfullyCreatedOrUpdateBuilder();
-    });
+    startSaveOrUpdateMemory(memoryInfo, uid)
+      .then((updatedMemory) => {
+        sweetalertForMemorySuccessfullyCreatedOrUpdateBuilder();
+        dispatchEvent(
+          activeMemoryToShow(updatedMemory.memoryId, updatedMemory)
+        );
+      })
+      .catch((err) => {
+        sweetalertForGenericErrorBuilder(
+          "Error en la creación/actualización del recuerdo"
+        );
+      });
   };
 
   const handleSelectImageToLoad = (e) => {
     e.preventDefault();
     const { id } = e.target;
     document.getElementById("memory-form__input-image").click();
-  };
-
-  const getLocalDate = () => {
-    return new Date().toISOString().split("T")[0];
   };
 
   const changeSetDangerColor = (e) => {
@@ -153,9 +161,7 @@ const MemoryActualizationForm = () => {
 
         <div className="memory-form__creation-date-container">
           <p className="memory-form__creation-date-label">Fecha de creación</p>
-          <b className="memory-form__creation-date-value">
-            {creationDate || getLocalDate()}
-          </b>
+          <b className="memory-form__creation-date-value">{creationDate}</b>
         </div>
       </div>
 
@@ -194,23 +200,14 @@ const MemoryActualizationForm = () => {
             <div className="memory-form__error-flag">
               {errorsState.memoryDate.hasErrors && (
                 <ErrorFlag
-                  message={
-                    errorsState.memoryDate.message ||
-                    "Error: Error de prueba de name"
-                  }
+                  message={errorsState.memoryDate.message}
                   color="red"
                 />
               )}
             </div>
             <div className="memory-form__error-flag mt-2 mb-4">
               {errorsState.name.hasErrors && (
-                <ErrorFlag
-                  message={
-                    errorsState.name.message ||
-                    "Error: Error de prueba de memoryDate"
-                  }
-                  color="red"
-                />
+                <ErrorFlag message={errorsState.name.message} color="red" />
               )}
             </div>
 
@@ -240,24 +237,12 @@ const MemoryActualizationForm = () => {
             </div>
             <div className="memory-form__error-flag mt-2 mb-4">
               {errorsState.country.hasErrors && (
-                <ErrorFlag
-                  message={
-                    errorsState.country.message ||
-                    "Error, mensaje de prueba de country"
-                  }
-                  color="red"
-                />
+                <ErrorFlag message={errorsState.country.message} color="red" />
               )}
             </div>
             <div className="memory-form__error-flag mt-2 mb-4">
               {errorsState.city.hasErrors && (
-                <ErrorFlag
-                  message={
-                    errorsState.city.message ||
-                    "Error, mensaje de prueba de city"
-                  }
-                  color="red"
-                />
+                <ErrorFlag message={errorsState.city.message} color="red" />
               )}
             </div>
 
@@ -315,21 +300,13 @@ const MemoryActualizationForm = () => {
             </div>
             <div className="memory-form__error-flag mt-2 mb-4">
               {errorsState.tag.hasErrors && (
-                <ErrorFlag
-                  message={
-                    errorsState.tag.message || "Error, error de prueba de tag"
-                  }
-                  color="red"
-                />
+                <ErrorFlag message={errorsState.tag.message} color="red" />
               )}
             </div>
             <div className="memory-form__error-flag mt-2 mb-4">
               {errorsState.visibility.hasErrors && (
                 <ErrorFlag
-                  message={
-                    errorsState.visibility.message ||
-                    "Error, error de prueba de visibility"
-                  }
+                  message={errorsState.visibility.message}
                   color="red"
                 />
               )}

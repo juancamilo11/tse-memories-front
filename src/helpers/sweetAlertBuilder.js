@@ -53,7 +53,7 @@ export const sweetalertForFetchingMemoriesBuilder = () =>
   Swal.fire({
     icon: "success",
     title: "Solicitud exitosa",
-    text: `Estamos buscando los recuerdos solicitados.`,
+    text: `Estamos buscando el(los) recuerdo(s) solicitado(s).`,
     timerProgressBar: true,
     timer: 3000,
     allowEnterKey: false,
@@ -138,6 +138,18 @@ export const sweetalertForMemorySuccessfullyCreatedOrUpdateBuilder = () =>
   Swal.fire({
     icon: "success",
     text: "¡Creación/Actualización exitosa de tu recuerdo!",
+    timerProgressBar: true,
+    timer: 4000,
+    allowEnterKey: false,
+    showConfirmButton: false,
+    allowEscapeKey: false,
+    allowOutsideClick: false,
+  });
+
+export const sweetalertForGenericErrorBuilder = (errorMessage) =>
+  Swal.fire({
+    icon: "error",
+    text: errorMessage,
     timerProgressBar: true,
     timer: 4000,
     allowEnterKey: false,
