@@ -145,3 +145,15 @@ export const sweetalertForMemorySuccessfullyCreatedOrUpdateBuilder = () =>
     allowEscapeKey: false,
     allowOutsideClick: false,
   });
+
+export const sweetalertForGenericErrorBuilder = (errorMessage) =>
+  Swal.fire({
+    icon: "error",
+    text: errorMessage,
+    timerProgressBar: true,
+    timer: 4000,
+    allowEnterKey: false,
+    showConfirmButton: false,
+    allowEscapeKey: false,
+    allowOutsideClick: false,
+  });
