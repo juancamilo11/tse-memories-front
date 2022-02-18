@@ -34,9 +34,19 @@ const MemoryActualizationForm = () => {
   const [warningColor, setWarningColor] = useState("yellow");
   const { activeMemoryToUpdate } = useSelector((state) => state.memories);
 
-  const [tagList, setTagList] = useState([]);
+  const [tagList, setTagList] = useState([
+    "Arepa",
+    "Sancocho",
+    "Bandeja",
+    "Medellín",
+  ]);
   const [memoryPhotoList, setMemoryPhotoList] = useState([]);
-  const [authorizedEmailList, setAuthorizedEmailList] = useState([]);
+  const [authorizedEmailList, setAuthorizedEmailList] = useState([
+    "juan.cardona@gmail.com",
+    "laura.monsale@udea.edu.co",
+    "otro@gmail.com",
+  ]);
+  const [visualizationList, setVisualizationList] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -97,6 +107,7 @@ const MemoryActualizationForm = () => {
       tagList,
       memoryPhotoList,
       authorizedEmailList,
+      visualizationList,
     };
     const errorsReport = memoryFormSubmitValidation(memoryInfo, errorsState);
     if (errorsReport.hasErrors) {

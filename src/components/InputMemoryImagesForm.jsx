@@ -45,7 +45,10 @@ const InputMemoryImagesForm = ({
       .getElementById("memory-image-preview-url")
       .getAttribute("href");
 
-    if (urlImage.trim() === "#") sweetalertForNoImageUploaded();
+    if (urlImage.trim() === "#") {
+      sweetalertForNoImageUploaded();
+      return;
+    }
 
     const newMemoryImage = {
       urlPhoto: urlImage,

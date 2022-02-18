@@ -322,6 +322,9 @@ const saveOrUpdateMemory = async (memoryInfo, visibility) => {
   try {
     const response = await fetch(`${urlBase}/post/${visibility}-memory`, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(memoryInfo),
     });
     if (response.ok) {
@@ -335,28 +338,23 @@ const saveOrUpdateMemory = async (memoryInfo, visibility) => {
 };
 
 export const startSaveOrUpdateMemory = async (memoryInfo, uid) => {
+  memoryInfo.creatorId = uid;
+  memoryInfo.id = "1234";
+  memoryInfo.location = {
+    country: memoryInfo.country,
+    city: memoryInfo.city,
+  };
+  console.log("holaaaaaa siguiente es el enviado:");
+  console.log(memoryInfo);
   try {
-    delete memoryInfo.memoryPhotoImg;
-    delete memoryInfo.authorizedEmail;
-    delete memoryInfo.memoryPhotoText;
-    delete memoryInfo.memoryPhotoDescription;
-    delete memoryInfo.tag;
-    memoryInfo.creatorId = uid;
-    memoryInfo.location = {
-      country: memoryInfo.country,
-      city: memoryInfo.city,
-    };
-    delete memoryInfo.country;
-    delete memoryInfo.city;
-    window.alert(JSON.stringify(memoryInfo));
     if (memoryInfo.visibility === "privado") {
-      delete memoryInfo.authorizedEmailList;
       return await saveOrUpdateMemory(memoryInfo, "private");
     } else if (memoryInfo.visibility === "publico") {
-      delete memoryInfo.authorizedEmailList;
       return await saveOrUpdateMemory(memoryInfo, "public");
     } else {
       return await saveOrUpdateMemory(memoryInfo, "protected");
     }
-  } catch (err) {}
+  } catch (err) {
+    throw err;
+  }
 };
