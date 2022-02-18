@@ -453,6 +453,7 @@ const initialState = {
   activeMemoryToShow: null,
   activeMemoryToUpdate: null,
   activeSearchPanel: false,
+  activeEmptyFormForNewMemory: false,
 };
 
 export const memoriesReducer = (state = initialState, action) => {
@@ -465,6 +466,7 @@ export const memoriesReducer = (state = initialState, action) => {
         },
         activeMemoryToUpdate: null,
         activeSearchPanel: false,
+        activeEmptyFormForNewMemory: false,
       };
     case types.setActiveMemoryToUpdate:
       return {
@@ -474,6 +476,7 @@ export const memoriesReducer = (state = initialState, action) => {
           ...action.payload,
         },
         activeSearchPanel: false,
+        activeEmptyFormForNewMemory: false,
       };
     case types.setActiveSearchPanel:
       return {
@@ -481,6 +484,7 @@ export const memoriesReducer = (state = initialState, action) => {
         activeMemoryToShow: null,
         activeMemoryToUpdate: null,
         activeSearchPanel: true,
+        activeEmptyFormForNewMemory: false,
       };
     case types.setNothingToShow:
       return {
@@ -488,6 +492,15 @@ export const memoriesReducer = (state = initialState, action) => {
         activeMemoryToShow: null,
         activeMemoryToUpdate: null,
         activeSearchPanel: false,
+        activeEmptyFormForNewMemory: false,
+      };
+    case types.setNewMemoryForm:
+      return {
+        ...state,
+        activeMemoryToShow: null,
+        activeMemoryToUpdate: null,
+        activeSearchPanel: false,
+        activeEmptyFormForNewMemory: true,
       };
     case types.loadMemories:
       return {

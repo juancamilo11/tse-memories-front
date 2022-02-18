@@ -12,21 +12,10 @@ const HomePage = () => {
   return (
     <div className="memory-catalog__main-content">
       <Sidebar />
-      {memories.activeMemoryToShow &&
-        !memories.activeMemoryToUpdate &&
-        !memories.activeSearchPanel && <MemoryView />}
-
-      {memories.activeMemoryToUpdate &&
-        !memories.activeMemoryToShow &&
-        !memories.activeSearchPanel && <MemoryActualizationForm />}
-
-      {memories.activeSearchPanel &&
-        !memories.activeMemoryToShow &&
-        !memories.activeMemoryToUpdate && <MemorySearchPanel />}
-
-      {!memories.activeSearchPanel &&
-        !memories.activeMemoryToShow &&
-        !memories.activeMemoryToUpdate && <NoMemorySelected />}
+      {memories.activeMemoryToShow && <MemoryView />}
+      {memories.activeMemoryToUpdate && <MemoryActualizationForm />}
+      {memories.activeSearchPanel && <MemorySearchPanel />}
+      {memories.activeEmptyFormForNewMemory && <MemoryActualizationForm />}
     </div>
   );
 };

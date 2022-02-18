@@ -22,6 +22,11 @@ export const activeNothingToShow = () => ({
   payload: null,
 });
 
+export const activeNewMemory = () => ({
+  type: types.setNewMemoryForm,
+  payload: null,
+});
+
 //modifyMemory sólo actualiza la vida, luego habrá otra acción de
 //Actualización para un recuerdo que si atacará el backend
 export const modifyMemory = (memoryId, memory) => ({

@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import ErrorFlag from "../../components/ErrorFlag";
 import useForm from "../../hooks/useForm";
 import { useDispatch } from "react-redux";
@@ -10,8 +10,8 @@ import {
   memoryFormSubmitValidation,
   memoryFormValidator,
   visibilityTypes,
+  getInitialFormValuesForUpdating,
 } from "../../helpers/memoryForm/memoryFormValidation";
-import { v4 as uuidv4 } from "uuid";
 import { useSelector } from "react-redux";
 import MemoryTagList from "../../components/MemoryTagList";
 import InputMemoryImagesForm from "../../components/InputMemoryImagesForm";
@@ -22,33 +22,22 @@ import {
   sweetalertForMemorySuccessfullyCreatedOrUpdateBuilder,
   sweetalertForVisibilityChangeBuilder,
 } from "../../helpers/sweetAlertBuilder";
-import Swal from "sweetalert2";
 import AuthorizedUserList from "../../components/AuthorizedUserList";
 import { startSaveOrUpdateMemory } from "../../actions/memoryActions";
 
 const MemoryActualizationForm = () => {
   const { email, uid } = useSelector((state) => state.auth);
-  const [formValues, handleInputChange, resetForm] = useForm(formInitialValues);
+  const [formValues, handleInputChange, resetForm] = useForm({});
   const [errorsState, setErrorsState] = useState(formInitialErrorState);
-  const [newMemoryId, setNewMemoryId] = useState(uuidv4());
   const [warningColor, setWarningColor] = useState("yellow");
-  const { activeMemoryToUpdate } = useSelector((state) => state.memories);
+  const { activeMemoryToUpdate /*activeEmptyFormForNewMemory*/ } = useSelector(
+    (state) => state.memories
+  );
 
-  const [tagList, setTagList] = useState([
-    "Arepa",
-    "Sancocho",
-    "Bandeja",
-    "Medellín",
-  ]);
+  const [tagList, setTagList] = useState([]);
   const [memoryPhotoList, setMemoryPhotoList] = useState([]);
-  const [authorizedEmailList, setAuthorizedEmailList] = useState([
-    "juan.cardona@gmail.com",
-    "laura.monsale@udea.edu.co",
-    "otro@gmail.com",
-  ]);
+  const [authorizedEmailList, setAuthorizedEmailList] = useState([]);
   const [visualizationList, setVisualizationList] = useState([]);
-
-  const dispatch = useDispatch();
 
   const {
     id,
@@ -137,13 +126,25 @@ const MemoryActualizationForm = () => {
     setWarningColor("yellow");
   };
 
+  useEffect(() => {
+    if (activeMemoryToUpdate) {
+      resetForm(getInitialFormValuesForUpdating(activeMemoryToUpdate));
+      setTagList(activeMemoryToUpdate.tagList || []);
+      setMemoryPhotoList(getInitialFormValuesForUpdating.memoryPhotoList || []);
+      setAuthorizedEmailList(activeMemoryToUpdate.authorizedEmailList || []);
+      setVisualizationList(activeMemoryToUpdate.visualizationList || []);
+    } else {
+      resetForm(formInitialValues);
+    }
+  }, []);
+
   return (
     <div className="memory-form__main-container">
       <div className="memory-form__header-info">
         <div className="memory-form__id-container">
           <b className="memory-form__id-label">Identificador</b>
           <div className="memory-form__id-content">
-            <b className="memory-form__id-value">{id || newMemoryId}</b>
+            <b className="memory-form__id-value">{id}</b>
             <button className="memory-form__id-copy-button">
               <i className="fas fa-copy memory-form__id-copy"></i>
             </button>
