@@ -1,6 +1,7 @@
 import { urlBase } from "../environments/enviroment";
 import types from "../types/types";
 import { startLoading, finishLoading } from "./uiActions";
+import { v4 as uuidv4 } from "uuid";
 
 export const activeMemoryToShow = (memoryId, memory) => ({
   type: types.setActiveMemoryToShow,
@@ -339,8 +340,26 @@ export const startFetchMemoryAllImages = async (memoryId, visibility) => {
   }
 };
 
-//Verificar que no exista un recuerdo con el mismo Id y con otra visibilidad, si es así, actualizarla
-const saveOrUpdateMemory = async (memoryInfo, visibility) => {
+const getVisibility = (memoryInfo) => {
+  if (memoryInfo.visibility === "privado") {
+    return "private";
+  } else if (memoryInfo.visibility === "publico") {
+    return "public";
+  } else {
+    return "protected";
+  }
+};
+
+export const startSaveOrUpdateMemory = async (memoryInfo, uid) => {
+  memoryInfo.creatorId = uid;
+  if (memoryInfo.id === "") {
+    memoryInfo.id = uuidv4();
+  }
+  memoryInfo.location = {
+    country: memoryInfo.country,
+    city: memoryInfo.city,
+  };
+  const visibility = getVisibility(memoryInfo);
   try {
     const response = await fetch(`${urlBase}/post/${visibility}-memory`, {
       method: "POST",
@@ -353,28 +372,6 @@ const saveOrUpdateMemory = async (memoryInfo, visibility) => {
       return await response.json();
     } else {
       throw await response.json();
-    }
-  } catch (err) {
-    throw err;
-  }
-};
-
-export const startSaveOrUpdateMemory = async (memoryInfo, uid) => {
-  memoryInfo.creatorId = uid;
-  memoryInfo.id = "1234";
-  memoryInfo.location = {
-    country: memoryInfo.country,
-    city: memoryInfo.city,
-  };
-  console.log("holaaaaaa siguiente es el enviado:");
-  console.log(memoryInfo);
-  try {
-    if (memoryInfo.visibility === "privado") {
-      return await saveOrUpdateMemory(memoryInfo, "private");
-    } else if (memoryInfo.visibility === "publico") {
-      return await saveOrUpdateMemory(memoryInfo, "public");
-    } else {
-      return await saveOrUpdateMemory(memoryInfo, "protected");
     }
   } catch (err) {
     throw err;
