@@ -157,12 +157,14 @@ const ProtectedMemoryEntry = ({
             </div>
             <div className="memory-catalog__memory-entry-details-view-count">
               <i class="fas fa-unlock memory-catalog__icon-fav-memory"></i>
-              <h5>{authorizedIdList.length} autorizados</h5>
+              <h5>
+                {authorizedIdList?.length || "No hay usuarios"} autorizados
+              </h5>
             </div>
           </div>
         </div>
 
-        {!auth.uid === creatorId ? (
+        {auth.uid === creatorId ? (
           <button
             className="memory-catalog__delete-memory-button"
             onClick={handleDeleteMemory}

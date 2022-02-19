@@ -48,11 +48,6 @@ export const countMemoryView = (memoryId, memories) => ({
 const fetchAllUserMemories = (allUserMemories) => ({
   type: types.fetchAllUserMemories,
   payload: allUserMemories,
-  /*{
-      publicMemories: [{},{},{},...,{}],
-      protectedMemories: [{},{},{},...,{}],
-      privateMemories: [{},{},{},...,{}],
-    */
 });
 
 const fetchAllUserPublicMemories = (allUserPublicMemories) => ({
@@ -149,10 +144,21 @@ export const startFetchAndShowRandomMemory = () => {
 export const startFetchAllUserMemories = (userId) => {
   return async (dispatch) => {
     try {
-      const response = await fetch(`${urlBase}/get/all-memories/${userId}`);
+      const response = await fetch(`${urlBase}/get/all-memories/${userId}`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
       if (response.ok) {
         const allUserMemories = await response.json();
-        dispatch(fetchAllUserMemories(allUserMemories));
+        const { publicMemories, privateMemories, protectedMemories } =
+          allUserMemories;
+        dispatch(
+          fetchAllUserMemories([
+            ...publicMemories,
+            ...privateMemories,
+            ...protectedMemories,
+          ])
+        );
       } else {
         throw await response.json();
       }
