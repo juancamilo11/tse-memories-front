@@ -2,7 +2,6 @@ import types from "../types/types";
 import app from "../firebase/firebaseConfig";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { finishLoading, startLoading } from "./uiActions";
-import startSaveUserIfNotExists from "./userActions";
 import { urlBase } from "../environments/enviroment";
 const auth = getAuth();
 const provider = new GoogleAuthProvider();

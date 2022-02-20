@@ -122,10 +122,14 @@ const fetchAllMemoriesByNameOrTagname = (allMemoriesByNameOrTagname) => ({
 export const startFetchAndShowRandomMemory = () => {
   return async (dispatch) => {
     try {
-      const response = await fetch(`${urlBase}/get/random-public-memory`);
+      const response = await fetch(`${urlBase}/get/public-memory/random`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
       if (response.ok) {
         const publicRandomMemory = await response.json();
         const { memoryId } = publicRandomMemory;
+        window.alert(JSON.stringify(publicRandomMemory));
         dispatch(activeMemoryToShow(memoryId, publicRandomMemory));
       } else {
         throw await response.json();
