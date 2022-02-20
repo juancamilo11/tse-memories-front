@@ -27,6 +27,7 @@ import {
   activeMemoryToShow,
   startSaveOrUpdateMemory,
 } from "../../actions/memoryActions";
+import { useDispatch } from "react-redux";
 
 const MemoryActualizationForm = () => {
   const { email, uid } = useSelector((state) => state.auth);
@@ -36,7 +37,7 @@ const MemoryActualizationForm = () => {
   const { activeMemoryToUpdate /*activeEmptyFormForNewMemory*/ } = useSelector(
     (state) => state.memories
   );
-
+  const dispatch = useDispatch();
   const [tagList, setTagList] = useState([]);
   const [memoryPhotoList, setMemoryPhotoList] = useState([]);
   const [authorizedEmailList, setAuthorizedEmailList] = useState([]);
@@ -88,7 +89,7 @@ const MemoryActualizationForm = () => {
       e,
       setErrorsState,
       email, //To build the cloudinary folder target
-      activeMemoryToUpdate.memoryId //To build the cloudinary folder target
+      activeMemoryToUpdate?.memoryId //To build the cloudinary folder target
     );
   };
 
@@ -109,13 +110,12 @@ const MemoryActualizationForm = () => {
     startSaveOrUpdateMemory(memoryInfo, uid)
       .then((updatedMemory) => {
         sweetalertForMemorySuccessfullyCreatedOrUpdateBuilder();
-        dispatchEvent(
-          activeMemoryToShow(updatedMemory.memoryId, updatedMemory)
-        );
+        console.log(updatedMemory);
+        dispatch(activeMemoryToShow(updatedMemory.memoryId, updatedMemory));
       })
       .catch((err) => {
         sweetalertForGenericErrorBuilder(
-          "Error en la creación/actualización del recuerdo"
+          "Error en la creación/actualización del recuerdo" + err
         );
       });
   };
@@ -138,7 +138,7 @@ const MemoryActualizationForm = () => {
     if (activeMemoryToUpdate) {
       resetForm(getInitialFormValuesForUpdating(activeMemoryToUpdate));
       setTagList(activeMemoryToUpdate.tagList || []);
-      setMemoryPhotoList(getInitialFormValuesForUpdating.memoryPhotoList || []);
+      setMemoryPhotoList(activeMemoryToUpdate.memoryPhotoList || []);
       setAuthorizedEmailList(activeMemoryToUpdate.authorizedEmailList || []);
       setVisualizationList(activeMemoryToUpdate.visualizationList || []);
     } else {

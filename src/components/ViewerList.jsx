@@ -1,13 +1,16 @@
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
+import { fetchViewersData } from "../actions/userActions";
 
 const MAX_VIEWER_RECORDS = 10;
 
-const ViewerList = ({ viewerList }) => {
+const ViewerList = ({ visualizationList }) => {
   const [recordsRange, setRecordsRange] = useState({
     min: 0,
     max: MAX_VIEWER_RECORDS,
   });
+  const [viewersInfo, setViewersInfo] = useState([]);
 
   const { min, max } = recordsRange;
 
@@ -27,25 +30,38 @@ const ViewerList = ({ viewerList }) => {
     });
   };
 
+  useEffect(() => {
+    fetchViewersData(
+      visualizationList.map((visualization) => visualization.userId)
+    ).then((userList) => {
+      setViewersInfo(userList);
+    });
+  }, [visualizationList]);
+
   return (
     <section>
       <h3 className="viewer-list__main-container text-center">
         La lista de usuarios que han visto este recuerdo
       </h3>
       <div className="viewer-list__viewers-container">
-        {viewerList.slice(min, max).map((viewer) => (
+        {viewersInfo.slice(min, max).map((viewer) => (
           <div className="viewer-list__viewer">
             <div className="viewer-list__viewer-profile-photo">
               <img
-                src={viewer.urlPhoto}
+                src={viewer.urlProfilePhoto}
                 className="viewer-list__viewer-profile-photo"
+                alt="viewer Google pic"
               />
             </div>
             <div className="">
-              <p src={viewer.urlPhoto}>{viewer.name}</p>
+              <p>{viewer.name}</p>
             </div>
             <div className="">
-              <p className="">{viewer.visualizationDate}</p>
+              <p className="">
+                {visualizationList.find(
+                  (visualization) => visualization.userId === viewer.id
+                ).visualizationDate || "Sin fecha"}
+              </p>
             </div>
           </div>
         ))}
@@ -61,7 +77,7 @@ const ViewerList = ({ viewerList }) => {
         <button
           className="viewer-list__pagination-button"
           onClick={handleNextResults}
-          disabled={max >= viewerList.length}
+          disabled={max >= viewersInfo.length}
         >
           Siguiente
         </button>

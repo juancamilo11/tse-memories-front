@@ -1,6 +1,5 @@
 import { uploadFileToCloudinary } from "../../actions/cloudinaryActions";
 import validator from "validator";
-import { v4 as uuidv4 } from "uuid";
 
 const getLocalDate = () => {
   return new Date().toISOString().split("T")[0];
@@ -8,17 +7,17 @@ const getLocalDate = () => {
 
 //Initial values for the section #1 form of the store setup.
 export const formInitialValues = {
-  id: uuidv4(),
-  name: "",
-  memoryDate: "",
+  id: "",
+  name: "Viaje a Francia",
+  memoryDate: "2020-03-01",
   creationDate: getLocalDate(),
-  visibility: "",
+  visibility: "privado",
   tag: "",
-  memoryPhotoText: "",
+  memoryPhotoText: "Viaje a París",
   memoryPhotoImg: "",
-  memoryPhotoDescription: "",
-  country: "",
-  city: "",
+  memoryPhotoDescription: "Este es el viaje a París",
+  country: "Francia",
+  city: "París",
   authorizedEmail: "",
 };
 

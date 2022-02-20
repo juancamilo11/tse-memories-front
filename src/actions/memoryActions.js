@@ -1,6 +1,7 @@
 import { urlBase } from "../environments/enviroment";
 import types from "../types/types";
 import { startLoading, finishLoading } from "./uiActions";
+import { v4 as uuidv4 } from "uuid";
 
 export const activeMemoryToShow = (memoryId, memory) => ({
   type: types.setActiveMemoryToShow,
@@ -39,19 +40,9 @@ export const deleteMemory = (memoryId, memories) => ({
   payload: { memoryId, memories },
 });
 
-export const countMemoryView = (memoryId, memories) => ({
-  type: types.registerMemoryView,
-  payload: memoryId,
-});
-
 const fetchAllUserMemories = (allUserMemories) => ({
   type: types.fetchAllUserMemories,
   payload: allUserMemories,
-  /*{
-      publicMemories: [{},{},{},...,{}],
-      protectedMemories: [{},{},{},...,{}],
-      privateMemories: [{},{},{},...,{}],
-    */
 });
 
 const fetchAllUserPublicMemories = (allUserPublicMemories) => ({
@@ -145,13 +136,25 @@ export const startFetchAndShowRandomMemory = () => {
   };
 };
 
+//En uso
 export const startFetchAllUserMemories = (userId) => {
   return async (dispatch) => {
     try {
-      const response = await fetch(`${urlBase}/get/all-memories/${userId}`);
+      const response = await fetch(`${urlBase}/get/all-memories/${userId}`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
       if (response.ok) {
         const allUserMemories = await response.json();
-        dispatch(fetchAllUserMemories(allUserMemories));
+        const { publicMemories, privateMemories, protectedMemories } =
+          allUserMemories;
+        dispatch(
+          fetchAllUserMemories([
+            ...publicMemories,
+            ...privateMemories,
+            ...protectedMemories,
+          ])
+        );
       } else {
         throw await response.json();
       }
@@ -161,6 +164,7 @@ export const startFetchAllUserMemories = (userId) => {
   };
 };
 
+//En uso
 export const startFetchAllUserPublicMemories = (userId) => {
   return async (dispatch) => {
     try {
@@ -177,6 +181,7 @@ export const startFetchAllUserPublicMemories = (userId) => {
   };
 };
 
+//En uso
 export const startFetchAllUserProtectedMemories = (userId) => {
   return async (dispatch) => {
     try {
@@ -195,6 +200,7 @@ export const startFetchAllUserProtectedMemories = (userId) => {
   };
 };
 
+//En uso
 export const startFetchAllUserPrivateMemories = (userId) => {
   return async (dispatch) => {
     try {
@@ -211,6 +217,7 @@ export const startFetchAllUserPrivateMemories = (userId) => {
   };
 };
 
+//En uso
 export const startFetchAllMemoriesSharedWithTheCurrentUser = (userId) => {
   return async (dispatch) => {
     try {
@@ -271,26 +278,22 @@ const getCurrentDate = () => {
   return new Date().toISOString().split("T")[0];
 };
 
-export const startCountMemoryView = (
-  memoryId,
-  userId,
-  visibility,
-  memories
-) => {
+export const startCountMemoryView = (memoryId, userId, visibility) => {
+  console.log({ userId, memoryId });
   return async (dispatch) => {
     try {
       const response = await fetch(
-        `${urlBase}/put/${visibility}-memory/count-view/${memoryId}`,
+        `${urlBase}/put/${getVisibility(
+          visibility
+        )}-memory/count-view/${memoryId}`,
         {
           method: "PUT",
-          body: JSON.stringify({
-            userId,
-            visualizationDate: getCurrentDate(),
-          }),
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ userId, visualizationDate: getCurrentDate() }),
         }
       );
       if (response.ok) {
-        dispatch(countMemoryView(memoryId, memories));
+        return await response.json();
       } else {
         throw await response.json();
       }
@@ -339,8 +342,26 @@ export const startFetchMemoryAllImages = async (memoryId, visibility) => {
   }
 };
 
-//Verificar que no exista un recuerdo con el mismo Id y con otra visibilidad, si es así, actualizarla
-const saveOrUpdateMemory = async (memoryInfo, visibility) => {
+const getVisibility = (visibility) => {
+  if (visibility === "privado") {
+    return "private";
+  } else if (visibility === "publico") {
+    return "public";
+  } else {
+    return "protected";
+  }
+};
+
+export const startSaveOrUpdateMemory = async (memoryInfo, uid) => {
+  memoryInfo.creatorId = uid;
+  if (memoryInfo.id === "") {
+    memoryInfo.id = uuidv4();
+  }
+  memoryInfo.location = {
+    country: memoryInfo.country,
+    city: memoryInfo.city,
+  };
+  const visibility = getVisibility(memoryInfo.visibility);
   try {
     const response = await fetch(`${urlBase}/post/${visibility}-memory`, {
       method: "POST",
@@ -353,28 +374,6 @@ const saveOrUpdateMemory = async (memoryInfo, visibility) => {
       return await response.json();
     } else {
       throw await response.json();
-    }
-  } catch (err) {
-    throw err;
-  }
-};
-
-export const startSaveOrUpdateMemory = async (memoryInfo, uid) => {
-  memoryInfo.creatorId = uid;
-  memoryInfo.id = "1234";
-  memoryInfo.location = {
-    country: memoryInfo.country,
-    city: memoryInfo.city,
-  };
-  console.log("holaaaaaa siguiente es el enviado:");
-  console.log(memoryInfo);
-  try {
-    if (memoryInfo.visibility === "privado") {
-      return await saveOrUpdateMemory(memoryInfo, "private");
-    } else if (memoryInfo.visibility === "publico") {
-      return await saveOrUpdateMemory(memoryInfo, "public");
-    } else {
-      return await saveOrUpdateMemory(memoryInfo, "protected");
     }
   } catch (err) {
     throw err;

@@ -22,7 +22,7 @@ const PublicMemoryEntry = ({
   memoryPhotoList,
   location,
   isAFavorite, // No implemented yet
-  viewsCount,
+  visualizationList,
 }) => {
   const dispatch = useDispatch();
   const { memories, auth } = useSelector((state) => state);
@@ -42,7 +42,7 @@ const PublicMemoryEntry = ({
         memoryPhotoList,
         location,
         isAFavorite,
-        viewsCount,
+        visualizationList,
       })
     );
   };
@@ -60,7 +60,7 @@ const PublicMemoryEntry = ({
         memoryPhotoList,
         location,
         isAFavorite,
-        viewsCount,
+        visualizationList,
       })
     );
   };
@@ -153,7 +153,7 @@ const PublicMemoryEntry = ({
             </div>
             <div className="memory-catalog__memory-entry-details-view-count">
               <i class="fas fa-eye memory-catalog__icon-fav-memory"></i>
-              <h5>{viewsCount} visitas</h5>
+              <h5>{visualizationList.length} visitas</h5>
             </div>
           </div>
         </div>

@@ -10,7 +10,7 @@ import {
   startFetchAndShowRandomMemory,
   startFetchMemoryAllImages,
 } from "../../actions/memoryActions";
-import { startFetchMemoryOwnerInfoByMemoryId } from "../../actions/userActions";
+import { startFetchUserById } from "../../actions/userActions";
 import MemoryImagesList from "../../components/MemoryImagesList";
 import ViewerList from "../../components/ViewerList";
 import {
@@ -37,62 +37,13 @@ const viewerList = [
       "https://lh3.googleusercontent.com/a-/AOh14GjnkTKE1MwBx1jBXLj6SCsCSUANvgmn28L0yh31wg=s96-c-rg-br100",
     visualizationDate: "2022-02-04",
   },
-  {
-    name: "Pepito andres perez marin",
-    urlPhoto:
-      "https://lh3.googleusercontent.com/a-/AOh14GjnkTKE1MwBx1jBXLj6SCsCSUANvgmn28L0yh31wg=s96-c-rg-br100",
-    visualizationDate: "2022-02-04",
-  },
-  {
-    name: "Maria camila Carodna Villada",
-    urlPhoto:
-      "https://lh3.googleusercontent.com/a-/AOh14GjnkTKE1MwBx1jBXLj6SCsCSUANvgmn28L0yh31wg=s96-c-rg-br100",
-    visualizationDate: "2022-02-04",
-  },
-  {
-    name: "Maria camila Carodna Villada",
-    urlPhoto:
-      "https://lh3.googleusercontent.com/a-/AOh14GjnkTKE1MwBx1jBXLj6SCsCSUANvgmn28L0yh31wg=s96-c-rg-br100",
-    visualizationDate: "2022-02-04",
-  },
-  {
-    name: "Maria camila Carodna Villada",
-    urlPhoto:
-      "https://lh3.googleusercontent.com/a-/AOh14GjnkTKE1MwBx1jBXLj6SCsCSUANvgmn28L0yh31wg=s96-c-rg-br100",
-    visualizationDate: "2022-02-04",
-  },
-  {
-    name: "Maria camila Carodna Villada",
-    urlPhoto:
-      "https://lh3.googleusercontent.com/a-/AOh14GjnkTKE1MwBx1jBXLj6SCsCSUANvgmn28L0yh31wg=s96-c-rg-br100",
-    visualizationDate: "2022-02-04",
-  },
-  {
-    name: "Maria camila Carodna Villada",
-    urlPhoto:
-      "https://lh3.googleusercontent.com/a-/AOh14GjnkTKE1MwBx1jBXLj6SCsCSUANvgmn28L0yh31wg=s96-c-rg-br100",
-    visualizationDate: "2022-02-04",
-  },
-  {
-    name: "Maria camila Carodna Villada",
-    urlPhoto:
-      "https://lh3.googleusercontent.com/a-/AOh14GjnkTKE1MwBx1jBXLj6SCsCSUANvgmn28L0yh31wg=s96-c-rg-br100",
-    visualizationDate: "2022-02-04",
-  },
-  {
-    name: "Maria camila Carodna Villada",
-    urlPhoto:
-      "https://lh3.googleusercontent.com/a-/AOh14GjnkTKE1MwBx1jBXLj6SCsCSUANvgmn28L0yh31wg=s96-c-rg-br100",
-    visualizationDate: "2022-02-04",
-  },
 ];
 
 const MemoryView = () => {
-  const { userId } = useSelector((state) => state.auth);
+  const { uid: userId } = useSelector((state) => state.auth);
   const { activeMemoryToShow, memoriesList } = useSelector(
     (state) => state.memories
   );
-  const { memories } = useSelector((state) => state);
 
   const [viewerListStatus, setViewerListStatus] = useState({
     viewerList: [],
@@ -102,14 +53,18 @@ const MemoryView = () => {
   const { showViewerList } = viewerListStatus;
 
   const {
-    id: memoryId,
+    memoryId,
     name,
-    creatorId, //Utilizar este campo para traer la data del usuario
+    creatorId,
     visibility,
     location,
     tagList,
     memoryDate,
     memoryPhotoList,
+    //creationDate,
+    //isAFavorite, //Not implemented yet
+    //authorizedIdList,
+    visualizationList,
   } = activeMemoryToShow;
 
   const [ownerInfo, setOwnerInfo] = useState(null);
@@ -117,7 +72,7 @@ const MemoryView = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    startFetchMemoryOwnerInfoByMemoryId(memoryId)
+    startFetchUserById(creatorId)
       .then((ownerInfoResponse) => {
         setOwnerInfo(ownerInfoResponse);
         dispatch(
@@ -127,7 +82,7 @@ const MemoryView = () => {
       .catch((err) => {
         //window.alert("No hay comunicación con el server");
       });
-  }, []);
+  }, [dispatch, memoriesList, memoryId, userId, visibility, creatorId]);
 
   const handleShowViewers = (e) => {
     e.preventDefault();
@@ -170,7 +125,7 @@ const MemoryView = () => {
             >
               <i className="fas fa-eye memory-view__header-view-count-icon"></i>
               <span>
-                <b>{activeMemoryToShow.viewsCount}</b> vistas{" "}
+                <b>{activeMemoryToShow.visualizationList.length}</b> vistas{" "}
                 {showViewerList ? "(Ocultar)" : "(Mostrar)"}
               </span>
             </button>
@@ -210,11 +165,11 @@ const MemoryView = () => {
       <div className="memory-view__description-section">
         <img
           src={
-            ownerInfo?.photoUrl ||
+            ownerInfo?.urlProfilePhoto ||
             "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp"
           }
           className="memory-view__user-photo"
-          alt="Profile photo"
+          alt="Profile pic"
         />
         <h4 className="memory-view__description-content">
           {ownerInfo?.name || "Nombre Usuario"} estuvo en {location.city},{" "}
@@ -230,7 +185,9 @@ const MemoryView = () => {
       <div className="memory-view__images-list-section">
         <MemoryImagesList memoryImages={memoryPhotoList} />
       </div>
-      {showViewerList && <ViewerList viewerList={viewerList || []} />}
+      {showViewerList && (
+        <ViewerList visualizationList={visualizationList || []} />
+      )}
     </div>
   );
 };

@@ -23,6 +23,7 @@ const ProtectedMemoryEntry = ({
   location,
   isAFavorite, // No implemented yet
   authorizedIdList,
+  visualizationList,
 }) => {
   const dispatch = useDispatch();
   const { memories, auth } = useSelector((state) => state);
@@ -43,6 +44,7 @@ const ProtectedMemoryEntry = ({
         location,
         isAFavorite,
         authorizedIdList,
+        visualizationList,
       })
     );
   };
@@ -61,6 +63,7 @@ const ProtectedMemoryEntry = ({
         location,
         isAFavorite,
         authorizedIdList,
+        visualizationList,
       })
     );
   };
@@ -89,8 +92,10 @@ const ProtectedMemoryEntry = ({
         className="memory-catalog__memory-entry-picture"
         style={{
           backgroundSize: "cover",
-          backgroundImage: `url(${memoryPhotoList[0].urlPhoto})`,
-          backgroundImage: `url(https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp)`,
+          backgroundImage: `url(${
+            memoryPhotoList[0]?.urlPhoto ||
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp"
+          })`,
         }}
       ></div>
 
@@ -157,12 +162,14 @@ const ProtectedMemoryEntry = ({
             </div>
             <div className="memory-catalog__memory-entry-details-view-count">
               <i class="fas fa-unlock memory-catalog__icon-fav-memory"></i>
-              <h5>{authorizedIdList.length} autorizados</h5>
+              <h5>
+                {authorizedIdList?.length || "No hay usuarios"} autorizados
+              </h5>
             </div>
           </div>
         </div>
 
-        {!auth.uid === creatorId ? (
+        {auth.uid === creatorId ? (
           <button
             className="memory-catalog__delete-memory-button"
             onClick={handleDeleteMemory}
