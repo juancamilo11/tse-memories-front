@@ -164,6 +164,7 @@ export const startFetchAllUserMemories = (userId) => {
   };
 };
 
+//En uso
 export const startFetchAllUserPublicMemories = (userId) => {
   return async (dispatch) => {
     try {
@@ -180,6 +181,7 @@ export const startFetchAllUserPublicMemories = (userId) => {
   };
 };
 
+//En uso
 export const startFetchAllUserProtectedMemories = (userId) => {
   return async (dispatch) => {
     try {
@@ -198,6 +200,7 @@ export const startFetchAllUserProtectedMemories = (userId) => {
   };
 };
 
+//En uso
 export const startFetchAllUserPrivateMemories = (userId) => {
   return async (dispatch) => {
     try {
@@ -214,6 +217,7 @@ export const startFetchAllUserPrivateMemories = (userId) => {
   };
 };
 
+//En uso
 export const startFetchAllMemoriesSharedWithTheCurrentUser = (userId) => {
   return async (dispatch) => {
     try {

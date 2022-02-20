@@ -55,15 +55,15 @@ const MemoryView = () => {
   const {
     memoryId,
     name,
-    creatorId, //Utilizar este campo para traer la data del usuario
+    creatorId,
     visibility,
     location,
     tagList,
     memoryDate,
     memoryPhotoList,
-    creationDate,
-    isAFavorite,
-    authorizedIdList,
+    //creationDate,
+    //isAFavorite, //Not implemented yet
+    //authorizedIdList,
     visualizationList,
   } = activeMemoryToShow;
 
@@ -82,7 +82,7 @@ const MemoryView = () => {
       .catch((err) => {
         //window.alert("No hay comunicación con el server");
       });
-  }, [dispatch, memoriesList, memoryId, userId, visibility]);
+  }, [dispatch, memoriesList, memoryId, userId, visibility, creatorId]);
 
   const handleShowViewers = (e) => {
     e.preventDefault();
