@@ -33,9 +33,29 @@ export const startFetchUserInfoById = async (userId) => {
   }
 };
 
-export const startFetchMemoryOwnerInfoByMemoryId = async (creatorId) => {
+export const startFetchUserById = async (userId) => {
   try {
-    const response = await fetch(`${urlBase}/get/user-owner/${creatorId}`);
+    const response = await fetch(`${urlBase}/get/user/${userId}`, {
+      method: "GET",
+    });
+    if (response.ok) {
+      return await response.json();
+    } else {
+      throw await response.json();
+    }
+  } catch (err) {
+    throw err;
+  }
+};
+
+//userIdList es una lista de Id's de usuario
+export const fetchViewersData = async (userIdList) => {
+  try {
+    const response = await fetch(`${urlBase}/get/users-list`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userIdList),
+    });
     if (response.ok) {
       return await response.json();
     } else {

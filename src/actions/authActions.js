@@ -25,7 +25,6 @@ export const startGoogleLogin = () => {
     try {
       const firebaseResponse = await signInWithPopup(auth, provider);
       const { uid, displayName, email, photoURL } = firebaseResponse.user;
-      dispatch(login(uid, displayName, email, photoURL));
 
       const herokuResponse = await fetch(`${urlBase}/post/user`, {
         method: "POST",
@@ -39,8 +38,9 @@ export const startGoogleLogin = () => {
           urlProfilePhoto: photoURL,
         }),
       });
-
       const userData = await herokuResponse.json();
+
+      dispatch(login(uid, displayName, email, photoURL));
 
       dispatch(finishLoading());
       console.log(userData);

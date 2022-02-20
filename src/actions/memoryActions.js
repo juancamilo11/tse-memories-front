@@ -40,11 +40,6 @@ export const deleteMemory = (memoryId, memories) => ({
   payload: { memoryId, memories },
 });
 
-export const countMemoryView = (memoryId, memories) => ({
-  type: types.registerMemoryView,
-  payload: memoryId,
-});
-
 const fetchAllUserMemories = (allUserMemories) => ({
   type: types.fetchAllUserMemories,
   payload: allUserMemories,
@@ -278,26 +273,22 @@ const getCurrentDate = () => {
   return new Date().toISOString().split("T")[0];
 };
 
-export const startCountMemoryView = (
-  memoryId,
-  userId,
-  visibility,
-  memories
-) => {
+export const startCountMemoryView = (memoryId, userId, visibility) => {
+  console.log({ userId, memoryId });
   return async (dispatch) => {
     try {
       const response = await fetch(
-        `${urlBase}/put/${visibility}-memory/count-view/${memoryId}`,
+        `${urlBase}/put/${getVisibility(
+          visibility
+        )}-memory/count-view/${memoryId}`,
         {
           method: "PUT",
-          body: JSON.stringify({
-            userId,
-            visualizationDate: getCurrentDate(),
-          }),
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ userId, visualizationDate: getCurrentDate() }),
         }
       );
       if (response.ok) {
-        dispatch(countMemoryView(memoryId, memories));
+        return await response.json();
       } else {
         throw await response.json();
       }
@@ -346,10 +337,10 @@ export const startFetchMemoryAllImages = async (memoryId, visibility) => {
   }
 };
 
-const getVisibility = (memoryInfo) => {
-  if (memoryInfo.visibility === "privado") {
+const getVisibility = (visibility) => {
+  if (visibility === "privado") {
     return "private";
-  } else if (memoryInfo.visibility === "publico") {
+  } else if (visibility === "publico") {
     return "public";
   } else {
     return "protected";
@@ -365,7 +356,7 @@ export const startSaveOrUpdateMemory = async (memoryInfo, uid) => {
     country: memoryInfo.country,
     city: memoryInfo.city,
   };
-  const visibility = getVisibility(memoryInfo);
+  const visibility = getVisibility(memoryInfo.visibility);
   try {
     const response = await fetch(`${urlBase}/post/${visibility}-memory`, {
       method: "POST",

@@ -138,7 +138,7 @@ const MemoryActualizationForm = () => {
     if (activeMemoryToUpdate) {
       resetForm(getInitialFormValuesForUpdating(activeMemoryToUpdate));
       setTagList(activeMemoryToUpdate.tagList || []);
-      setMemoryPhotoList(getInitialFormValuesForUpdating.memoryPhotoList || []);
+      setMemoryPhotoList(activeMemoryToUpdate.memoryPhotoList || []);
       setAuthorizedEmailList(activeMemoryToUpdate.authorizedEmailList || []);
       setVisualizationList(activeMemoryToUpdate.visualizationList || []);
     } else {
