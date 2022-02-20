@@ -113,6 +113,7 @@ const MemorySearchPanel = () => {
               type="text"
               name="email"
               id="email"
+              placeholder="Ingrese el email del usuario"
               onChange={handleInputChange}
               className="search-panel__input"
             />
@@ -136,6 +137,7 @@ const MemorySearchPanel = () => {
               type="text"
               name="nameOrTag"
               id="nameOrTag"
+              placeholder="Ingrese el nombre o la etiqueta del recuerdo"
               onChange={handleInputChange}
               className="search-panel__input"
             />

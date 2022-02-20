@@ -136,6 +136,7 @@ export const startFetchAndShowRandomMemory = () => {
   };
 };
 
+//En uso
 export const startFetchAllUserMemories = (userId) => {
   return async (dispatch) => {
     try {

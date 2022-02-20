@@ -31,7 +31,9 @@ const ViewerList = ({ visualizationList }) => {
   };
 
   useEffect(() => {
-    fetchViewersData(visualizationList).then((userList) => {
+    fetchViewersData(
+      visualizationList.map((visualization) => visualization.userId)
+    ).then((userList) => {
       setViewersInfo(userList);
     });
   }, [visualizationList]);
@@ -46,16 +48,20 @@ const ViewerList = ({ visualizationList }) => {
           <div className="viewer-list__viewer">
             <div className="viewer-list__viewer-profile-photo">
               <img
-                src={viewer.urlPhoto}
+                src={viewer.urlProfilePhoto}
                 className="viewer-list__viewer-profile-photo"
-                alt="viewer pic"
+                alt="viewer Google pic"
               />
             </div>
             <div className="">
-              <p src={viewer.urlPhoto}>{viewer.name}</p>
+              <p>{viewer.name}</p>
             </div>
             <div className="">
-              <p className="">{viewer.visualizationDate}</p>
+              <p className="">
+                {visualizationList.find(
+                  (visualization) => visualization.userId === viewer.id
+                ).visualizationDate || "Sin fecha"}
+              </p>
             </div>
           </div>
         ))}

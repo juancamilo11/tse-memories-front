@@ -165,7 +165,7 @@ const MemoryView = () => {
       <div className="memory-view__description-section">
         <img
           src={
-            ownerInfo?.photoUrl ||
+            ownerInfo?.urlProfilePhoto ||
             "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp"
           }
           className="memory-view__user-photo"
@@ -185,8 +185,9 @@ const MemoryView = () => {
       <div className="memory-view__images-list-section">
         <MemoryImagesList memoryImages={memoryPhotoList} />
       </div>
-      {JSON.stringify(visualizationList)}
-      {showViewerList && <ViewerList viewerList={visualizationList || []} />}
+      {showViewerList && (
+        <ViewerList visualizationList={visualizationList || []} />
+      )}
     </div>
   );
 };
