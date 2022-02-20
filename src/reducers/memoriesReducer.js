@@ -543,45 +543,39 @@ export const memoriesReducer = (state = initialState, action) => {
     // };
 
     case types.fetchAllUserPublicMemories:
-      const { allUserPublicMemories } = action.payload;
       return {
         ...state,
-        memoriesList: [...allUserPublicMemories],
+        memoriesList: action.payload,
       };
 
     case types.fetchAllUserProtectedMemories:
-      const { allUserProtectedMemories } = action.payload;
       return {
         ...state,
-        memoriesList: [...allUserProtectedMemories],
+        memoriesList: action.payload,
       };
 
     case types.fetchAllUserPrivateMemories:
-      const { allUserPrivateMemories } = action.payload;
       return {
         ...state,
-        memoriesList: [...allUserPrivateMemories],
+        memoriesList: action.payload,
       };
 
     case types.fetchAllMemoriesSharedWithTheUser:
-      const { allMemoriesSharedWithTheUser } = action.payload;
       return {
         ...state,
-        memoriesList: [...allMemoriesSharedWithTheUser],
+        memoriesList: action.payload,
       };
 
     case types.fetchAllSpecificUserMemoriesByEmail:
-      const { allUserPublicMemoriesByEmail } = action.payload;
       return {
         ...state,
-        memoriesList: [...allUserPublicMemoriesByEmail],
+        memoriesList: action.payload,
       };
 
     case types.fetchAllMemoriesByNameOrTagname:
-      const { allMemoriesByNameOrTagname } = action.payload;
       return {
         ...state,
-        memoriesList: [...allMemoriesByNameOrTagname],
+        memoriesList: action.payload,
       };
 
     default:

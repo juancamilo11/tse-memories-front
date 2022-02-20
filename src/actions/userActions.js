@@ -52,7 +52,7 @@ export const startFetchUserById = async (userId) => {
 export const fetchViewersData = async (userIdList) => {
   try {
     const response = await fetch(`${urlBase}/get/users-list`, {
-      method: "GET",
+      method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userIdList),
     });
