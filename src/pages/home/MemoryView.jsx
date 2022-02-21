@@ -75,6 +75,7 @@ const MemoryView = () => {
     startFetchUserById(creatorId)
       .then((ownerInfoResponse) => {
         setOwnerInfo(ownerInfoResponse);
+        if (visibility === "privado") return;
         dispatch(
           startCountMemoryView(memoryId, userId, visibility, memoriesList)
         );
@@ -106,7 +107,8 @@ const MemoryView = () => {
   const handleRandomSearch = (e) => {
     e.preventDefault();
     sweetalertForFetchingMemoriesBuilder();
-    dispatch(startFetchAndShowRandomMemory());
+    //Obtener un recuerdo de forma aleatoria de los que hay cargados en memoria en el front y hacer el dispatch para mostrarlo
+    // dispatch(startFetchAndShowRandomMemory());
   };
 
   const handleGoBack = (e) => {

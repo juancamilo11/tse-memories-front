@@ -33,9 +33,17 @@ const FormMemoryImage = ({
   };
 
   return (
-    <div className="memory-image__card-container" onClick={handleDisplayImage}>
-      <img src={urlPhoto} alt={title} className="memory-image__card-image" />
-
+    <div
+      className="memory-image__card-container"
+      onClick={handleDisplayImage}
+      style={{
+        backgroundSize: "cover",
+        backgroundImage: `url(${
+          urlPhoto ||
+          "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp"
+        })`,
+      }}
+    >
       <p className="memory-image__card-title text-center">
         {title || "Sin título"}
       </p>

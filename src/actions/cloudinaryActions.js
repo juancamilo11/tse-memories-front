@@ -23,7 +23,3 @@ export const uploadFileToCloudinary = async (file, userEmail, memoryId) => {
     throw error;
   }
 };
-
-export const deleteImageFromCloudinary = async (urlImageToDelete) => {
-  //toDo -> Delete image from cloudinary
-};
