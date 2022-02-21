@@ -48,7 +48,7 @@ const ViewerList = ({ visualizationList }) => {
           <div className="viewer-list__viewer">
             <div className="viewer-list__viewer-profile-photo">
               <img
-                src={viewer.urlProfilePhoto}
+                src={`${viewer.urlProfilePhoto}`}
                 className="viewer-list__viewer-profile-photo"
                 alt="viewer Google pic"
               />

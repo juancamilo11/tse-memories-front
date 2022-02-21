@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import {
   activeNothingToShow,
+  activeMemoryToShow as activeTheMemory,
   startCountMemoryView,
   startFetchAndShowRandomMemory,
   startFetchMemoryAllImages,
@@ -106,9 +107,12 @@ const MemoryView = () => {
 
   const handleRandomSearch = (e) => {
     e.preventDefault();
-    sweetalertForFetchingMemoriesBuilder();
     //Obtener un recuerdo de forma aleatoria de los que hay cargados en memoria en el front y hacer el dispatch para mostrarlo
     // dispatch(startFetchAndShowRandomMemory());
+    const randomMemory =
+      memoriesList[Math.floor(Math.random() * memoriesList.length)];
+    dispatch(activeTheMemory(randomMemory.memoryId, randomMemory));
+    sweetalertForFetchingMemoriesBuilder();
   };
 
   const handleGoBack = (e) => {
