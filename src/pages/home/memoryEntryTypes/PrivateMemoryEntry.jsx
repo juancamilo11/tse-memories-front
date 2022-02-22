@@ -67,7 +67,9 @@ const PrivateMemoryEntry = ({
     sweetAlertForMemoryDeleteConfirmationBuilder(name, creationDate).then(
       (res) => {
         if (res.isConfirmed) {
-          dispatch(startDeleteMemory(id, memories));
+          dispatch(
+            startDeleteMemory(auth.uid, id, visibility, memories.memoriesList)
+          );
         }
       }
     );

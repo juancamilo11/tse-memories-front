@@ -1,5 +1,6 @@
 .memory-view__main-container {
   width: 55%;
+  min-width: 600px;
   height: 100vh;
   overflow-y: scroll;
 }
@@ -14,7 +15,7 @@
 
 .memory-view__header-view-count-button {
   margin-top: 20px;
-  margin-left: 40px;
+  margin-left: 10px;
   padding: 7px 10px;
 }
 .memory-view__header-view-count-icon {
@@ -23,11 +24,11 @@
 
 .memory-view__buttons-section {
   margin-top: 20px;
-  margin-right: 40px;
+  margin-right: 10px;
 }
 
 .memory-view__random-search-button {
-  margin-right: 30px;
+  margin-right: 10px;
 }
 
 .memory-view__random-search-button,

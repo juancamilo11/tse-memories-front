@@ -60,7 +60,7 @@ const ViewerList = ({ visualizationList }) => {
               <p className="">
                 {visualizationList.find(
                   (visualization) => visualization.userId === viewer.id
-                ).visualizationDate || "Sin fecha"}
+                )?.visualizationDate || "Sin fecha"}
               </p>
             </div>
           </div>
