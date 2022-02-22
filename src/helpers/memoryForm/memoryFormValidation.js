@@ -8,16 +8,16 @@ const getLocalDate = () => {
 //Initial values for the section #1 form of the store setup.
 export const formInitialValues = {
   id: "",
-  name: "Viaje a Francia",
-  memoryDate: "2020-03-01",
+  name: "",
+  memoryDate: "",
   creationDate: getLocalDate(),
-  visibility: "privado",
+  visibility: "",
   tag: "",
-  memoryPhotoText: "Viaje a París",
+  memoryPhotoText: "",
   memoryPhotoImg: "",
-  memoryPhotoDescription: "Este es el viaje a París",
-  country: "Francia",
-  city: "París",
+  memoryPhotoDescription: "",
+  country: "",
+  city: "",
   authorizedEmail: "",
 };
 

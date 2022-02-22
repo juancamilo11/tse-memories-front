@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import {
   activeMemoryToShow,
   activeMemoryToUpdate,
-  modifyMemoryToUpdate,
   startDeleteMemory,
 } from "../../../actions/memoryActions";
 import { sweetAlertForMemoryDeleteConfirmationBuilder } from "../../../helpers/sweetAlertBuilder";

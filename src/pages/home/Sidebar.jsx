@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
 import { startLogout } from "../../actions/authActions";
 import { activeSearchPanel } from "../../actions/memoryActions";
 import MemoryEntries from "./MemoryEntries";

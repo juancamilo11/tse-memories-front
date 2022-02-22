@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import {
   activeMemoryToShow,
   activeMemoryToUpdate,
-  modifyMemoryToUpdate,
   startDeleteMemory,
 } from "../../../actions/memoryActions";
 import { sweetAlertForMemoryDeleteConfirmationBuilder } from "../../../helpers/sweetAlertBuilder";
@@ -176,14 +175,6 @@ const PublicMemoryEntry = ({
             className="fas fa-users"
             title="Este recuerdo público y cualquier persona en el mundo puede verlo"
           ></i>
-          {/* <i
-            className="fas fa-key"
-            title="Este recuerdo es protegido, lo cual significa que el creador te dió permiso de verlo"
-          ></i> */}
-          {/* <i
-            className="fas fa-lock"
-            title="Este recuerdo es privado, lo cual significa que sólo tú puedes verlo"
-          ></i> */}
         </p>
       </div>
     </div>

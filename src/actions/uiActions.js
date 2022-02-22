@@ -1,7 +1,5 @@
 import types from "../types/types";
 
-//UI Actions to send to uiReducer
-
 export const setError = (err) => ({
   type: types.uiSetError,
   payload: err,

@@ -1,4 +1,4 @@
-import { urlBase } from "../environments/enviroment";
+import { urlBase } from "../environments/environment";
 import { finishLoading, startLoading } from "./uiActions";
 
 export const startSaveUserIfNotExists = (user) => {
@@ -51,7 +51,6 @@ export const startFetchUserById = async (userId) => {
   }
 };
 
-//userIdList es una lista de Id's de usuario
 export const fetchViewersData = async (userIdList) => {
   try {
     const response = await fetch(`${urlBase}/get/users-list`, {

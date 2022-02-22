@@ -54,9 +54,7 @@ const MemoryView = () => {
           startCountMemoryView(memoryId, userId, visibility, memoriesList)
         );
       })
-      .catch((err) => {
-        //window.alert("No hay comunicación con el server");
-      });
+      .catch((err) => {});
   }, [dispatch, memoriesList, memoryId, userId, visibility, creatorId]);
 
   const handleShowViewers = (e) => {

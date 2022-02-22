@@ -1,4 +1,4 @@
-import { urlBase } from "../environments/enviroment";
+import { urlBase } from "../environments/environment";
 import types from "../types/types";
 import { startLoading, finishLoading } from "./uiActions";
 import { v4 as uuidv4 } from "uuid";
@@ -75,7 +75,6 @@ const fetchAllMemoriesByNameOrTagname = (allMemoriesByNameOrTagname) => ({
   payload: allMemoriesByNameOrTagname,
 });
 
-//En uso
 export const startFetchAllUserMemories = (userId) => {
   return async (dispatch) => {
     dispatch(startLoading());
@@ -106,7 +105,6 @@ export const startFetchAllUserMemories = (userId) => {
   };
 };
 
-//En uso
 export const startFetchAllUserPublicMemories = (userId) => {
   return async (dispatch) => {
     dispatch(startLoading());
@@ -126,7 +124,6 @@ export const startFetchAllUserPublicMemories = (userId) => {
   };
 };
 
-//En uso
 export const startFetchAllUserProtectedMemories = (userId) => {
   return async (dispatch) => {
     dispatch(startLoading());
@@ -148,7 +145,6 @@ export const startFetchAllUserProtectedMemories = (userId) => {
   };
 };
 
-//En uso
 export const startFetchAllUserPrivateMemories = (userId) => {
   return async (dispatch) => {
     dispatch(startLoading());
@@ -168,7 +164,6 @@ export const startFetchAllUserPrivateMemories = (userId) => {
   };
 };
 
-//En uso
 export const startFetchAllMemoriesSharedWithTheCurrentUser = (userId) => {
   return async (dispatch) => {
     dispatch(startLoading());
@@ -239,7 +234,6 @@ const getCurrentDate = () => {
 };
 
 export const startCountMemoryView = (memoryId, userId, visibility) => {
-  console.log({ userId, memoryId });
   return async (dispatch) => {
     dispatch(startLoading());
     try {

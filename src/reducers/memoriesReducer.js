@@ -20,6 +20,7 @@ export const memoriesReducer = (state = initialState, action) => {
         activeSearchPanel: false,
         activeEmptyFormForNewMemory: false,
       };
+
     case types.setActiveMemoryToUpdate:
       return {
         ...state,
@@ -30,6 +31,7 @@ export const memoriesReducer = (state = initialState, action) => {
         activeSearchPanel: false,
         activeEmptyFormForNewMemory: false,
       };
+
     case types.setActiveSearchPanel:
       return {
         ...state,
@@ -38,6 +40,7 @@ export const memoriesReducer = (state = initialState, action) => {
         activeSearchPanel: true,
         activeEmptyFormForNewMemory: false,
       };
+
     case types.setNothingToShow:
       return {
         ...state,
@@ -46,6 +49,7 @@ export const memoriesReducer = (state = initialState, action) => {
         activeSearchPanel: false,
         activeEmptyFormForNewMemory: false,
       };
+
     case types.setNewMemoryForm:
       return {
         ...state,
@@ -54,22 +58,24 @@ export const memoriesReducer = (state = initialState, action) => {
         activeSearchPanel: false,
         activeEmptyFormForNewMemory: true,
       };
+
     case types.loadMemories:
       return {
         ...state,
         memoriesList: [...action.payload],
       };
+
     case types.memoriesLogoutCleaning:
       return { ...state, activeMemory: null, memoriesList: [] };
 
     case types.deleteMemory:
-      window.alert(action.payload.memoryId);
       return {
         ...state,
         memoriesList: action.payload.memoriesList.filter(
           (memory) => memory.id !== action.payload.memoryId
         ),
       };
+
     case types.registerMemoryView:
       const { viewsCount } = action.payload.memories.find(
         (memory) => memory.id === action.payload.memoryId
@@ -88,11 +94,6 @@ export const memoriesReducer = (state = initialState, action) => {
         ...state,
         memoriesList: action.payload,
       };
-
-    // return {
-    //   ...state,
-    //   memoriesList: [],
-    // };
 
     case types.fetchAllUserPublicMemories:
       return {
