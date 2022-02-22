@@ -324,7 +324,11 @@ const handleAuthorizedEmailValidation = (value, setErrorsState) => {
   );
 };
 
-export const memoryFormSubmitValidation = (formValues, errorsState) => {
+export const memoryFormSubmitValidation = (
+  formValues,
+  errorsState,
+  memoryPhotoList
+) => {
   const { id, name, memoryDate, visibility, country, city } = formValues;
 
   let errorsReport = { hasErrors: false };
@@ -401,6 +405,14 @@ export const memoryFormSubmitValidation = (formValues, errorsState) => {
       hasErrors: true,
       memoryPhotoDescription:
         "La descripción de la última imágen que estabas ingresando ha quedado con errores",
+    };
+  }
+  if (memoryPhotoList.length === 0) {
+    errorsReport = {
+      ...errorsReport,
+      hasErrors: true,
+      memoryPhotoList:
+        "La lista de fotos de tu recuerdo ha quedado vacía, ingresa al menos una foto",
     };
   }
 

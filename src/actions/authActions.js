@@ -1,5 +1,4 @@
 import types from "../types/types";
-import app from "../firebase/firebaseConfig";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { finishLoading, startLoading } from "./uiActions";
 import { urlBase } from "../environments/enviroment";

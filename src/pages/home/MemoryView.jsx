@@ -8,37 +8,11 @@ import {
   activeNothingToShow,
   activeMemoryToShow as activeTheMemory,
   startCountMemoryView,
-  startFetchAndShowRandomMemory,
-  startFetchMemoryAllImages,
 } from "../../actions/memoryActions";
 import { startFetchUserById } from "../../actions/userActions";
 import MemoryImagesList from "../../components/MemoryImagesList";
 import ViewerList from "../../components/ViewerList";
-import {
-  sweetalertForFetchingMemoriesBuilder,
-  sweetAlertForShowingAllMemoryViewers,
-} from "../../helpers/sweetAlertBuilder";
-
-const viewerList = [
-  {
-    name: "Doris del Carmen Mosquera Lozano",
-    urlPhoto:
-      "https://lh3.googleusercontent.com/a-/AOh14GjnkTKE1MwBx1jBXLj6SCsCSUANvgmn28L0yh31wg=s96-c-rg-br100",
-    visualizationDate: "2022-02-04",
-  },
-  {
-    name: "Juan Camilo Cardona Calderón",
-    urlPhoto:
-      "https://lh3.googleusercontent.com/a-/AOh14GjnkTKE1MwBx1jBXLj6SCsCSUANvgmn28L0yh31wg=s96-c-rg-br100",
-    visualizationDate: "2022-02-04",
-  },
-  {
-    name: "Wilmar Mosquera Lozano",
-    urlPhoto:
-      "https://lh3.googleusercontent.com/a-/AOh14GjnkTKE1MwBx1jBXLj6SCsCSUANvgmn28L0yh31wg=s96-c-rg-br100",
-    visualizationDate: "2022-02-04",
-  },
-];
+import { sweetalertForFetchingMemoriesBuilder } from "../../helpers/sweetAlertBuilder";
 
 const MemoryView = () => {
   const { uid: userId } = useSelector((state) => state.auth);
@@ -64,7 +38,6 @@ const MemoryView = () => {
     memoryPhotoList,
     //creationDate,
     //isAFavorite, //Not implemented yet
-    //authorizedIdList,
     visualizationList,
   } = activeMemoryToShow;
 
@@ -107,8 +80,6 @@ const MemoryView = () => {
 
   const handleRandomSearch = (e) => {
     e.preventDefault();
-    //Obtener un recuerdo de forma aleatoria de los que hay cargados en memoria en el front y hacer el dispatch para mostrarlo
-    // dispatch(startFetchAndShowRandomMemory());
     const randomMemory =
       memoriesList[Math.floor(Math.random() * memoriesList.length)];
     dispatch(activeTheMemory(randomMemory.memoryId, randomMemory));

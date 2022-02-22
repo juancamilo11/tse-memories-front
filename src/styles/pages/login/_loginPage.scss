@@ -1,5 +1,6 @@
 .login__main-container {
   width: 100vw;
+  min-width: 1110px;
   height: 100vh;
   display: flex;
   flex-direction: row;
@@ -23,19 +24,19 @@
 }
 
 .login__welcome-section-img {
-  margin: 50px 0px 30px 0px;
+  margin: 20px 0px 10px 0px;
   width: 150px;
 }
 
 .login__welcome-section-title {
-  padding: 0px 15px;
+  padding: 0px 5px;
   text-align: center;
 }
 
 .login__login-buttons-section {
   user-select: none;
   width: 100%;
-  margin-top: 100px;
+  margin-top: 10px;
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
@@ -107,8 +108,8 @@
   user-select: none;
   position: absolute;
   color: white;
-  font-size: 2.5rem;
-  top: -30px;
+  font-size: 1.5rem;
+  top: -10px;
   left: 40px;
 }
 

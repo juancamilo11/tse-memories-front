@@ -28,16 +28,14 @@ export const activeNewMemory = () => ({
   payload: null,
 });
 
-//modifyMemory sólo actualiza la vida, luego habrá otra acción de
-//Actualización para un recuerdo que si atacará el backend
 export const modifyMemory = (memoryId, memory) => ({
   type: types.modifyMemory,
   payload: { memoryId, ...memory },
 });
 
-export const deleteMemory = (memoryId, memories) => ({
+export const deleteMemory = (memoryId, memoriesList) => ({
   type: types.deleteMemory,
-  payload: { memoryId, memories },
+  payload: { memoryId, memoriesList },
 });
 
 const fetchAllUserMemories = (allUserMemories) => ({
@@ -48,37 +46,16 @@ const fetchAllUserMemories = (allUserMemories) => ({
 const fetchAllUserPublicMemories = (allUserPublicMemories) => ({
   type: types.fetchAllUserPublicMemories,
   payload: allUserPublicMemories,
-  /*[{},
-    {},
-    {},
-    ...,
-    {}
-    ]
-    */
 });
 
 const fetchAllUserProtectedMemories = (allUserProtectedMemories) => ({
   type: types.fetchAllUserProtectedMemories,
   payload: allUserProtectedMemories,
-  /*[{},
-    {},
-    {},
-    ...,
-    {}
-    ]
-    */
 });
 
 const fetchAllUserPrivateMemories = (allUserPrivateMemories) => ({
   type: types.fetchAllUserPrivateMemories,
   payload: allUserPrivateMemories,
-  /*[{},
-    {},
-    {},
-    ...,
-    {}
-    ]
-    */
 });
 
 const fetchAllMemoriesSharedWithTheCurrentUser = (
@@ -86,63 +63,22 @@ const fetchAllMemoriesSharedWithTheCurrentUser = (
 ) => ({
   type: types.fetchAllMemoriesSharedWithTheUser,
   payload: allMemoriesSharedWithTheUser,
-  /*[{},
-    {},
-    {},
-    ...,
-    {}
-    ]
-    */
 });
 
 const fetchAllSpecificUserMemoriesByEmail = (allUserPublicMemoriesByEmail) => ({
   type: types.fetchAllSpecificUserMemoriesByEmail,
   payload: allUserPublicMemoriesByEmail,
-  /*[{},
-    {},
-    {},
-    ...,
-    {}
-    ]
-    */
 });
 
 const fetchAllMemoriesByNameOrTagname = (allMemoriesByNameOrTagname) => ({
   type: types.fetchAllMemoriesByNameOrTagname,
   payload: allMemoriesByNameOrTagname,
-  /*[{},
-    {},
-    {},
-    ...,
-    {}
-    ]
-    */
 });
-
-export const startFetchAndShowRandomMemory = () => {
-  return async (dispatch) => {
-    try {
-      const response = await fetch(`${urlBase}/get/public-memory/random`, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      });
-      if (response.ok) {
-        const publicRandomMemory = await response.json();
-        const { memoryId } = publicRandomMemory;
-        window.alert(JSON.stringify(publicRandomMemory));
-        dispatch(activeMemoryToShow(memoryId, publicRandomMemory));
-      } else {
-        throw await response.json();
-      }
-    } catch (err) {
-      throw err;
-    }
-  };
-};
 
 //En uso
 export const startFetchAllUserMemories = (userId) => {
   return async (dispatch) => {
+    dispatch(startLoading());
     try {
       const response = await fetch(`${urlBase}/get/all-memories/${userId}`, {
         method: "GET",
@@ -164,6 +100,8 @@ export const startFetchAllUserMemories = (userId) => {
       }
     } catch (err) {
       throw err;
+    } finally {
+      dispatch(finishLoading());
     }
   };
 };
@@ -171,6 +109,7 @@ export const startFetchAllUserMemories = (userId) => {
 //En uso
 export const startFetchAllUserPublicMemories = (userId) => {
   return async (dispatch) => {
+    dispatch(startLoading());
     try {
       const response = await fetch(`${urlBase}/get/public-memories/${userId}`);
       if (response.ok) {
@@ -181,6 +120,8 @@ export const startFetchAllUserPublicMemories = (userId) => {
       }
     } catch (err) {
       throw err;
+    } finally {
+      dispatch(finishLoading());
     }
   };
 };
@@ -188,6 +129,7 @@ export const startFetchAllUserPublicMemories = (userId) => {
 //En uso
 export const startFetchAllUserProtectedMemories = (userId) => {
   return async (dispatch) => {
+    dispatch(startLoading());
     try {
       const response = await fetch(
         `${urlBase}/get/protected-memories/${userId}`
@@ -200,6 +142,8 @@ export const startFetchAllUserProtectedMemories = (userId) => {
       }
     } catch (err) {
       throw err;
+    } finally {
+      dispatch(finishLoading());
     }
   };
 };
@@ -207,6 +151,7 @@ export const startFetchAllUserProtectedMemories = (userId) => {
 //En uso
 export const startFetchAllUserPrivateMemories = (userId) => {
   return async (dispatch) => {
+    dispatch(startLoading());
     try {
       const response = await fetch(`${urlBase}/get/private-memories/${userId}`);
       if (response.ok) {
@@ -217,6 +162,8 @@ export const startFetchAllUserPrivateMemories = (userId) => {
       }
     } catch (err) {
       throw err;
+    } finally {
+      dispatch(finishLoading());
     }
   };
 };
@@ -224,6 +171,7 @@ export const startFetchAllUserPrivateMemories = (userId) => {
 //En uso
 export const startFetchAllMemoriesSharedWithTheCurrentUser = (userId) => {
   return async (dispatch) => {
+    dispatch(startLoading());
     try {
       const response = await fetch(`${urlBase}/get/shared-memories/${userId}`);
       if (response.ok) {
@@ -236,12 +184,15 @@ export const startFetchAllMemoriesSharedWithTheCurrentUser = (userId) => {
       }
     } catch (err) {
       throw err;
+    } finally {
+      dispatch(finishLoading());
     }
   };
 };
 
 export const startFetchAllSpecificUserMemoriesByEmail = (email) => {
   return async (dispatch) => {
+    dispatch(startLoading());
     try {
       const response = await fetch(
         `${urlBase}/get/public-memories/owner-email/${email}` //SOLO LAS PÚBLICAS
@@ -256,12 +207,15 @@ export const startFetchAllSpecificUserMemoriesByEmail = (email) => {
       }
     } catch (err) {
       throw err;
+    } finally {
+      dispatch(finishLoading());
     }
   };
 };
 
 export const startFetchAllMemoriesByNameOrTagname = (nameOrTagName) => {
   return async (dispatch) => {
+    dispatch(startLoading());
     try {
       const response = await fetch(
         `${urlBase}/get/public-memories/name-or-tagname/${nameOrTagName}` //SOLO LAS PÚBLICAS
@@ -274,6 +228,8 @@ export const startFetchAllMemoriesByNameOrTagname = (nameOrTagName) => {
       }
     } catch (err) {
       throw err;
+    } finally {
+      dispatch(finishLoading());
     }
   };
 };
@@ -285,6 +241,7 @@ const getCurrentDate = () => {
 export const startCountMemoryView = (memoryId, userId, visibility) => {
   console.log({ userId, memoryId });
   return async (dispatch) => {
+    dispatch(startLoading());
     try {
       const response = await fetch(
         `${urlBase}/put/${getVisibility(
@@ -297,30 +254,9 @@ export const startCountMemoryView = (memoryId, userId, visibility) => {
         }
       );
       if (response.ok) {
+        dispatch(finishLoading());
         return await response.json();
       } else {
-        throw await response.json();
-      }
-    } catch (err) {
-      throw err;
-    }
-  };
-};
-
-export const startDeleteMemory = (uid, memoryId, memories) => {
-  return async (dispatch) => {
-    dispatch(startLoading());
-    try {
-      const response = await fetch(
-        `${urlBase}/delete/memory/${uid}/${memoryId}`,
-        {
-          method: "POST",
-        }
-      );
-      if (response.ok) {
-        dispatch(deleteMemory(memoryId, memories));
-      } else {
-        dispatch(finishLoading());
         throw await response.json();
       }
     } catch (err) {
@@ -331,19 +267,29 @@ export const startDeleteMemory = (uid, memoryId, memories) => {
   };
 };
 
-export const startFetchMemoryAllImages = async (memoryId, visibility) => {
-  try {
-    const response = await fetch(
-      `${urlBase}/get/${visibility}-memory/${memoryId}`
-    );
-    if (response.ok) {
-      return await response.json();
-    } else {
-      throw await response.json();
+export const startDeleteMemory = (uid, memoryId, visibility, memoriesList) => {
+  return async (dispatch) => {
+    dispatch(startLoading());
+    try {
+      const response = await fetch(
+        `${urlBase}/delete/${getVisibility(
+          visibility
+        )}-memory/${uid}/${memoryId}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (response.ok) {
+        dispatch(deleteMemory(memoryId, memoriesList));
+      } else {
+        throw await response.json();
+      }
+    } catch (err) {
+      throw err;
+    } finally {
+      dispatch(finishLoading());
     }
-  } catch (err) {
-    throw err;
-  }
+  };
 };
 
 const getVisibility = (visibility) => {

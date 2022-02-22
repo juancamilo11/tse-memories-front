@@ -22,7 +22,7 @@ const ProtectedMemoryEntry = ({
   memoryPhotoList,
   location,
   isAFavorite, // No implemented yet
-  authorizedIdList,
+  authorizedEmailList,
   visualizationList,
 }) => {
   const dispatch = useDispatch();
@@ -43,7 +43,7 @@ const ProtectedMemoryEntry = ({
         memoryPhotoList,
         location,
         isAFavorite,
-        authorizedIdList,
+        authorizedEmailList,
         visualizationList,
       })
     );
@@ -62,7 +62,7 @@ const ProtectedMemoryEntry = ({
         memoryPhotoList,
         location,
         isAFavorite,
-        authorizedIdList,
+        authorizedEmailList,
         visualizationList,
       })
     );
@@ -73,7 +73,9 @@ const ProtectedMemoryEntry = ({
     sweetAlertForMemoryDeleteConfirmationBuilder(name, creationDate).then(
       (res) => {
         if (res.isConfirmed) {
-          dispatch(startDeleteMemory(id, memories));
+          dispatch(
+            startDeleteMemory(auth.uid, id, visibility, memories.memoriesList)
+          );
         }
       }
     );
@@ -158,12 +160,17 @@ const ProtectedMemoryEntry = ({
             </div>
             <div className="memory-catalog__memory-entry-details-view-count">
               <i class="fas fa-eye memory-catalog__icon-fav-memory"></i>
-              <h5 className="text-center"> 0 visitas</h5>
+              <h5 className="text-center">
+                {visualizationList.length} visitas
+              </h5>
             </div>
             <div className="memory-catalog__memory-entry-details-view-count">
               <i class="fas fa-unlock memory-catalog__icon-fav-memory"></i>
               <h5>
-                {authorizedIdList?.length || "No hay usuarios"} autorizados
+                {authorizedEmailList.length > 0
+                  ? authorizedEmailList.length
+                  : "No hay usuarios"}{" "}
+                autorizados
               </h5>
             </div>
           </div>

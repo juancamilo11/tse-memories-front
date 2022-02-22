@@ -11,9 +11,13 @@ const NoMemorySelected = () => {
         alt="welcome"
       />
       <div className="nothing-selected__welcome-message text-center">
-        <h1 className="text-center">¡Bienvenid@ {auth.name}!</h1>
+        <h1 className="text-center" style={{ padding: "10px" }}>
+          ¡Hola, {auth.name}!
+        </h1>
         <br />
-        <h5 className="text-center">No has seleccionado aún ningún recuerdo</h5>
+        <h3 className="text-center" style={{ marginTop: "-15px" }}>
+          No has seleccionado aún ningún recuerdo
+        </h3>
       </div>
     </div>
   );
