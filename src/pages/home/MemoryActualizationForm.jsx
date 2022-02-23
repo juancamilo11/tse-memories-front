@@ -31,6 +31,7 @@ import { sendEmailNotificationForMemorySharing } from "../../actions/userActions
 
 const MemoryActualizationForm = () => {
   const { email, uid, name: ownerName } = useSelector((state) => state.auth);
+  const { memoriesList } = useSelector((state) => state.memories);
   const [formValues, handleInputChange, resetForm] = useForm({});
   const [errorsState, setErrorsState] = useState(formInitialErrorState);
   const [warningColor, setWarningColor] = useState("yellow");
@@ -112,16 +113,7 @@ const MemoryActualizationForm = () => {
       sweetalertForFormSubmitErrorsReportBuilder(errorsReport);
       return;
     }
-    startSaveOrUpdateMemory(memoryInfo, uid)
-      .then((updatedMemory) => {
-        sweetalertForMemorySuccessfullyCreatedOrUpdateBuilder();
-        dispatch(activeMemoryToShow(updatedMemory.memoryId, updatedMemory));
-      })
-      .catch((err) => {
-        sweetalertForGenericErrorBuilder(
-          "Error en la creación/actualización del recuerdo" + err
-        );
-      });
+    dispatch(startSaveOrUpdateMemory(memoryInfo, uid, memoriesList));
   };
 
   const handleSelectImageToLoad = (e) => {

@@ -2,6 +2,10 @@ import { urlBase } from "../environments/environment";
 import types from "../types/types";
 import { startLoading, finishLoading } from "./uiActions";
 import { v4 as uuidv4 } from "uuid";
+import {
+  sweetalertForGenericErrorBuilder,
+  sweetalertForMemorySuccessfullyCreatedOrUpdateBuilder,
+} from "../helpers/sweetAlertBuilder";
 
 export const activeMemoryToShow = (memoryId, memory) => ({
   type: types.setActiveMemoryToShow,
@@ -73,6 +77,11 @@ const fetchAllSpecificUserMemoriesByEmail = (allUserPublicMemoriesByEmail) => ({
 const fetchAllMemoriesByNameOrTagname = (allMemoriesByNameOrTagname) => ({
   type: types.fetchAllMemoriesByNameOrTagname,
   payload: allMemoriesByNameOrTagname,
+});
+
+const addMemoryToMemoriesList = (memoriesList, updatedMemory) => ({
+  type: types.addMemoryToMemoriesList,
+  payload: { memoriesList, updatedMemory },
 });
 
 export const startFetchAllUserMemories = (userId) => {
@@ -296,30 +305,38 @@ const getVisibility = (visibility) => {
   }
 };
 
-export const startSaveOrUpdateMemory = async (memoryInfo, uid) => {
-  memoryInfo.creatorId = uid;
-  if (memoryInfo.id === "") {
-    memoryInfo.id = uuidv4();
-  }
-  memoryInfo.location = {
-    country: memoryInfo.country,
-    city: memoryInfo.city,
-  };
-  const visibility = getVisibility(memoryInfo.visibility);
-  try {
-    const response = await fetch(`${urlBase}/post/${visibility}-memory`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(memoryInfo),
-    });
-    if (response.ok) {
-      return await response.json();
-    } else {
-      throw await response.json();
+export const startSaveOrUpdateMemory = (memoryInfo, uid, memoriesList) => {
+  return async (dispatch) => {
+    memoryInfo.creatorId = uid;
+    if (memoryInfo.id === "") {
+      memoryInfo.id = uuidv4();
     }
-  } catch (err) {
-    throw err;
-  }
+    memoryInfo.location = {
+      country: memoryInfo.country,
+      city: memoryInfo.city,
+    };
+    const visibility = getVisibility(memoryInfo.visibility);
+    try {
+      const response = await fetch(`${urlBase}/post/${visibility}-memory`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(memoryInfo),
+      });
+      if (response.ok) {
+        const updatedMemory = await response.json();
+        dispatch(addMemoryToMemoriesList(memoriesList, updatedMemory));
+        dispatch(activeMemoryToShow(updatedMemory.memoryId, updatedMemory));
+        sweetalertForMemorySuccessfullyCreatedOrUpdateBuilder();
+      } else {
+        throw await response.json();
+      }
+    } catch (err) {
+      sweetalertForGenericErrorBuilder(
+        "Error en la creación/actualización del recuerdo" + err
+      );
+      throw err;
+    }
+  };
 };

@@ -20,6 +20,7 @@ const types = {
   modifyMemory: "[memories] Modify Memory",
   deleteMemory: "[memories] Delete Memory",
   registerMemoryView: "[memories] Register Memory View",
+  addMemoryToMemoriesList: "[memories] Add Memory to Memories List",
 
   addUploadedImageUrl: "[loadedImages] add Loaded image",
   removeUploadedImageUrl: "[loadedImages] remove Loaded image",

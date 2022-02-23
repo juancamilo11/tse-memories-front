@@ -89,6 +89,15 @@ export const memoriesReducer = (state = initialState, action) => {
         ),
       };
 
+    case types.addMemoryToMemoriesList:
+      return {
+        ...state,
+        memoriesList: [
+          action.payload.updatedMemory,
+          ...action.payload.memoriesList,
+        ],
+      };
+
     case types.fetchAllUserMemories:
       return {
         ...state,
