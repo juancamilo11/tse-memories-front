@@ -79,11 +79,6 @@ const fetchAllMemoriesByNameOrTagname = (allMemoriesByNameOrTagname) => ({
   payload: allMemoriesByNameOrTagname,
 });
 
-const addMemoryToMemoriesList = (memoriesList, updatedMemory) => ({
-  type: types.addMemoryToMemoriesList,
-  payload: { memoriesList, updatedMemory },
-});
-
 export const startFetchAllUserMemories = (userId) => {
   return async (dispatch) => {
     dispatch(startLoading());
@@ -326,9 +321,9 @@ export const startSaveOrUpdateMemory = (memoryInfo, uid, memoriesList) => {
       });
       if (response.ok) {
         const updatedMemory = await response.json();
-        dispatch(addMemoryToMemoriesList(memoriesList, updatedMemory));
         dispatch(activeMemoryToShow(updatedMemory.memoryId, updatedMemory));
         sweetalertForMemorySuccessfullyCreatedOrUpdateBuilder();
+        dispatch(startFetchAllUserMemories(uid));
       } else {
         throw await response.json();
       }

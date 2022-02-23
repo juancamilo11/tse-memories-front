@@ -33,13 +33,14 @@
 
 .search-panel__search-button {
   width: 150px;
-  margin-top: 30px;
+  margin: 30px auto;
   height: 35px;
   align-self: center;
   border-radius: 5px;
   border: 1px solid lightgray;
   cursor: pointer;
   background-color: rgb(124, 143, 253);
+  padding: 5px 10px;
 }
 
 .search-panel__input--submit {

@@ -91,7 +91,7 @@ const MemoryActualizationForm = () => {
       e,
       setErrorsState,
       email, //To build the cloudinary folder target
-      activeMemoryToUpdate?.memoryId //To build the cloudinary folder target
+      id //To build the cloudinary folder target
     );
   };
 
@@ -152,14 +152,12 @@ const MemoryActualizationForm = () => {
             <b className="memory-form__creation-date-value">{creationDate}</b>
           </div>
         </div>
+        <button className="memory-form__command-button" type="submit">
+          Guardar
+        </button>
       </div>
 
       <form onSubmit={handleMemoryFormSubmit}>
-        <div className="memory-form__command-buttons">
-          <button className="memory-form__command-button" type="submit">
-            Guardar
-          </button>
-        </div>
         <div className="memory-form__form-container">
           <div className="memory-form__inputs-container">
             <div className="memory-form__input-container">

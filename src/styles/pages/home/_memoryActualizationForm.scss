@@ -3,12 +3,15 @@
   width: 55%;
   height: 100vh;
   overflow-y: scroll;
+  overflow-y: scroll;
 }
 
 .memory-form__header-info {
-  // background-color: green;
+  background-color: rgb(133, 174, 248);
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   font-size: 13px;
 }
 
@@ -43,19 +46,25 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: -5px;
+  margin-bottom: 5px;
 }
 
 .memory-form__command-buttons {
-  position: absolute;
-  top: 10px;
-  right: 35px;
+  // position: absolute;
+  // top: 10px;
+  // right: 35px;
 }
 
 .memory-form__command-button {
-  margin: 5px;
-  padding: 5px 7px;
+  cursor: pointer;
+  margin-right: 20px;
+  padding: 5px 30px;
   border-radius: 3px;
   border: 1px solid darkgray;
+  background-color: #2906ec;
+  color:#fff;
+  font-weight:600;
 }
 
 //--------
@@ -124,7 +133,12 @@
 
 .memory-form__left-counting-tags {
   margin-bottom: 20px;
-  width: 96%;
+  width: 100%;
+  margin: 0px auto;
+}
+
+.memory-form__img-list-advice {
+  width: 98%;
   margin: 0px auto;
 }
 

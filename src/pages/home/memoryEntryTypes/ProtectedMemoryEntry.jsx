@@ -86,8 +86,8 @@ const ProtectedMemoryEntry = ({
       className="memory-catalog__memory-entry"
       style={{
         backgroundColor:
-          (activeMemory?.memoryId === id && "#C0C999") ||
-          (activeMemoryUpdating?.memoryId === id && "#FAFF70"),
+          (activeMemory?.memoryId === id && "#94DAFF") ||
+          (activeMemoryUpdating?.memoryId === id && "#94DAAA"),
       }}
     >
       <div

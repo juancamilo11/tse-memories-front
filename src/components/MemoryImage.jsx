@@ -27,7 +27,7 @@ const MemoryImage = ({ urlPhoto, title, description }) => {
       }}
     >
       <p className="memory-image__card-title text-center">
-        Recuerdos de miami con toda mi familia{" "}
+        {title || "Sin título"}
       </p>
     </div>
   );
