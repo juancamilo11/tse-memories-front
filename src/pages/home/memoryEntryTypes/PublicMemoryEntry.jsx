@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import {
   activeMemoryToShow,
   activeMemoryToUpdate,
-  modifyMemoryToUpdate,
   startDeleteMemory,
 } from "../../../actions/memoryActions";
 import { sweetAlertForMemoryDeleteConfirmationBuilder } from "../../../helpers/sweetAlertBuilder";
@@ -70,7 +69,9 @@ const PublicMemoryEntry = ({
     sweetAlertForMemoryDeleteConfirmationBuilder(name, creationDate).then(
       (res) => {
         if (res.isConfirmed) {
-          dispatch(startDeleteMemory(id, memories));
+          dispatch(
+            startDeleteMemory(auth.uid, id, visibility, memories.memoriesList)
+          );
         }
       }
     );
@@ -89,8 +90,10 @@ const PublicMemoryEntry = ({
         className="memory-catalog__memory-entry-picture"
         style={{
           backgroundSize: "cover",
-          backgroundImage: `url(${memoryPhotoList[0].urlPhoto})`,
-          // backgroundImage: `url(https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp)`,
+          backgroundImage: `url(${
+            memoryPhotoList[0]?.urlPhoto ||
+            "https://res.cloudinary.com/dahwtwzdl/image/upload/v1644706887/tse_memories/assets/no-content-image.webp"
+          })`,
         }}
       ></div>
 
@@ -172,14 +175,6 @@ const PublicMemoryEntry = ({
             className="fas fa-users"
             title="Este recuerdo público y cualquier persona en el mundo puede verlo"
           ></i>
-          {/* <i
-            className="fas fa-key"
-            title="Este recuerdo es protegido, lo cual significa que el creador te dió permiso de verlo"
-          ></i> */}
-          {/* <i
-            className="fas fa-lock"
-            title="Este recuerdo es privado, lo cual significa que sólo tú puedes verlo"
-          ></i> */}
         </p>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ErrorFlag from "../../components/ErrorFlag";
 import useForm from "../../hooks/useForm";
 import {
@@ -20,7 +20,6 @@ import {
   sweetalertForGenericErrorBuilder,
   sweetalertForInputTagAlreadyDefinedBuilder,
   sweetalertForMemorySuccessfullyCreatedOrUpdateBuilder,
-  sweetalertForVisibilityChangeBuilder,
 } from "../../helpers/sweetAlertBuilder";
 import AuthorizedUserList from "../../components/AuthorizedUserList";
 import {
@@ -28,9 +27,11 @@ import {
   startSaveOrUpdateMemory,
 } from "../../actions/memoryActions";
 import { useDispatch } from "react-redux";
+import { sendEmailNotificationForMemorySharing } from "../../actions/userActions";
 
 const MemoryActualizationForm = () => {
-  const { email, uid } = useSelector((state) => state.auth);
+  const { email, uid, name: ownerName } = useSelector((state) => state.auth);
+  const { memoriesList } = useSelector((state) => state.memories);
   const [formValues, handleInputChange, resetForm] = useForm({});
   const [errorsState, setErrorsState] = useState(formInitialErrorState);
   const [warningColor, setWarningColor] = useState("yellow");
@@ -81,6 +82,7 @@ const MemoryActualizationForm = () => {
     }
     setAuthorizedEmailList([emailValue, ...authorizedEmailList]);
     handleInputValidation(cleanEvent);
+    sendEmailNotificationForMemorySharing(id, ownerName, emailValue);
   };
 
   const handleInputValidation = (e) => {
@@ -89,7 +91,7 @@ const MemoryActualizationForm = () => {
       e,
       setErrorsState,
       email, //To build the cloudinary folder target
-      activeMemoryToUpdate?.memoryId //To build the cloudinary folder target
+      id //To build the cloudinary folder target
     );
   };
 
@@ -102,27 +104,20 @@ const MemoryActualizationForm = () => {
       authorizedEmailList,
       visualizationList,
     };
-    const errorsReport = memoryFormSubmitValidation(memoryInfo, errorsState);
+    const errorsReport = memoryFormSubmitValidation(
+      memoryInfo,
+      errorsState,
+      memoryPhotoList
+    );
     if (errorsReport.hasErrors) {
       sweetalertForFormSubmitErrorsReportBuilder(errorsReport);
       return;
     }
-    startSaveOrUpdateMemory(memoryInfo, uid)
-      .then((updatedMemory) => {
-        sweetalertForMemorySuccessfullyCreatedOrUpdateBuilder();
-        console.log(updatedMemory);
-        dispatch(activeMemoryToShow(updatedMemory.memoryId, updatedMemory));
-      })
-      .catch((err) => {
-        sweetalertForGenericErrorBuilder(
-          "Error en la creación/actualización del recuerdo" + err
-        );
-      });
+    dispatch(startSaveOrUpdateMemory(memoryInfo, uid, memoriesList));
   };
 
   const handleSelectImageToLoad = (e) => {
     e.preventDefault();
-    const { id } = e.target;
     document.getElementById("memory-form__input-image").click();
   };
 
@@ -144,33 +139,25 @@ const MemoryActualizationForm = () => {
     } else {
       resetForm(formInitialValues);
     }
-  }, []);
+  }, [activeMemoryToUpdate]);
 
   return (
     <div className="memory-form__main-container">
       <div className="memory-form__header-info">
         <div className="memory-form__id-container">
-          <b className="memory-form__id-label">Identificador</b>
-          <div className="memory-form__id-content">
-            <b className="memory-form__id-value">{id}</b>
-            <button className="memory-form__id-copy-button">
-              <i className="fas fa-copy memory-form__id-copy"></i>
-            </button>
+          <div className="memory-form__creation-date-container">
+            <p className="memory-form__creation-date-label">
+              Fecha de creación
+            </p>
+            <b className="memory-form__creation-date-value">{creationDate}</b>
           </div>
         </div>
-
-        <div className="memory-form__creation-date-container">
-          <p className="memory-form__creation-date-label">Fecha de creación</p>
-          <b className="memory-form__creation-date-value">{creationDate}</b>
-        </div>
+        <button className="memory-form__command-button" type="submit">
+          Guardar
+        </button>
       </div>
 
       <form onSubmit={handleMemoryFormSubmit}>
-        <div className="memory-form__command-buttons">
-          <button className="memory-form__command-button" type="submit">
-            Guardar
-          </button>
-        </div>
         <div className="memory-form__form-container">
           <div className="memory-form__inputs-container">
             <div className="memory-form__input-container">

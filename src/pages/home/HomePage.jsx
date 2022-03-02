@@ -16,6 +16,11 @@ const HomePage = () => {
       {memories.activeMemoryToUpdate && <MemoryActualizationForm />}
       {memories.activeSearchPanel && <MemorySearchPanel />}
       {memories.activeEmptyFormForNewMemory && <MemoryActualizationForm />}
+
+      {!memories.activeMemoryToShow &&
+        !memories.activeMemoryToUpdate &&
+        !memories.activeSearchPanel &&
+        !memories.activeEmptyFormForNewMemory && <NoMemorySelected />}
     </div>
   );
 };

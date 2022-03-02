@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import {
   activeMemoryToShow,
   activeMemoryToUpdate,
-  modifyMemoryToUpdate,
   startDeleteMemory,
 } from "../../../actions/memoryActions";
 import { sweetAlertForMemoryDeleteConfirmationBuilder } from "../../../helpers/sweetAlertBuilder";
@@ -67,7 +66,9 @@ const PrivateMemoryEntry = ({
     sweetAlertForMemoryDeleteConfirmationBuilder(name, creationDate).then(
       (res) => {
         if (res.isConfirmed) {
-          dispatch(startDeleteMemory(id, memories));
+          dispatch(
+            startDeleteMemory(auth.uid, id, visibility, memories.memoriesList)
+          );
         }
       }
     );
@@ -78,8 +79,8 @@ const PrivateMemoryEntry = ({
       className="memory-catalog__memory-entry"
       style={{
         backgroundColor:
-          (activeMemory?.memoryId === id && "#C0C999") ||
-          (activeMemoryUpdating?.memoryId === id && "#FAFF70"),
+          (activeMemory?.memoryId === id && "#94DAFF") ||
+          (activeMemoryUpdating?.memoryId === id && "#94DAAA"),
       }}
     >
       <div

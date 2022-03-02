@@ -6,38 +6,13 @@ import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import {
   activeNothingToShow,
+  activeMemoryToShow as activeTheMemory,
   startCountMemoryView,
-  startFetchAndShowRandomMemory,
-  startFetchMemoryAllImages,
 } from "../../actions/memoryActions";
 import { startFetchUserById } from "../../actions/userActions";
 import MemoryImagesList from "../../components/MemoryImagesList";
 import ViewerList from "../../components/ViewerList";
-import {
-  sweetalertForFetchingMemoriesBuilder,
-  sweetAlertForShowingAllMemoryViewers,
-} from "../../helpers/sweetAlertBuilder";
-
-const viewerList = [
-  {
-    name: "Doris del Carmen Mosquera Lozano",
-    urlPhoto:
-      "https://lh3.googleusercontent.com/a-/AOh14GjnkTKE1MwBx1jBXLj6SCsCSUANvgmn28L0yh31wg=s96-c-rg-br100",
-    visualizationDate: "2022-02-04",
-  },
-  {
-    name: "Juan Camilo Cardona Calderón",
-    urlPhoto:
-      "https://lh3.googleusercontent.com/a-/AOh14GjnkTKE1MwBx1jBXLj6SCsCSUANvgmn28L0yh31wg=s96-c-rg-br100",
-    visualizationDate: "2022-02-04",
-  },
-  {
-    name: "Wilmar Mosquera Lozano",
-    urlPhoto:
-      "https://lh3.googleusercontent.com/a-/AOh14GjnkTKE1MwBx1jBXLj6SCsCSUANvgmn28L0yh31wg=s96-c-rg-br100",
-    visualizationDate: "2022-02-04",
-  },
-];
+import { sweetalertForFetchingMemoriesBuilder } from "../../helpers/sweetAlertBuilder";
 
 const MemoryView = () => {
   const { uid: userId } = useSelector((state) => state.auth);
@@ -63,7 +38,6 @@ const MemoryView = () => {
     memoryPhotoList,
     //creationDate,
     //isAFavorite, //Not implemented yet
-    //authorizedIdList,
     visualizationList,
   } = activeMemoryToShow;
 
@@ -75,13 +49,12 @@ const MemoryView = () => {
     startFetchUserById(creatorId)
       .then((ownerInfoResponse) => {
         setOwnerInfo(ownerInfoResponse);
+        if (visibility === "privado") return;
         dispatch(
           startCountMemoryView(memoryId, userId, visibility, memoriesList)
         );
       })
-      .catch((err) => {
-        //window.alert("No hay comunicación con el server");
-      });
+      .catch((err) => {});
   }, [dispatch, memoriesList, memoryId, userId, visibility, creatorId]);
 
   const handleShowViewers = (e) => {
@@ -105,8 +78,10 @@ const MemoryView = () => {
 
   const handleRandomSearch = (e) => {
     e.preventDefault();
+    const randomMemory =
+      memoriesList[Math.floor(Math.random() * memoriesList.length)];
+    dispatch(activeTheMemory(randomMemory.memoryId, randomMemory));
     sweetalertForFetchingMemoriesBuilder();
-    dispatch(startFetchAndShowRandomMemory());
   };
 
   const handleGoBack = (e) => {

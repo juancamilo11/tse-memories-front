@@ -1,9 +1,8 @@
 import types from "../types/types";
-import app from "../firebase/firebaseConfig";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { finishLoading, startLoading } from "./uiActions";
-import startSaveUserIfNotExists from "./userActions";
-import { urlBase } from "../environments/enviroment";
+import { urlBase } from "../environments/environment";
+import app from "./../firebase/firebaseConfig";
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
 
@@ -43,10 +42,8 @@ export const startGoogleLogin = () => {
       dispatch(login(uid, displayName, email, photoURL));
 
       dispatch(finishLoading());
-      console.log(userData);
     } catch (err) {
       dispatch(finishLoading());
-      console.log(err);
     }
   };
 };

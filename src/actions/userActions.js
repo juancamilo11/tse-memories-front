@@ -1,21 +1,24 @@
-import { urlBase } from "../environments/enviroment";
+import { urlBase } from "../environments/environment";
 import { finishLoading, startLoading } from "./uiActions";
 
 export const startSaveUserIfNotExists = (user) => {
-  return async () => {
+  return async (dispatch) => {
+    dispatch(startLoading());
     try {
       const response = await fetch(`${urlBase}/post/user`, {
         method: "POST",
         body: JSON.stringify(user),
       });
       if (response.ok) {
-        const user = await response.json();
-        console.log(user);
+        dispatch(finishLoading());
+        return await response.json();
       } else {
         throw await response.json();
       }
     } catch (err) {
       throw err;
+    } finally {
+      dispatch(finishLoading());
     }
   };
 };
@@ -48,7 +51,6 @@ export const startFetchUserById = async (userId) => {
   }
 };
 
-//userIdList es una lista de Id's de usuario
 export const fetchViewersData = async (userIdList) => {
   try {
     const response = await fetch(`${urlBase}/get/users-list`, {
@@ -56,6 +58,29 @@ export const fetchViewersData = async (userIdList) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userIdList),
     });
+    if (response.ok) {
+      return await response.json();
+    } else {
+      throw await response.json();
+    }
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const sendEmailNotificationForMemorySharing = async (
+  memoryId,
+  senderName,
+  targetEmail
+) => {
+  try {
+    const response = await fetch(
+      `${urlBase}/post/send-mail/${memoryId}/${senderName}/${targetEmail}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+      }
+    );
     if (response.ok) {
       return await response.json();
     } else {

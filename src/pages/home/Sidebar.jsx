@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
 import { startLogout } from "../../actions/authActions";
 import { activeSearchPanel } from "../../actions/memoryActions";
 import MemoryEntries from "./MemoryEntries";
@@ -34,7 +33,7 @@ const Sidebar = () => {
           {auth?.photoUrl ? (
             <img
               src={auth.photoUrl}
-              alt="profile picture"
+              alt="profile pic"
               className="memory-catalog__img-profile"
             />
           ) : (
@@ -42,18 +41,20 @@ const Sidebar = () => {
           )}
           <span className="memory-catalog__display-name"> {auth.name}</span>
         </div>
-        <button
-          className="memory-catalog__search-button"
-          onClick={handleOpenSearchPanel}
-        >
-          Buscar y filtrar
-        </button>
-        <button
-          className="memory-catalog__search-button memory-catalog__logout-button"
-          onClick={handleLogout}
-        >
-          Salir
-        </button>
+        <div className="memory-catalog__sidebar-buttons">
+          <button
+            className="memory-catalog__search-button"
+            onClick={handleOpenSearchPanel}
+          >
+            Buscar y filtrar
+          </button>
+          <button
+            className="memory-catalog__logout-button"
+            onClick={handleLogout}
+          >
+            Salir
+          </button>
+        </div>
       </div>
       <MemoryEntries memories={memories} />
     </aside>

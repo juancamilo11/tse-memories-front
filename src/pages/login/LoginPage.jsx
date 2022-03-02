@@ -56,10 +56,10 @@ const LoginPage = () => {
         }}
       >
         <section className="login__app-description">
-          <h2 className="login__app-description-title">TSE Memories</h2>
-          <h4 className="login__app-description-title">
+          <h1 className="login__app-description-title">TSE Memories</h1>
+          <h3 className="login__app-description-title">
             ¡Crea recuerdos y compartelos con quién quieras!
-          </h4>
+          </h3>
           <h6 className="login__app-description-title">
             ¡Ingresa y crea un mundo lleno de recuerdos tuyos!
           </h6>

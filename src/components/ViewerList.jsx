@@ -48,7 +48,7 @@ const ViewerList = ({ visualizationList }) => {
           <div className="viewer-list__viewer">
             <div className="viewer-list__viewer-profile-photo">
               <img
-                src={viewer.urlProfilePhoto}
+                src={`${viewer.urlProfilePhoto}`}
                 className="viewer-list__viewer-profile-photo"
                 alt="viewer Google pic"
               />
@@ -60,7 +60,7 @@ const ViewerList = ({ visualizationList }) => {
               <p className="">
                 {visualizationList.find(
                   (visualization) => visualization.userId === viewer.id
-                ).visualizationDate || "Sin fecha"}
+                )?.visualizationDate || "Sin fecha"}
               </p>
             </div>
           </div>

@@ -62,12 +62,14 @@ const InputMemoryImagesForm = ({
   return (
     <div className="memory-form__image-list-container">
       <h3 className="text-center">Ingreso de fotos para tu recuerdo</h3>
-      {memoryPhotoList.length === 0 && (
-        <ErrorFlag
-          message="Aún no has ingresado imágenes para tu recuerdo, debes ingresar al menos una y máximo diez."
-          color="blue"
-        />
-      )}
+      <div className="memory-form__img-list-advice">
+        {memoryPhotoList.length === 0 && (
+          <ErrorFlag
+            message="Aún no has ingresado imágenes para tu recuerdo, debes ingresar al menos una y máximo diez."
+            color="blue"
+          />
+        )}
+      </div>
       <form
         className="memory-form__input-image-container"
         onSubmit={handleSubmit}

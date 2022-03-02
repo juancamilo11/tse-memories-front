@@ -98,34 +98,50 @@ export const sweetalertForFormSubmitErrorsReportBuilder = (errorsReport) =>
     title: "Error en el formulario",
     html: `<h3>El formulario tiene los siguientes errores:</h3>
       <ul>  
-        ${errorsReport.id !== undefined && +`<li>${errorsReport.id}</li>`}
-        ${errorsReport.name !== undefined && `<li>${errorsReport.name}</li>`}
+        ${errorsReport.id !== undefined ? +`<li>${errorsReport.id}</li>` : ""}
         ${
-          errorsReport.memoryDate !== undefined &&
-          `<li>${errorsReport.memoryDate}</li>`
+          errorsReport.name !== undefined ? `<li>${errorsReport.name}</li>` : ""
         }
         ${
-          errorsReport.visibility !== undefined &&
-          `<li>${errorsReport.visibility}</li>`
-        }
-        ${errorsReport.tag !== undefined && `<li>${errorsReport.tag}</li>`}
-        ${
-          errorsReport.country !== undefined &&
-          `<li>${errorsReport.country}</li>`
-        }
-        ${errorsReport.city !== undefined && `<li>${errorsReport.city}</li>`}
-        ${
-          errorsReport.authorizedEmail !== undefined &&
-          `<li>${errorsReport.authorizedEmail}</li>`
+          errorsReport.memoryDate !== undefined
+            ? `<li>${errorsReport.memoryDate}</li>`
+            : ""
         }
         ${
-          errorsReport.memoryPhotoText !== undefined &&
-          `<li>${errorsReport.memoryPhotoText}</li>`
+          errorsReport.visibility !== undefined
+            ? `<li>${errorsReport.visibility}</li>`
+            : ""
+        }
+        ${errorsReport.tag !== undefined ? `<li>${errorsReport.tag}</li>` : ""}
+        ${
+          errorsReport.country !== undefined
+            ? `<li>${errorsReport.country}</li>`
+            : ""
         }
         ${
-          errorsReport.memoryPhotoDescription !== undefined &&
-          `<li>${errorsReport.memoryPhotoDescription}</li>`
+          errorsReport.city !== undefined ? `<li>${errorsReport.city}</li>` : ""
         }
+        ${
+          errorsReport.authorizedEmail !== undefined
+            ? `<li>${errorsReport.authorizedEmail}</li>`
+            : ""
+        }
+        ${
+          errorsReport.memoryPhotoText !== undefined
+            ? `<li>${errorsReport.memoryPhotoText}</li>`
+            : ""
+        }
+        ${
+          errorsReport.memoryPhotoDescription !== undefined
+            ? `<li>${errorsReport.memoryPhotoDescription}</li>`
+            : ""
+        }
+        ${
+          errorsReport.memoryPhotoList !== undefined
+            ? `<li>${errorsReport.memoryPhotoList}</li>`
+            : ""
+        }
+        
       </ul>`,
     footer: `<b>Verifica los valores ingresados e intenta nuevamente</b>`,
     showConfirmButton: true,
