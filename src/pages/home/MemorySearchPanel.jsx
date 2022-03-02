@@ -20,7 +20,7 @@ import {
 const MemorySearchPanel = () => {
   const dispatch = useDispatch();
 
-  const [formValues, handleInputChange, resetForm] = useForm({
+  const [formValues, handleInputChange] = useForm({
     email: "",
     nameOrTagName: "",
   });

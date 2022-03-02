@@ -17,15 +17,10 @@ import InputMemoryImagesForm from "../../components/InputMemoryImagesForm";
 import {
   sweetalertForEmailAlreadyDefinedBuilder,
   sweetalertForFormSubmitErrorsReportBuilder,
-  sweetalertForGenericErrorBuilder,
   sweetalertForInputTagAlreadyDefinedBuilder,
-  sweetalertForMemorySuccessfullyCreatedOrUpdateBuilder,
 } from "../../helpers/sweetAlertBuilder";
 import AuthorizedUserList from "../../components/AuthorizedUserList";
-import {
-  activeMemoryToShow,
-  startSaveOrUpdateMemory,
-} from "../../actions/memoryActions";
+import { startSaveOrUpdateMemory } from "../../actions/memoryActions";
 import { useDispatch } from "react-redux";
 import { sendEmailNotificationForMemorySharing } from "../../actions/userActions";
 
@@ -269,7 +264,11 @@ const MemoryActualizationForm = () => {
                   Seleccione la visibilidad
                 </option>
                 {visibilityTypes.map((visibility) => (
-                  <option title={visibility.title} value={visibility.type}>
+                  <option
+                    key={visibility.title}
+                    title={visibility.title}
+                    value={visibility.type}
+                  >
                     {visibility.label}
                   </option>
                 ))}

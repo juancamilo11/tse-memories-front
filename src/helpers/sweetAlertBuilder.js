@@ -81,7 +81,6 @@ export const sweetalertForVisibilityChangeBuilder = () =>
         <li>Si cambia la visibilidad de un recuerdo <b>protegido</b> o <b>público</b> a <b>privado</b> se eliminará la lista de usuarios que han visto el recuerdo</li>
       </ul>`,
     footer: `<b>Si estás creando el recuerdo puedes elegir libremente la visibilidad</b>`,
-    showConfirmButton: false,
     timer: 60000,
     width: 600,
     timerProgressBar: true,

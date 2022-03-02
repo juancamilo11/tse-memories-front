@@ -154,7 +154,9 @@ const MemoryView = () => {
       </div>
       <div className="memory-view__tag-list-section">
         {tagList.map((tag) => (
-          <div className="memory-view__tag-item">{tag}</div>
+          <div key={tag} className="memory-view__tag-item">
+            {tag}
+          </div>
         ))}
       </div>
       <div className="memory-view__images-list-section">

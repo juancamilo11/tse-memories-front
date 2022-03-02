@@ -32,8 +32,8 @@ const MemoryTagList = ({ tagList, setTagList }) => {
         )}
       </div>
       <div className="memory-form__tag-list">
-        {tagList.map((tag, index) => (
-          <MemoryTag id={index} tag={tag} setTagList={setTagList} />
+        {tagList.map((tag) => (
+          <MemoryTag id={tag} tag={tag} setTagList={setTagList} />
         ))}
       </div>
     </div>

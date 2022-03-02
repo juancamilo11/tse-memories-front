@@ -45,7 +45,7 @@ const ViewerList = ({ visualizationList }) => {
       </h3>
       <div className="viewer-list__viewers-container">
         {viewersInfo.slice(min, max).map((viewer) => (
-          <div className="viewer-list__viewer">
+          <div key={viewer.urlProfilePhoto} className="viewer-list__viewer">
             <div className="viewer-list__viewer-profile-photo">
               <img
                 src={`${viewer.urlProfilePhoto}`}

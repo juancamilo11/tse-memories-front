@@ -78,9 +78,6 @@ export const memoryFormValidator = (e, setErrorsState, userEmail, memoryId) => {
     case "memoryDate":
       handleMemoryDateValidation(value, setErrorsState);
       break;
-    // case "visibility":
-    //   handleVisibilityValidation(value, setErrorsState);
-    //break;
     case "tag":
       handleTagValidation(value, setErrorsState);
       break;
