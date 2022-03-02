@@ -147,12 +147,12 @@ const MemoryActualizationForm = () => {
             <b className="memory-form__creation-date-value">{creationDate}</b>
           </div>
         </div>
-        <button className="memory-form__command-button" type="submit">
-          Guardar
-        </button>
       </div>
 
       <form onSubmit={handleMemoryFormSubmit}>
+        <button className="memory-form__command-button" type="submit">
+          Guardar
+        </button>
         <div className="memory-form__form-container">
           <div className="memory-form__inputs-container">
             <div className="memory-form__input-container">
@@ -204,6 +204,7 @@ const MemoryActualizationForm = () => {
                 className="memory-form__input"
                 autoComplete="off"
                 value={country}
+                placeholder="País"
                 onChange={handleInputValidation}
               />
 
@@ -211,6 +212,7 @@ const MemoryActualizationForm = () => {
                 type="text"
                 name="city"
                 id="city"
+                placeholder="Ciudad"
                 className="memory-form__input memory-form__input--secundary"
                 autoComplete="off"
                 value={city}
@@ -244,9 +246,8 @@ const MemoryActualizationForm = () => {
               <button
                 onClick={handleAddNewTag}
                 className="memory-form__input memory-form__button-input-tag btn btn-primary"
-                disabled={errorsState.tag.hasErrors}
                 type="button"
-                disabled={tagList.length >= 25}
+                disabled={tagList.length >= 25 || errorsState.tag.hasErrors}
               >
                 Ingresar
               </button>

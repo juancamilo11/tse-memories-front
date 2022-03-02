@@ -21,6 +21,7 @@ const MemoryTagList = ({ tagList, setTagList }) => {
           <ErrorFlag
             message="Puedes tener hasta 25 etiquetas no repetidas para recuerdo de viaje"
             color="blue"
+            fontColor="white"
           />
         )}
 

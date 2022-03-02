@@ -1,12 +1,13 @@
 .nothing-selected__main-container {
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.486);
+  background-color: rgba(5, 167, 54, 0.486);
   color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: 100vh;
   width: 55%;
+  min-width: 640px;
 }
 
 .nothing-selected__welcome-img {
