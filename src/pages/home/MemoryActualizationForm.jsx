@@ -77,6 +77,9 @@ const MemoryActualizationForm = () => {
     }
     setAuthorizedEmailList([emailValue, ...authorizedEmailList]);
     handleInputValidation(cleanEvent);
+    window.alert(
+      "id" + id + "      ownerName " + ownerName + "     email " + emailValue
+    );
     sendEmailNotificationForMemorySharing(id, ownerName, emailValue);
   };
 
@@ -108,7 +111,7 @@ const MemoryActualizationForm = () => {
       sweetalertForFormSubmitErrorsReportBuilder(errorsReport);
       return;
     }
-    dispatch(startSaveOrUpdateMemory(memoryInfo, uid, memoriesList));
+    dispatch(startSaveOrUpdateMemory(memoryInfo, uid));
   };
 
   const handleSelectImageToLoad = (e) => {

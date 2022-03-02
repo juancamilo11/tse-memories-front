@@ -195,7 +195,11 @@ const ProtectedMemoryEntry = ({
         <p className="memory-catalog__visibility-icon">
           <i
             className="fas fa-key"
-            title="Este recuerdo es protegido, lo cual significa que el creador te dió permiso de verlo"
+            title={
+              creatorId === auth.uid
+                ? "Este recuerdo está protegido, sólo tú decides a quién quieres compartirlo"
+                : "Este recuerdo es protegido, lo cual significa que el creador te dió permiso de verlo"
+            }
           ></i>
         </p>
       </div>

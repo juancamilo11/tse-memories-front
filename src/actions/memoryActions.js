@@ -300,7 +300,7 @@ const getVisibility = (visibility) => {
   }
 };
 
-export const startSaveOrUpdateMemory = (memoryInfo, uid, memoriesList) => {
+export const startSaveOrUpdateMemory = (memoryInfo, uid) => {
   return async (dispatch) => {
     memoryInfo.creatorId = uid;
     if (memoryInfo.id === "") {

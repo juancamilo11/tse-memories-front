@@ -75,7 +75,9 @@ export const sendEmailNotificationForMemorySharing = async (
 ) => {
   try {
     const response = await fetch(
-      `${urlBase}/post/send-mail/${memoryId}/${senderName}/${targetEmail}`,
+      `${urlBase}/post/send-mail/${
+        memoryId || "123" //If the memory is new, id=123
+      }/${senderName}/${targetEmail}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
