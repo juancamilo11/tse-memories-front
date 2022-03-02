@@ -20,7 +20,7 @@ import {
 const MemorySearchPanel = () => {
   const dispatch = useDispatch();
 
-  const [formValues, handleInputChange, resetForm] = useForm({
+  const [formValues, handleInputChange] = useForm({
     email: "",
     nameOrTagName: "",
   });
@@ -73,12 +73,6 @@ const MemorySearchPanel = () => {
       }
       dispatch(startFetchAllSpecificUserMemoriesByEmail(email));
     } else {
-      if (nameOrTagName === "") {
-        sweetalertForInvalidSearchValueBuilder(
-          "El nombre del recuerdo o etiqueta del mismo está vacío"
-        );
-        return;
-      }
       dispatch(startFetchAllMemoriesByNameOrTagname(nameOrTagName));
     }
     sweetalertForFetchingMemoriesBuilder();
@@ -134,8 +128,8 @@ const MemorySearchPanel = () => {
             </label>
             <input
               type="text"
-              name="nameOrTag"
-              id="nameOrTag"
+              name="nameOrTagName"
+              id="nameOrTagName"
               placeholder="Ingrese el nombre o la etiqueta del recuerdo"
               onChange={handleInputChange}
               className="search-panel__input"

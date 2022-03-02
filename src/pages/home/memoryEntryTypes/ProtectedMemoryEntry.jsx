@@ -109,17 +109,17 @@ const ProtectedMemoryEntry = ({
           <hr />
         </div>
         <p className="memory-catalog__memory-entry-content">
-          <i class="fas fa-map-marker-alt memory-catalog__icon-entry-value"></i>
+          <i className="fas fa-map-marker-alt memory-catalog__icon-entry-value"></i>
           <span className="bold-text">
             {location.city}, {location.country}
           </span>
         </p>
         <p className="memory-catalog__memory-entry-content">
-          <i class="fas fa-calendar-alt memory-catalog__icon-entry-value"></i>
+          <i className="fas fa-calendar-alt memory-catalog__icon-entry-value"></i>
           <span className="bold-text">{memoryDate}</span>
         </p>
         <p className="memory-catalog__memory-entry-content">
-          <i class="fas fa-tags memory-catalog__icon-entry-value"></i>
+          <i className="fas fa-tags memory-catalog__icon-entry-value"></i>
           {tagList
             .slice(0, MAX_NUM_TAGS_DISPLAYED)
             .toString()
@@ -148,24 +148,24 @@ const ProtectedMemoryEntry = ({
             <div className="memory-catalog__memory-entry-details-favorite">
               {isAFavorite ? (
                 <>
-                  <i class="fas fa-heart memory-catalog__icon-fav-memory"></i>
+                  <i className="fas fa-heart memory-catalog__icon-fav-memory"></i>
                   <h5 className="text-center">En tus favoritos</h5>
                 </>
               ) : (
                 <>
-                  <i class="far fa-heart memory-catalog__icon-fav-memory"></i>
+                  <i className="far fa-heart memory-catalog__icon-fav-memory"></i>
                   <h5 className="text-center">No en favoritos</h5>
                 </>
               )}
             </div>
             <div className="memory-catalog__memory-entry-details-view-count">
-              <i class="fas fa-eye memory-catalog__icon-fav-memory"></i>
+              <i className="fas fa-eye memory-catalog__icon-fav-memory"></i>
               <h5 className="text-center">
                 {visualizationList.length} visitas
               </h5>
             </div>
             <div className="memory-catalog__memory-entry-details-view-count">
-              <i class="fas fa-unlock memory-catalog__icon-fav-memory"></i>
+              <i className="fas fa-unlock memory-catalog__icon-fav-memory"></i>
               <h5>
                 {authorizedEmailList.length > 0
                   ? authorizedEmailList.length
@@ -182,7 +182,7 @@ const ProtectedMemoryEntry = ({
             onClick={handleDeleteMemory}
             title="Este recuerdo es tuyo y sólo tú puedes eliminarlo."
           >
-            <i class="fas fa-trash memory-catalog__icon-delete-memory"></i>
+            <i className="fas fa-trash memory-catalog__icon-delete-memory"></i>
           </button>
         ) : (
           <p className="memory-catalog__shared-memory-icon">
@@ -195,7 +195,11 @@ const ProtectedMemoryEntry = ({
         <p className="memory-catalog__visibility-icon">
           <i
             className="fas fa-key"
-            title="Este recuerdo es protegido, lo cual significa que el creador te dió permiso de verlo"
+            title={
+              creatorId === auth.uid
+                ? "Este recuerdo está protegido, sólo tú decides a quién quieres compartirlo"
+                : "Este recuerdo es protegido, lo cual significa que el creador te dió permiso de verlo"
+            }
           ></i>
         </p>
       </div>

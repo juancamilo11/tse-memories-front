@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -7,11 +7,9 @@ import { activeSearchPanel } from "../../actions/memoryActions";
 import MemoryEntries from "./MemoryEntries";
 
 const Sidebar = () => {
-  const navigate = useNavigate();
   //Aquí es donde se llevan a cabo los procesos de filtrado y búsqueda y ordenamiento
 
   const { memories } = useSelector((state) => state);
-  const [searchValue, setSearchValue] = useState("");
 
   const dispatch = useDispatch();
 

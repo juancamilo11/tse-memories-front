@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getAuth, onAuthStateChanged } from "@firebase/auth";
 import { login } from "../actions/authActions";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -15,7 +15,6 @@ const AppRouter = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.state);
   const auth = getAuth();
 
   useEffect(() => {

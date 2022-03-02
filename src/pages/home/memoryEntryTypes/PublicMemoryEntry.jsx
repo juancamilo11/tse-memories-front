@@ -105,17 +105,17 @@ const PublicMemoryEntry = ({
           <hr />
         </div>
         <p className="memory-catalog__memory-entry-content">
-          <i class="fas fa-map-marker-alt memory-catalog__icon-entry-value"></i>
+          <i className="fas fa-map-marker-alt memory-catalog__icon-entry-value"></i>
           <span className="bold-text">
             {location.city}, {location.country}
           </span>
         </p>
         <p className="memory-catalog__memory-entry-content">
-          <i class="fas fa-calendar-alt memory-catalog__icon-entry-value"></i>
+          <i className="fas fa-calendar-alt memory-catalog__icon-entry-value"></i>
           <span className="bold-text">{memoryDate}</span>
         </p>
         <p className="memory-catalog__memory-entry-content">
-          <i class="fas fa-tags memory-catalog__icon-entry-value"></i>
+          <i className="fas fa-tags memory-catalog__icon-entry-value"></i>
           {tagList
             .slice(0, MAX_NUM_TAGS_DISPLAYED)
             .toString()
@@ -144,18 +144,18 @@ const PublicMemoryEntry = ({
             <div className="memory-catalog__memory-entry-details-favorite">
               {isAFavorite ? (
                 <>
-                  <i class="fas fa-heart memory-catalog__icon-fav-memory"></i>
+                  <i className="fas fa-heart memory-catalog__icon-fav-memory"></i>
                   <h5>En tus favoritos</h5>
                 </>
               ) : (
                 <>
-                  <i class="far fa-heart memory-catalog__icon-fav-memory"></i>
+                  <i className="far fa-heart memory-catalog__icon-fav-memory"></i>
                   <h5>No en favoritos</h5>
                 </>
               )}
             </div>
             <div className="memory-catalog__memory-entry-details-view-count">
-              <i class="fas fa-eye memory-catalog__icon-fav-memory"></i>
+              <i className="fas fa-eye memory-catalog__icon-fav-memory"></i>
               <h5>{visualizationList.length} visitas</h5>
             </div>
           </div>
@@ -167,7 +167,7 @@ const PublicMemoryEntry = ({
             onClick={handleDeleteMemory}
             title="Este recuerdo es tuyo y sólo tú puedes eliminarlo."
           >
-            <i class="fas fa-trash memory-catalog__icon-delete-memory"></i>
+            <i className="fas fa-trash memory-catalog__icon-delete-memory"></i>
           </button>
         )}
         <p className="memory-catalog__visibility-icon">

@@ -13,6 +13,7 @@ const AuthorizedUserList = ({
       <div className="auth-list__list-container">
         {authorizedEmailList.map((authorizedEmail) => (
           <AuthorizedUser
+            key={authorizedEmail}
             authorizedEmail={authorizedEmail}
             setAuthorizedEmailList={setAuthorizedEmailList}
           />

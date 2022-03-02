@@ -21,6 +21,7 @@ const MemoryTagList = ({ tagList, setTagList }) => {
           <ErrorFlag
             message="Puedes tener hasta 25 etiquetas no repetidas para recuerdo de viaje"
             color="blue"
+            fontColor="white"
           />
         )}
 
@@ -32,8 +33,8 @@ const MemoryTagList = ({ tagList, setTagList }) => {
         )}
       </div>
       <div className="memory-form__tag-list">
-        {tagList.map((tag, index) => (
-          <MemoryTag id={index} tag={tag} setTagList={setTagList} />
+        {tagList.map((tag) => (
+          <MemoryTag id={tag} tag={tag} setTagList={setTagList} />
         ))}
       </div>
     </div>

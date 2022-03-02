@@ -1,6 +1,6 @@
 .memory-form__main-container {
-  // background-color: red;
   width: 55%;
+  min-width: 645px;
   height: 100vh;
   overflow-y: scroll;
   overflow-y: scroll;
@@ -50,21 +50,17 @@
   margin-bottom: 5px;
 }
 
-.memory-form__command-buttons {
-  // position: absolute;
-  // top: 10px;
-  // right: 35px;
-}
-
 .memory-form__command-button {
   cursor: pointer;
-  margin-right: 20px;
   padding: 5px 30px;
   border-radius: 3px;
-  border: 1px solid darkgray;
-  background-color: #2906ec;
+  border: 1px solid rgb(9, 2, 112);
+  background-color: #2600ff;
   color:#fff;
-  font-weight:600;
+  font-weight:400;
+  position:absolute;
+  top:10px;
+  right: 2.5%;
 }
 
 //--------
@@ -114,7 +110,7 @@
 }
 
 .memory-form__input--secundary {
-  width: 35%;
+  width: 36%;
   margin-left: 5%;
 }
 
