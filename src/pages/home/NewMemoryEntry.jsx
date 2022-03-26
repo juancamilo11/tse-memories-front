@@ -11,14 +11,14 @@ const NewMemoryEntry = () => {
   };
 
   return (
-    <div
-      className="store-catalog__new-memory-container"
-      onClick={handleOpenEmptyFormForNewMemory}
-    >
-      <button className="store-catalog__new-memory-button">
+    <div className="store-catalog__new-memory-container">
+      <button
+        className="store-catalog__new-memory-button"
+        onClick={handleOpenEmptyFormForNewMemory}
+      >
         <img
           className="store-catalog__new-memory-img"
-          src="https://res.cloudinary.com/dahwtwzdl/image/upload/v1644700208/tse_memories/assets/travel_hotnua.png"
+          src={process.env.PUBLIC_URL + "/assets/img/home/travel.png"}
           alt="new memory button"
         />
         <p className="store-catalog__new-memory-text">Nuevo Recuerdo</p>
